@@ -51,26 +51,28 @@ To exit nano press CTRL+X (you might be prompted you to save or discard modified
 
 ## Python
 
-We use Python 3, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately! The "Python3.6 Anaconda" installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
+We use Python 3, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately! The "Anaconda3 " installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
 
 **<span style="color:red">IMPORTANT</span>: When asked "Add Anaconda to my PATH environment variable", answer "yes". 
-After it's finished, close and reopen your terminal to reload the updated PATH and allow the installed Python to be found.**
+After it's finished, close and reopen any open terminals to reload the updated PATH and allow the installed Python to be found.**
 
 #### Windows
 
-Download the [Python3.6 Anaconda installer](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Windows-x86_64.exe). Double click the installer and follow the instructions.
+Download the [Python 3.7 Anaconda Windows installer](https://repo.anaconda.com/archive/Anaconda3-2018.12-Windows-x86_64.exe). Double click the installer and follow the instructions. You may skip the step to install Microsoft VSCode.
 
 #### Mac OS X
 
-Download the [Python 3.6 Anaconda Mac OS X Graphical installer](https://repo.anaconda.com/archive/Anaconda3-5.2.0-MacOSX-x86_64.pkg). Double click the `.pkg` file and follow the instructions.
+Download the [Python 3.7 Anaconda Mac OS X installer](https://repo.anaconda.com/archive/Anaconda3-2018.12-MacOSX-x86_64.pkg). Double click the `.pkg` file and follow the instructions.
 
 #### Linux
 
-Download the [Python3.6 Anaconda installation script](https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh). Install via the terminal like this:
+Download the [Python 3.7 Anaconda Linux Installer](https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh). Install via the terminal like this
 
 ~~~{.code}
-bash Anaconda3-5.2.0-Linux-x86_64.sh
+bash Anaconda3-2018.12-Linux-x86_64.sh
 ~~~
+
+Answer 'yes' to allow the installer to initialize Anacona3 in your .bashrc
 
 ## Git
 
@@ -84,7 +86,7 @@ To create an account, [go to the Github website](https://github.com/join) and pr
 
 #### Windows
 
-Download and install [Git for Windows](http://git-scm.com/download/win). **Please note** that you can accept the default installation options, **with one exception** - at the step 'Configuring the terminal emulator to use with Git Bash' you **must** select 'Use Windows default console window'.
+Download and install [Git for Windows](http://git-scm.com/download/win). **Please note** During installation, you should select **Nano** as the default editor, and at the step 'Configuring the terminal emulator to use with Git Bash' you **must** select 'Use Windows default console window'.
 
 #### Mac OS X
 
