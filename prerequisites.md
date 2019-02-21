@@ -28,37 +28,20 @@ The Bash shell is accessed via the Terminal application.
 
 ## Text Editor
 
-A text editor is the piece of software you use to view and write code. If you have a preferred text editor, please use it. If you don&#39;t have one, we recommend the following.
-
-#### Windows
-
-[Notepad++](https://notepad-plus-plus.org/download/). Just download the installer and run it.
-
-#### Mac OS X and Linux
-
-Nano is a text editor that is installed by default on Mac OS X and Linux.
-
-You can verify you have nano installed by opening a terminal and entering:</p>
-
-~~~ {.code}
-nano
-~~~
-
-If nano is not installed, you will receive an error. If it is installed, nano will open (appearing not dissimilar to the terminal window, but with menu items at the bottom of the window).
-
-To exit nano press CTRL+X (you might be prompted you to save or discard modified buffer - just type "N" to exit without saving).
-
+A text editor is the piece of software you use to view and write code. If you have a preferred text editor, please use it. If you don&#39;t, we recommend Microsoft Visual Studio Code, which can be installed along with Python (below).
 
 ## Python
 
-We use Python 3, because it is generally the most widely used version of Python. We will also use the numpy and matplotlib libraries and the nose unit testing framework. Fortunately, these do not need to be installed separately! The "Anaconda3 " installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
+We use Python 3, because it is generally the most widely used version of Python.  The "Anaconda3" installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
 
 **<span style="color:red">IMPORTANT</span>: When asked "Add Anaconda to my PATH environment variable", answer "yes". 
 After it's finished, close and reopen any open terminals to reload the updated PATH and allow the installed Python to be found.**
 
+If you wish to use Microsoft Visual Studio Code (VSCode) as your text editor, install it when prompted. **Note** This requires administrator rights.
+
 #### Windows
 
-Download the [Python 3.7 Anaconda Windows installer](https://repo.anaconda.com/archive/Anaconda3-2018.12-Windows-x86_64.exe). Double click the installer and follow the instructions. You may skip the step to install Microsoft VSCode.
+Download the [Python 3.7 Anaconda Windows installer](https://repo.anaconda.com/archive/Anaconda3-2018.12-Windows-x86_64.exe). Double click the installer and follow the instructions.
 
 #### Mac OS X
 
@@ -72,7 +55,7 @@ Download the [Python 3.7 Anaconda Linux Installer](https://repo.anaconda.com/arc
 bash Anaconda3-2018.12-Linux-x86_64.sh
 ~~~
 
-Answer 'yes' to allow the installer to initialize Anacona3 in your .bashrc
+Answer 'yes' to allow the installer to initialize Anaconda3 in your .bashrc
 
 ## Git
 
