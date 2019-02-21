@@ -5,14 +5,14 @@ title: Software Prerequisites
 
 [[Home]](https://southampton-rsg.github.io/2019-03-13-southampton-swc/)
 
-**Prior to the workshop, it is vital that you install some software on your laptop and create an account at Github by following the instructions below!**
+**Prior to the workshop, it is vital that you install some software on your laptop and create an account at Github by following the instructions below**
 
-There is little time during the workshop to deal with installation problems, so it makes the day run much more smoothly if you arrive with your software already installed.
+There is little time during the workshop to deal with installation problems, so it makes the day run more smoothly if you arrive with your software already installed.
 
 
 ## Bash
 
-Among many other things, Bash allows you to automate dull and boring tasks. We use it during the command line section of the course.
+Among many other things, Bash allows you to automate repetitive tasks. We use it during the command line section of the course.
 
 #### Windows
 
@@ -32,12 +32,12 @@ A text editor is the piece of software you use to view and write code. If you ha
 
 ## Python
 
-We use Python 3, because it is generally the most widely used version of Python.  The "Anaconda3" installation provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
+We use Python 3, because it is generally the most widely used version of Python.  The "Anaconda3" package provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
 
 **<span style="color:red">IMPORTANT</span>: When asked "Add Anaconda to my PATH environment variable", answer "yes". 
 After it's finished, close and reopen any open terminals to reload the updated PATH and allow the installed Python to be found.**
 
-If you wish to use Microsoft Visual Studio Code (VSCode) as your text editor, install it when prompted. **Note** This requires administrator rights.
+If you want to use Microsoft Visual Studio Code (VSCode) as your text editor, install it when prompted. **Note** This requires administrator rights.
 
 #### Windows
 
