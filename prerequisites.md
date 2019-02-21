@@ -70,6 +70,7 @@ To create an account, [go to the Github website](https://github.com/join) and pr
 #### Windows
 
 Download and install [Git for Windows](http://git-scm.com/download/win). 
+
 **<span style="color:red">IMPORTANT</span>: During installation, at the step 'Configuring the terminal emulator to use with Git Bash' you must select 'Use Windows default console window'.
 
 #### Mac OS X
