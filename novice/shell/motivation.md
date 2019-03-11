@@ -84,7 +84,7 @@ If you haven't already, let's get a shell running!
 
 ## Launch VSCode
 
-We're going to use **Visual Stuio Code**:
+We're going to use **Visual Studio Code**:
 
 - **Windows**: Run **VSCode** from the Windows menu.
 - **Mac OS X**: Use Finder to navigate to Applications in your Home directory, then run **Visual Studio Code**
