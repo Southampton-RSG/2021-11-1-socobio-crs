@@ -72,8 +72,6 @@ If you haven't already, let's get a shell running!
 - **Mac OS X**: run **Terminal** under *Applications -> Utilities*
 - **Linux**: run **Terminal** application
 
-Then go to **http://bit.ly/SWCSoton** and follow instructions for downloading repository and configuring environment.
-
 ## Let us begin...
 
 ## An example filesystem I
@@ -83,6 +81,16 @@ Then go to **http://bit.ly/SWCSoton** and follow instructions for downloading re
 ## An example filesystem II
 
 ![](img/home-directories.png)
+
+## Launch VSCode
+
+We're going to use **Visual Stuio Code**:
+
+- **Windows**: Run **VSCode** from the Windows menu.
+- **Mac OS X**: Use Finder to navigate to Applications in your Home directory, then run **Visual Studio Code**
+- **Linux**: Run **VSCode** from the Applications menu.
+
+Put a <span style="color:green">green post-it note</span>  on your laptop when it's been launched! If you're having trouble, put up a <span style="color:red">red post-it</span>.
 
 ## Pipes example
 
