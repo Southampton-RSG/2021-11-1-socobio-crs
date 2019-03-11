@@ -60,45 +60,36 @@ $ ls -F thesis
 ~~~
 
 Let's change our working directory to `thesis` using `cd`,
-then run a text editor called Nano to create a file called `draft.txt`:
-
-~~~ {.bash}
-$ cd thesis
-$ nano draft.txt
-~~~
+then use **VSCode** to create a text file called `draft.txt`, and save it in the directory:
 
 > ## Which Editor? {.callout}
 >
-> When we say, "`nano` is a text editor," we really do mean "text": it can
-> only work with plain character data, not tables, images, or any other
-> human-friendly media. We use it in examples because almost anyone can
-> drive it anywhere without training, but please use something more
-> powerful for real work. On Unix systems (such as Linux and Mac OS X),
-> many programmers use [Emacs](http://www.gnu.org/software/emacs/) or
-> [Vim](http://www.vim.org/) (both of which are completely unintuitive,
-> even by Unix standards), or a graphical editor such as
-> [Gedit](http://projects.gnome.org/gedit/). On Windows, you may wish to
-> use [Notepad++](http://notepad-plus-plus.org/).
+> We use **VSCode** as it is a fairly standard text editor that can be 
+> installed on Windows, Mac or Linux and has some handy features like
+> code highlighting that make it easy to write scripts and code in. Similar
+> editors exist like **Atom**, a highly customisable text editor.
 >
-> No matter what editor you use, you will need to know where it searches
-> for and saves files. If you start it from the shell, it will (probably)
-> use your current working directory as its default location. If you use
-> your computer's start menu, it may want to save files in your desktop or
-> documents directory instead. You can change this by navigating to
-> another directory the first time you "Save As...", and point it to the
-> 2015-12-15-southampton/novice/shell/test_directory/thesis folder in your
-> user's home directory.
+> Other editors exist that offer even more features to help you write code, 
+> and are referred to as **IDEs**, or **Integrated Development Environments**.
+> A popular example would be **PyCharm**.
+>
+> Finally, some editors are small and simple and can be run entirely in the
+> terminal, like for example **Nano**. These are often much harder to use, 
+> but can be handy for small edits, and may be required on remote servers.
+>
+> Your choice of editor will depend on the size of project you're working on,
+> and how comfortable you are with the terminal. 
 
-Let's type in a few lines of text,
-then use Control-O to write our data to disk:
+We launch **VSCode**, select the *New File* option:
 
-![Nano in action](fig/nano-screenshot.png)
+![New File](img/vscode-new-file.png)
 
-Once our file is saved,
-we can use Control-X to quit the editor and return to the shell.
-(Unix documentation often uses the shorthand `^A` to mean "control-A".)
-`nano` doesn't leave any output on the screen after it exits,
-but `ls` now shows that we have created a file called `draft.txt`:
+Then type a few lines of text into the file:
+
+![Typing Text](img/vscode-text.png)
+
+Then go to file, save as, and navigate to your new `thesis` directory (in the workshop directory, under `novice`, `shell`, `test_directory` then `thesis`) and save new file as `draft.txt`.  
+Now we've saved the file, we can use `ls` to see that there is a new file in the directory called `draft.txt`:
 
 ~~~ {.bash}
 $ ls
@@ -113,8 +104,8 @@ We can use the shell on its own to take a look at its contents using the `cat` c
 $ cat draft.txt
 ~~~
 ~~~ {.output}
-It's not "publish or perish" any more,
-it's "share and thrive".
+This is a regular text editor
+with some extra features.
 ~~~
 
 Let's tidy up by running `rm draft.txt`:
@@ -143,7 +134,9 @@ $ ls
 > file's disk space right away.
 
 Let's re-create that file
-and then move up one directory using `cd ..`:
+and then move up one directory using `cd ..`. If you kept `thesis.txt` 
+open in **VSCode** after deleting the file, you should just be able to 
+re-save it in the same location with `File->Save`. We can check it out:
 
 ~~~ {.bash}
 $ pwd
@@ -152,7 +145,6 @@ $ pwd
 /Users/nelle/2015-12-15-southampton/novice/shell/test_directory/thesis
 ~~~
 ~~~ {.bash}
-$ nano draft.txt
 $ ls
 ~~~
 ~~~ {.output}
@@ -215,8 +207,6 @@ $ rmdir thesis
 > without care.
 
 Let's create that directory and file one more time.
-(Note that this time we're running `nano` with the path `thesis/draft.txt`,
-rather than going into the `thesis` directory and running `nano` on `draft.txt` there.)
 
 ~~~ {.bash}
 $ pwd
@@ -227,8 +217,12 @@ $ pwd
 ~~~ {.bash}
 $ mkdir thesis
 ~~~
+
+As before, if you kept `thesis.txt` open in **VSCode** after deleting directory, 
+you should just be able to re-save it in the same location after re-creating the directory! 
+We can check this out:
+
 ~~~ {.bash}
-$ nano thesis/draft.txt
 $ ls thesis
 ~~~
 ~~~ {.output}
