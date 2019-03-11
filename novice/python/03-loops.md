@@ -90,8 +90,8 @@ So, much like what we did with Bash, let's take a look at writing a Python scrip
 Suppose we want to print each character in the word "lead" on a line of its own.
 One way is to use four `print` statements.
 
-Let's write a simple Python program, using our Nano text editor, like we did
-with Bash. Let's start Nano (in a separate terminal or shell) and type the following, saving it in a file called `word_print.py`:
+Let's write a simple Python program, using our text editor, like we did
+with Bash. Let's start our text editor and type the following, saving it in a file called `word_print.py`:
 
 ~~~ {.python}
 word = 'lead'
