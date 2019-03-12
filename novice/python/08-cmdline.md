@@ -194,38 +194,20 @@ is clearly understood, we can simplify the output by changing the
 Here, we are using Python's `+` operator to **concatenate** strings 
 together, so we can get output such as `20.561111111111114, 293.7111111111111`.
 
-We could run the script now in a pipeline, for example, to get the first
+We could run the script now in a pipeline, for example, to get the last
 10 rows of output (*see `climate_analysis-12.py`*):
 
 ~~~ {.bash}
-python climate_analysis.py ../data/sc_climate_data_1000.csv | head -10
+python climate_analysis.py ../data/sc_climate_data_1000.csv | tail -10
 ~~~
 
-But now we get a really odd error:
+Or use `grep ` to search the output for fahrenheit values that are equal to '14.85':
 
-~~~
-...
-Traceback (most recent call last):
-  File "climate_analysis-12.py", line 25, in <module>
-    print(str(celsius)+", "+str(kelvin))
-BrokenPipeError: [Errno 32] Broken pipe
-Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
-BrokenPipeError: [Errno 32] Broken pipe
+~~~ {.bash}
+python climate_analysis.py ../data/sc_climate_data_1000.csv | grep '14.85,'
 ~~~
 
-This is an odd consequence of using Python in a command line pipeline ---
-it doesn't cope with piping output to other commands very well.
-
-We can fix this by including the following at the top, after our 
-`temp_conversion` import (*see `climate_analysis-13.py`*):
-
-~~~ {.python}
-import signal
-signal.signal(signal.SIGPIPE, signal.SIG_DFL)
-~~~
-
-We're telling our Python script to ignore any pipe errors --- not ideal,
-but solves our problem. We can now do things like:
+We can now also do things like:
 
 ~~~ {.bash}
 python climate_analysis.py ../data/sc_climate_data_1000.csv | wc -l
@@ -238,6 +220,11 @@ Which tells us the number of lines it processed, taking into account the
      923
 ~~~
 
+Just to note, there are some instances where we could use this with commands like `head`
+instead, which may generate errors. Feel free to read the next section in the
+tutorial which deals with how to handle them, but this is beyond the scope of this course
+and we won't cover it here.
+
 > ## The Right Way to Do It {.callout}
 >
 > If our programs can take complex parameters or multiple filenames,
@@ -247,3 +234,42 @@ Which tells us the number of lines it processed, taking into account the
 > which handles common cases in a systematic way,
 > and also makes it easy for us to provide sensible error messages for our 
 > users.
+
+## Dealing with pipeline errors
+
+We could also run the script now in a pipeline, for example, to get the first
+10 rows of output:
+
+~~~ {.bash}
+python climate_analysis.py ../data/sc_climate_data_1000.csv | head -10
+~~~
+
+But whilst we get our first 10 rows as expected, we now get a really odd error as well:
+
+~~~
+...
+Traceback (most recent call last):
+  File "climate_analysis-12.py", line 25, in <module>
+    print(str(celsius)+", "+str(kelvin))
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+~~~
+
+This is an odd consequence of using Python in a command line pipeline ---
+it doesn't cope with piping output to other commands very well. In essence, `head` gets
+the first 10 lines it needs and terminates the pipe prematurely, before our program has
+finished piping its output, which can cause this error. But it only happens on 
+Linux and Mac platforms!
+
+We can fix this on these platforms by including the following at the top, after our 
+`temp_conversion` import (*see `climate_analysis-13.py`*):
+
+~~~ {.python}
+import signal
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+~~~
+
+We're telling our Python script to ignore any pipe errors --- not ideal,
+but solves our problem.
+

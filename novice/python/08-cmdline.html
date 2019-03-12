@@ -64,7 +64,7 @@ climate_data <span class="op">=</span> <span class="bu">open</span>(filename, <s
         fahr <span class="op">=</span> <span class="bu">float</span>(data[<span class="dv">3</span>])
 
         <span class="co"># don&#39;t process invalid temperature readings of -9999</span>
-        <span class="cf">if</span> fahr <span class="op">!=</span> <span class="dv">-9999</span>:
+        <span class="cf">if</span> fahr <span class="op">!=</span> <span class="op">-</span><span class="dv">9999</span>:
             celsius <span class="op">=</span> temp_conversion.fahr_to_celsius(fahr)
             kelvin <span class="op">=</span> temp_conversion.fahr_to_kelvin(fahr)
 
@@ -103,7 +103,7 @@ Max temperature in Celsius 16.077777777777776 Kelvin 289.22777777777776
 <p>This is a consequence of dealing with real data, and sometimes we need to be able to deal with anomalies such as this. In particular, we should make sure we fully understand the data we are using, and what it means. Otherwise, we run the risk of making assumptions and processing the data incorrectly.</p>
 <p>In this case, we can fix our code by adding in a condition (<em>see <code>climate_analysis-10.py</code></em>):</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">        <span class="co"># don&#39;t process invalid temperature readings of -9999</span>
-        <span class="cf">if</span> fahr <span class="op">!=</span> <span class="dv">-9999</span>:
+        <span class="cf">if</span> fahr <span class="op">!=</span> <span class="op">-</span><span class="dv">9999</span>:
             celsius <span class="op">=</span> temp_conversion.fahr_to_celsius(fahr)
             kelvin <span class="op">=</span> temp_conversion.fahr_to_kelvin(fahr)
 
@@ -131,24 +131,15 @@ AssertionError: climate_analysis.py: requires filename</code></pre>
 <p>Assuming we’ve documented our code properly and the nature of the output is clearly understood, we can simplify the output by changing the <code>print()</code> statement:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">            <span class="bu">print</span>(<span class="bu">str</span>(celsius)<span class="op">+</span><span class="st">&quot;, &quot;</span><span class="op">+</span><span class="bu">str</span>(kelvin))</code></pre></div>
 <p>Here, we are using Python’s <code>+</code> operator to <strong>concatenate</strong> strings together, so we can get output such as <code>20.561111111111114, 293.7111111111111</code>.</p>
-<p>We could run the script now in a pipeline, for example, to get the first 10 rows of output (<em>see <code>climate_analysis-12.py</code></em>):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="fu">head</span> -10</code></pre></div>
-<p>But now we get a really odd error:</p>
-<pre><code>...
-Traceback (most recent call last):
-  File &quot;climate_analysis-12.py&quot;, line 25, in &lt;module&gt;
-    print(str(celsius)+&quot;, &quot;+str(kelvin))
-BrokenPipeError: [Errno 32] Broken pipe
-Exception ignored in: &lt;_io.TextIOWrapper name=&#39;&lt;stdout&gt;&#39; mode=&#39;w&#39; encoding=&#39;UTF-8&#39;&gt;
-BrokenPipeError: [Errno 32] Broken pipe</code></pre>
-<p>This is an odd consequence of using Python in a command line pipeline — it doesn’t cope with piping output to other commands very well.</p>
-<p>We can fix this by including the following at the top, after our <code>temp_conversion</code> import (<em>see <code>climate_analysis-13.py</code></em>):</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> signal
-signal.signal(signal.SIGPIPE, signal.SIG_DFL)</code></pre></div>
-<p>We’re telling our Python script to ignore any pipe errors — not ideal, but solves our problem. We can now do things like:</p>
+<p>We could run the script now in a pipeline, for example, to get the last 10 rows of output (<em>see <code>climate_analysis-12.py</code></em>):</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="fu">tail</span> -10</code></pre></div>
+<p>Or use <code>grep</code> to search the output for fahrenheit values that are equal to ‘14.85’:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&#39;14.85,&#39;</span></code></pre></div>
+<p>We can now also do things like:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="fu">wc</span> -l</code></pre></div>
 <p>Which tells us the number of lines it processed, taking into account the -9999 values it ignored:</p>
 <pre><code>     923</code></pre>
+<p>Just to note, there are some instances where we could use this with commands like <code>head</code> instead, which may generate errors. Feel free to read the next section in the tutorial which deals with how to handle them, but this is beyond the scope of this course and we won’t cover it here.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="the-right-way-to-do-it"><span class="glyphicon glyphicon-pushpin"></span>The Right Way to Do It</h2>
@@ -157,6 +148,22 @@ signal.signal(signal.SIGPIPE, signal.SIG_DFL)</code></pre></div>
 <p>If our programs can take complex parameters or multiple filenames, we shouldn’t handle <code>sys.argv</code> directly. Instead, we should use Python’s <code>argparse</code> library, which handles common cases in a systematic way, and also makes it easy for us to provide sensible error messages for our users.</p>
 </div>
 </aside>
+<h2 id="dealing-with-pipeline-errors">Dealing with pipeline errors</h2>
+<p>We could also run the script now in a pipeline, for example, to get the first 10 rows of output:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">python</span> climate_analysis.py ../data/sc_climate_data_1000.csv <span class="kw">|</span> <span class="fu">head</span> -10</code></pre></div>
+<p>But whilst we get our first 10 rows as expected, we now get a really odd error as well:</p>
+<pre><code>...
+Traceback (most recent call last):
+  File &quot;climate_analysis-12.py&quot;, line 25, in &lt;module&gt;
+    print(str(celsius)+&quot;, &quot;+str(kelvin))
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: &lt;_io.TextIOWrapper name=&#39;&lt;stdout&gt;&#39; mode=&#39;w&#39; encoding=&#39;UTF-8&#39;&gt;
+BrokenPipeError: [Errno 32] Broken pipe</code></pre>
+<p>This is an odd consequence of using Python in a command line pipeline — it doesn’t cope with piping output to other commands very well. In essence, <code>head</code> gets the first 10 lines it needs and terminates the pipe prematurely, before our program has finished piping its output, which can cause this error. But it only happens on Linux and Mac platforms!</p>
+<p>We can fix this on these platforms by including the following at the top, after our <code>temp_conversion</code> import (<em>see <code>climate_analysis-13.py</code></em>):</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> signal
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)</code></pre></div>
+<p>We’re telling our Python script to ignore any pipe errors — not ideal, but solves our problem.</p>
         </div>
       </div>
       </article>
