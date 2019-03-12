@@ -40,10 +40,10 @@
 </ul>
 </div>
 </section>
-<p>At some point we may want to use our program in a pipeline or run it in a shell script to process thousands of data files. Our climate data is a good example - we have a sample set of 10 rows for development, but also a data file with 1000 rows. We may of course want to process many more. In order to do that, we need to make our programs work like other Unix command-line tools.</p>
+<p>At some point we may want to use our program in a pipeline or run it in a shell script to process thousands of data files. Our climate data is a good example - we have sample sets of 10 and 1,000 rows for development, but also a complete data file with over a million rows. We may of course want to process many more. In order to do that, we need to make our programs work like other Unix command-line tools.</p>
 <h2 id="passing-in-the-file-to-process-as-an-argument">Passing in the file to process as an argument</h2>
 <p>So perhaps the biggest limitation is that our script only deals with one data file, which is <strong>hardcoded</strong> into the script. Like with functions, we’d ideally want to be able to pass in the filename to process as a parameter. Then, we can run the script on any data file we like.</p>
-<p>Fortunately, Python can handle <strong>command line arguments</strong>, which are passed to our script in the list <code>sys.argv[]</code> we we can use. This feature is provided by the Python standard <code>sys</code> library, so similarly to how we imported our temperature conversion functions, we need to import the <code>sys</code> library.</p>
+<p>Fortunately, Python can handle <strong>command line arguments</strong>, which we’ve already seen in our Bash lesson. In Python, arguments are passed to our script in the list <code>sys.argv[]</code> which we can use. This feature is provided by the Python standard <code>sys</code> library, so similarly to how we imported our temperature conversion functions, we need to import the <code>sys</code> library.</p>
 <p>The first argument (<code>sys.argv[0]</code>) always contains the name of the script, with the arguments passed in as <code>sys.argv[1]</code>, <code>sys.argv[2]</code>, etc.</p>
 <p>So we can change our script to handle a filename argument (<em>see <code>climate_analysis-9.py</code></em>):</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> sys

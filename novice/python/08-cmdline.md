@@ -12,8 +12,8 @@ minutes: 10
 
 At some point we may want to use our program in a pipeline
 or run it in a shell script to process thousands of data files. Our climate
-data is a good example - we have a sample set of 10 rows for development,
-but also a data file with 1000 rows. We may of course want to process many more.
+data is a good example - we have sample sets of 10 and 1,000 rows for development,
+but also a complete data file with over a million rows. We may of course want to process many more.
 In order to do that,
 we need to make our programs work like other Unix command-line tools.
 
@@ -24,8 +24,9 @@ data file, which is **hardcoded** into the script. Like with functions, we'd
 ideally want to be able to pass in the filename to process as a parameter. Then,
 we can run the script on any data file we like.
 
-Fortunately, Python can handle **command line arguments**, which are passed
-to our script in the list `sys.argv[]` we we can use. This feature is provided 
+Fortunately, Python can handle **command line arguments**, which we've already 
+seen in our Bash lesson. In Python, arguments are passed
+to our script in the list `sys.argv[]` which we can use. This feature is provided 
 by the Python standard `sys` library, so similarly to how we imported our 
 temperature conversion functions, we need to import the `sys` library.
 
