@@ -12,6 +12,8 @@ minutes: 20
 > *   Select individual values and subsections from data.
 > *   Perform operations on arrays of data.
 
+This lesson presents an end-to-end scientific Python example, from analysing data (using a library), to visualisation (using a library).
+
 We are studying inflammation in patients who have been given a new treatment for arthritis,
 and need to analyse the first dozen data sets of their daily inflammation.
 The data sets are stored in [comma-separated values](../../reference.html#comma-separated-values) (CSV) format:
@@ -33,14 +35,24 @@ We want to:
 *   calculate the average inflammation per day across all patients, and
 *   plot the result.
 
-So this lesson represents an end-to-end scientific Python example, from analysing data (using a library),
-to visualisation (using a library).
-
 In order to load our inflammation data,
 we need to [import](../../reference.html#import) a library called NumPy.
 In general you should use this library if you want to do fancy things with numbers,
 especially if you have matrices.
-We can load NumPy using:
+
+Let's start by ensuring we are in the `python/novice' directory, e.g.:
+
+~~~ {.bash}
+$ pwd
+~~~
+
+And we should see:
+
+~~~
+/Users/nelle/2015-12-15-southampton/novice/python
+~~~
+
+Ensuring we have run the Python interpreter first, we can load NumPy using:
 
 ~~~ {.python}
 import numpy
@@ -52,7 +64,14 @@ Once it's done,
 we can ask the library to read our data file for us:
 
 ~~~ {.python}
-numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+~~~
+
+This statement doesn't produce any output because assignment doesn't display anything.
+If we want to check that our data has been loaded, we can print the variable's value:
+
+~~~ {.python}
+print(data)
 ~~~
 ~~~ {.output}
 array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
@@ -88,33 +107,11 @@ To do that,
 we need to [assign](../../reference.html#assignment) the array to a [variable](../../reference.html#variable).
 
 Just as we can assign a single value to a variable, we can also assign an array of values
-to a variable using the same syntax.  Let's re-run `numpy.loadtxt` and save its result:
-
-~~~ {.python}
-data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
-~~~
-
-This statement doesn't produce any output because assignment doesn't display anything.
-If we want to check that our data has been loaded,
-we can print the variable's value:
-
-~~~ {.python}
-print(data)
-~~~
-~~~ {.output}
-[[ 0.  0.  1. ...,  3.  0.  0.]
- [ 0.  1.  2. ...,  1.  0.  1.]
- [ 0.  1.  1. ...,  2.  1.  1.]
- ...,
- [ 0.  1.  1. ...,  1.  1.  1.]
- [ 0.  0.  0. ...,  0.  2.  0.]
- [ 0.  0.  1. ...,  1.  1.  0.]]
-~~~
+to a variable using the same syntax.
 
 Now that our data is in memory,
 we can start doing things with it.
-First,
-let's ask what [type](../../reference.html#type) of thing `data` refers to:
+First, let's ask what [type](../../reference.html#type) of thing `data` refers to:
 
 ~~~ {.python}
 print(type(data))
@@ -133,7 +130,7 @@ print(data.shape)
 (60, 40)
 ~~~
 
-This tells us that `data` has 60 rows and 40 columns.
+This tells us that `data` has 60 rows and 40 columns, representing 60 patients over 40 days.
 `data.shape` is a [member](../../reference.html#member) of `data`,
 i.e.,
 a value that is stored as part of a larger value.
@@ -358,10 +355,10 @@ We don't actually need to store the row in a variable of its own.
 Instead, we can combine the selection and the method call:
 
 ~~~ {.python}
-print('maximum inflammation for patient 2:', data[2, :].max())
+print('maximum inflammation for patient 3:', data[2, :].max())
 ~~~
 ~~~ {.output}
-maximum inflammation for patient 2: 19.0
+maximum inflammation for patient 3: 19.0
 ~~~
 
 What if we need the maximum inflammation for *all* patients,

@@ -42,6 +42,7 @@
 </ul>
 </div>
 </section>
+<p>This lesson presents an end-to-end scientific Python example, from analysing data (using a library), to visualisation (using a library).</p>
 <p>We are studying inflammation in patients who have been given a new treatment for arthritis, and need to analyse the first dozen data sets of their daily inflammation. The data sets are stored in <a href="../../reference.html#comma-separated-values">comma-separated values</a> (CSV) format: each row holds information for a single patient, and the columns represent successive days. The first few rows of our first file look like this:</p>
 <pre><code>0,0,1,3,1,2,4,7,8,3,3,3,10,5,7,4,7,7,12,18,6,13,11,11,7,7,4,6,8,8,4,4,5,7,3,4,2,3,0,0
 0,1,2,1,2,1,3,2,2,6,10,11,5,9,4,4,7,16,8,6,18,4,12,5,12,7,11,5,11,3,3,5,4,4,5,5,1,1,0,1
@@ -54,11 +55,17 @@
 <li>calculate the average inflammation per day across all patients, and</li>
 <li>plot the result.</li>
 </ul>
-<p>So this lesson represents an end-to-end scientific Python example, from analysing data (using a library), to visualisation (using a library).</p>
-<p>In order to load our inflammation data, we need to <a href="../../reference.html#import">import</a> a library called NumPy. In general you should use this library if you want to do fancy things with numbers, especially if you have matrices. We can load NumPy using:</p>
+<p>In order to load our inflammation data, we need to <a href="../../reference.html#import">import</a> a library called NumPy. In general you should use this library if you want to do fancy things with numbers, especially if you have matrices.</p>
+<p>Let’s start by ensuring we are in the `python/novice’ directory, e.g.:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">pwd</span></code></pre></div>
+<p>And we should see:</p>
+<pre><code>/Users/nelle/2015-12-15-southampton/novice/python</code></pre>
+<p>Ensuring we have run the Python interpreter first, we can load NumPy using:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy</code></pre></div>
 <p>Importing a library is like getting a piece of lab equipment out of a storage locker and setting it up on the bench. Once it’s done, we can ask the library to read our data file for us:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">numpy.loadtxt(fname<span class="op">=</span><span class="st">&#39;data/inflammation-01.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">data <span class="op">=</span> numpy.loadtxt(fname<span class="op">=</span><span class="st">&#39;data/inflammation-01.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</code></pre></div>
+<p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(data)</code></pre></div>
 <pre class="output"><code>array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
        [ 0.,  1.,  2., ...,  1.,  0.,  1.],
        [ 0.,  1.,  1., ...,  2.,  1.,  1.],
@@ -70,24 +77,14 @@
 <p><code>numpy.loadtxt</code> has two <a href="../../reference.html#parameter">parameters</a>: the name of the file we want to read, and the <a href="../../reference.html#delimiter">delimiter</a> that separates values on a line. These both need to be character strings (or <a href="../../reference.html#string">strings</a> for short), so we put them in quotes.</p>
 <p>By default, only a few rows and columns are shown (with <code>...</code> to omit elements when displaying big arrays). To save space, Python displays numbers as <code>1.</code> instead of <code>1.0</code> when there’s nothing interesting after the decimal point.</p>
 <p>Our call to <code>numpy.loadtxt</code> read our file, but didn’t save the data in memory. To do that, we need to <a href="../../reference.html#assignment">assign</a> the array to a <a href="../../reference.html#variable">variable</a>.</p>
-<p>Just as we can assign a single value to a variable, we can also assign an array of values to a variable using the same syntax. Let’s re-run <code>numpy.loadtxt</code> and save its result:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">data <span class="op">=</span> numpy.loadtxt(fname<span class="op">=</span><span class="st">&#39;data/inflammation-01.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;,&#39;</span>)</code></pre></div>
-<p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(data)</code></pre></div>
-<pre class="output"><code>[[ 0.  0.  1. ...,  3.  0.  0.]
- [ 0.  1.  2. ...,  1.  0.  1.]
- [ 0.  1.  1. ...,  2.  1.  1.]
- ...,
- [ 0.  1.  1. ...,  1.  1.  1.]
- [ 0.  0.  0. ...,  0.  2.  0.]
- [ 0.  0.  1. ...,  1.  1.  0.]]</code></pre>
+<p>Just as we can assign a single value to a variable, we can also assign an array of values to a variable using the same syntax.</p>
 <p>Now that our data is in memory, we can start doing things with it. First, let’s ask what <a href="../../reference.html#type">type</a> of thing <code>data</code> refers to:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="bu">type</span>(data))</code></pre></div>
 <pre class="output"><code>&lt;type &#39;numpy.ndarray&#39;&gt;</code></pre>
 <p>The output tells us that <code>data</code> currently refers to an N-dimensional array created by the NumPy library. We can see what its <a href="../../reference.html#shape">shape</a> is like this:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(data.shape)</code></pre></div>
 <pre class="output"><code>(60, 40)</code></pre>
-<p>This tells us that <code>data</code> has 60 rows and 40 columns. <code>data.shape</code> is a <a href="../../reference.html#member">member</a> of <code>data</code>, i.e., a value that is stored as part of a larger value. We use the same dotted notation for the members of values that we use for the functions in libraries because they have the same part-and-whole relationship.</p>
+<p>This tells us that <code>data</code> has 60 rows and 40 columns, representing 60 patients over 40 days. <code>data.shape</code> is a <a href="../../reference.html#member">member</a> of <code>data</code>, i.e., a value that is stored as part of a larger value. We use the same dotted notation for the members of values that we use for the functions in libraries because they have the same part-and-whole relationship.</p>
 <p>If we want to get a single value from the matrix, we must provide an <a href="../../reference.html#index">index</a> in square brackets, just as we do in math:</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&#39;first value in data:&#39;</span>, data[<span class="dv">0</span>, <span class="dv">0</span>])</code></pre></div>
 <pre class="output"><code>first value in data: 0.0</code></pre>
@@ -172,8 +169,8 @@ standard deviation: 4.61383319712</code></pre>
 <span class="bu">print</span>(<span class="st">&#39;maximum inflammation for patient 0:&#39;</span>, patient_0.<span class="bu">max</span>())</code></pre></div>
 <pre class="output"><code>maximum inflammation for patient 0: 18.0</code></pre>
 <p>We don’t actually need to store the row in a variable of its own. Instead, we can combine the selection and the method call:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&#39;maximum inflammation for patient 2:&#39;</span>, data[<span class="dv">2</span>, :].<span class="bu">max</span>())</code></pre></div>
-<pre class="output"><code>maximum inflammation for patient 2: 19.0</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">print</span>(<span class="st">&#39;maximum inflammation for patient 3:&#39;</span>, data[<span class="dv">2</span>, :].<span class="bu">max</span>())</code></pre></div>
+<pre class="output"><code>maximum inflammation for patient 3: 19.0</code></pre>
 <p>What if we need the maximum inflammation for <em>all</em> patients, or the average for each day? As the diagram below shows, we want to perform the operation across an axis:</p>
 <div class="figure">
 <img src="img/python-operations-across-axes.svg" alt="Operations Across Axes" />
