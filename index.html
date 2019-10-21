@@ -1,22 +1,19 @@
 ---
 layout: workshop
 root: .
-venue: Nexuss CDT  # brief name of host site
-address: Jurys Inn, Southampton
-address2: Charlotte Pl, Southampton SO14 0TB # street address of home location
+venue: B32/3077, Highfield Campus # brief name of host site
+address: University of Southampton, Southampton SO17 1BJ # street address of home location
 country: United-Kingdom    # country (hyphenated if need be, like 'United-Kingdom')
 language: en   # language code like 'en' or 'fr'
-latlng: 50.9106418,-1.4012822    # fractional latitude and longitude like 41.7901128,-87.6007318
-humandate: Mar 13-14, 2019  # use the format 'Feb 17-18, 2020' (without the quotes)
+latlng: 50.936336,-1.395929    # fractional latitude and longitude like 41.7901128,-87.6007318
+humandate: Dec 15-16, 2019  # use the format 'Feb 17-18, 2020' (without the quotes)
 humantime: 9:30 am - 4:30 pm  # use the format '9:00 am - 4:30 pm' (without the quotes)
-startdate: 2019-03-13  # use YYYY-MM-DD format like 2015-01-01
-enddate: 2019-03-14    # use YYYY-MM-DD format like 2015-01-02
+startdate: 2019-12-15  # use YYYY-MM-DD format like 2015-01-01
+enddate: 2019-12-16    # use YYYY-MM-DD format like 2015-01-02
 instructor: ["Sam Mangham", "Steve Crouch", "James Graham", "John Robinson"] # list of names like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
-helper: [""]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
+helper: ["Ania Brown", "Pip Grylls"]     # list of names like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
 contact: rsg-info@soton.ac.uk    # contact email address for workshop organizer
-eventbrite: 
-etherpad: https://public.etherpad-mozilla.org/p/SWC-Soton-Mar2019
-
+eventbrite: 77789756255
 ---
 <!--
   HEADER
@@ -37,9 +34,11 @@ etherpad: https://public.etherpad-mozilla.org/p/SWC-Soton-Mar2019
   is to help scientists and engineers get more research done in less
   time and with less pain by teaching them basic lab skills for
   scientific computing.  This hands-on workshop will cover basic
-  concepts and tools, including building and designing programs in Python, 
-  managing the development of code with version control in Git, and testing 
-  the correctness of Python code using the Nose unit test framework. Participants will be encouraged to help one another.
+  concepts and tools, including using the command-line,
+  building and designing programs in Python,
+  and managing the development of code with version control in Git.
+  including building and designing programs in Python,
+  Participants will be encouraged to help one another.
 </p>
 <p align="center">
   <em>
@@ -56,8 +55,7 @@ etherpad: https://public.etherpad-mozilla.org/p/SWC-Soton-Mar2019
 -->
 <p align="justify">
   <strong>Who:</strong>
-  The course is aimed at postgraduate students and postdoctoral scientists who are familiar with basic programming concepts (like loops, conditionals, arrays, and functions) and would like to learn best 
-  practice techniques and tools to develop their software more effectively and productively.
+  The course is aimed at postgraduate students and postdoctoral scientists who would like an introduction to scientific programming.
 </p>
 
 <!--
@@ -70,7 +68,7 @@ etherpad: https://public.etherpad-mozilla.org/p/SWC-Soton-Mar2019
 {% if page.latlng %}
 <p>
   <strong>Where:</strong>
-  Jurys Inn, Southampton. Get directions with 
+  B32/3077, Highfield Campus, University of Southampton. Get directions with
   <a href="//www.openstreetmap.org/?mlat={{page.latlng | replace:',','&mlon='}}&zoom=16">OpenStreetMap</a>
   or
   <a href="//maps.google.com/maps?q={{page.latlng}}">Google Maps</a>
@@ -94,7 +92,7 @@ etherpad: https://public.etherpad-mozilla.org/p/SWC-Soton-Mar2019
 <p>
   <strong>Contact</strong>:
   This workshop is being organised by the University of Southampton's <a href='http://rsg.soton.ac.uk/'>Research Software Group</a>.
- 
+
   Please mail
   {% if page.contact %}
     <a href='mailto:{{page.contact}}'>{{page.contact}}</a>
@@ -137,7 +135,7 @@ You must bring your own laptop! Before attending the workshop you need to instal
 -->
 <h2 margin=0px>Schedule</h2>
 <p>
-  Workshop schedule can be found at the <a href = "schedule.html">schedule page</a>. 
+  Workshop schedule can be found at the <a href = "schedule.html">schedule page</a>.
 </p>
 
 <!--
@@ -168,9 +166,8 @@ You must bring your own laptop! Before attending the workshop you need to instal
   where 'YYYY-MM-DD-site' is the identifier for your workshop (e.g.,
   '2015-06-10-esu'.
 -->
-<h2 margin=0px>Keep in touch during the workshop with Etherpad</h2>
-
 {% if page.etherpad %}
+<h2 margin=0px>Keep in touch during the workshop with Etherpad</h2>
 
 <p>
   <strong>Etherpad:</strong> <a href="{{page.etherpad}}">{{page.etherpad}}</a>.

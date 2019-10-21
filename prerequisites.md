@@ -3,7 +3,7 @@ layout: page-md
 title: Software Prerequisites
 ---
 
-[[Home]](https://southampton-rsg.github.io/2019-03-13-southampton-swc/)
+[[Home]](https://southampton-rsg.github.io/2019-12-15-southampton-swc/)
 
 **Prior to the workshop, it is vital that you install some software on your laptop and create an account at Github by following the instructions below**
 
@@ -34,7 +34,7 @@ A text editor is the piece of software you use to view and write code. If you ha
 
 We use Python 3, because it is generally the most widely used version of Python.  The "Anaconda3" package provides everything Python-related you will need for the workshop. To install Anaconda, follow the instructions below.
 
-**<span style="color:red">IMPORTANT</span>: When asked "Add Anaconda to my PATH environment variable", answer "yes". 
+**<span style="color:red">IMPORTANT</span>: When asked "Add Anaconda to my PATH environment variable", answer "yes".
 After it's finished, close and reopen any open terminals to reload the updated PATH and allow the installed Python to be found.**
 
 If you want to use Microsoft Visual Studio Code (VSCode) as your text editor, install it when prompted. **Note** This requires administrator rights.
@@ -69,7 +69,7 @@ To create an account, [go to the Github website](https://github.com/join) and pr
 
 #### Windows
 
-Download and install [Git for Windows](http://git-scm.com/download/win). 
+Download and install [Git for Windows](http://git-scm.com/download/win).
 
 **<span style="color:red">IMPORTANT</span>: During installation, at the step 'Configuring the terminal emulator to use with Git Bash' you must select 'Use Windows default console window'.**
 
@@ -110,7 +110,7 @@ To make sure that everything has installed correctly, we have written a simple P
 
 **Close your existing terminal and reopen it (this is important!)**.
 
-Enter the command below into your terminal. It will download the python script and run it to check your prerequisites. 
+Enter the command below into your terminal. It will download the python script and run it to check your prerequisites.
 
 #### Windows
 
