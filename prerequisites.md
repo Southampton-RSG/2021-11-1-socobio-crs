@@ -3,7 +3,7 @@ layout: page-md
 title: Software Prerequisites
 ---
 
-[[Home]](https://southampton-rsg.github.io/2019-12-15-southampton-swc/)
+[[Home]](https://southampton-rsg.github.io/2019-12-16-southampton-swc/)
 
 **Prior to the workshop, it is vital that you install some software on your laptop and create an account at Github by following the instructions below**
 
