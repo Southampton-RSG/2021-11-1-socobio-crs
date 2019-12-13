@@ -1,5 +1,8 @@
 PANDOC ?= pandoc
-PANDOC_FLAGS = --smart
+# Move smart argument to type of generation, e.g. html+smart
+# since it's changed in Matplotlib
+#PANDOC_FLAGS = --smart
+PANDOC_FLAGS =
 
 # R Markdown files.
 SRC_RMD = $(wildcard ??-*.Rmd)
@@ -54,7 +57,7 @@ motivation.html : motivation.md _layouts/slides.revealjs Makefile
 
 # Pattern to build a generic page.
 %.html : %.md _layouts/page.html $(FILTERS)
-	${PANDOC} -s -t html \
+	${PANDOC} -s -t html+smart \
 	    ${PANDOC_FLAGS} \
 	    --template=_layouts/page \
 	    --filter=tools/filters/blockquote2div.py \
