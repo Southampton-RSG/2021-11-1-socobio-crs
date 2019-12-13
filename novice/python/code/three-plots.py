@@ -19,6 +19,5 @@ axes3.set_ylabel('min')
 axes3.plot(data.min(axis=0))
 
 fig.tight_layout()
-#fig.set_tight_layout(True)
 
-plt.show(fig)
+plt.show()

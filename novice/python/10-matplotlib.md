@@ -24,21 +24,33 @@ from the previous topic:
 
 ~~~ {.python}
 from matplotlib import pyplot
-image  = pyplot.imshow(data)
-pyplot.show(image)
+pyplot.imshow(data)
+pyplot.show()
 ~~~
+
+pyplot keeps track of the graph as we are building it, so when we do `pyplot.show()` it's
+just showing us what's been built so far.
 
 ![Heatmap of the Data](01-numpy_files/novice/python/01-numpy_74_0.png)
 
 Blue regions in this heat map are low values, while red shows high values.
-As we can see,
-inflammation rises and falls over a 40-day period.
+As we can see, inflammation rises and falls over a 40-day period.
+
+Note that if we try and run `pyplot.show()` again, the graph doesn't show. This is because
+after it's been displayed, matplotlib *resets* and clears the current graph. To see it
+again, we need to generate the plot again, e.g.:
+
+~~~ {.python}
+pyplot.imshow(data)
+pyplot.show()
+~~~
+
 Let's take a look at the average inflammation over time:
 
 ~~~ {.python}
 ave_inflammation = data.mean(axis=0)
-ave_plot = pyplot.plot(ave_inflammation)
-pyplot.show(ave_plot)
+pyplot.plot(ave_inflammation)
+pyplot.show()
 ~~~
 
 ![Average Inflammation Over Time](01-numpy_files/novice/python/01-numpy_76_0.png)
@@ -53,15 +65,15 @@ we expect a sharper rise and slower fall.
 Let's have a look at two other statistics:
 
 ~~~ {.python}
-max_plot = pyplot.plot(data.max(axis=0))
-pyplot.show(max_plot)
+pyplot.plot(data.max(axis=0))
+pyplot.show()
 ~~~
 
 ![Maximum Value Along The First Axis](01-numpy_files/novice/python/01-numpy_78_1.png)
 
 ~~~ {.python}
-min_plot = pyplot.plot(data.min(axis=0))
-pyplot.show(min_plot)
+pyplot.plot(data.min(axis=0))
+pyplot.show()
 ~~~
 
 ![Minimum Value Along The First Axis](01-numpy_files/novice/python/01-numpy_78_3.png)
@@ -98,9 +110,7 @@ axes2.plot(data.max(axis=0))
 axes3.set_ylabel('min')
 axes3.plot(data.min(axis=0))
 
-fig.tight_layout()
-
-plt.show(fig)
+plt.show()
 ~~~
 
 Running the above code (present under `code` directory in the file `three-plots.py`) may throw the warning as below. If you see the warning, please ignore it.
@@ -108,7 +118,7 @@ Running the above code (present under `code` directory in the file `three-plots.
 `/Users/user/anaconda/lib/python3.4/site-packages/matplotlib/tight_layout.py:225: UserWarning: tight_layout : falling back to Agg renderer
   warnings.warn("tight_layout : falling back to Agg renderer")`
 
-`tight_layout` still works by falling back to the Agg renderer. 
+`tight_layout` still works by falling back to a different way of generating the graph (the Agg renderer).
 
 ![The Previous Plots as Subplots](01-numpy_files/novice/python/01-numpy_83_0.png)
 
@@ -116,12 +126,7 @@ The call to `loadtxt` reads our data,
 and the rest of the program tells the plotting library
 how large we want the figure to be,
 that we're creating three sub-plots,
-what to draw for each one,
-and that we want a tight layout.
-(Perversely,
-if we leave out that call to `fig.tight_layout()`,
-the graphs will actually be squeezed together more closely.)
-
+and what to draw for each one.
 
 > ## Make your own plot {.challenge}
 >
@@ -168,12 +173,12 @@ import matplotlib
 from matplotlib import pyplot as plt
 import glob
 
-filenames = glob.glob('../data/*.csv')
+filenames = glob.glob('../data/inflammation-*.csv')
 filenames = filenames[0:3]
-for f in filenames:
+for filename in filenames:
     print(f)
 
-    data = numpy.loadtxt(fname=f, delimiter=',')
+    data = numpy.loadtxt(fname=filename, delimiter=',')
 
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 
@@ -191,7 +196,7 @@ for f in filenames:
     axes3.plot(data.min(axis=0))
 
     fig.tight_layout()
-    plt.show(fig)
+    plt.show()
 ~~~
 
 ~~~ {.output}
@@ -219,3 +224,45 @@ the maxima of the first two data sets show exactly the same ramp as the first,
 and their minima show the same staircase structure;
 a different situation has been revealed in the third dataset,
 where the maxima are a bit less regular, but the minima are consistently zero.
+
+## Saving our Plots
+
+We can also save our plots to disk. Let's change our updated script to do that, by replacing `plt.show()` with `fig.savefig(filename)`. But what should we use for a filename each time? A quick way would be to just use the `filename` variable, and append a `.png` to it. This will tell matplotlib to save a generated graph as a PNG image file.
+
+Let's do this now, e.g.:
+
+~~~ {.python}
+import numpy
+import matplotlib
+from matplotlib import pyplot as plt
+import glob
+
+filenames = glob.glob('../data/inflammation-*.csv')
+filenames = filenames[0:3]
+for filename in filenames:
+    print(filename)
+
+    data = numpy.loadtxt(fname=filename, delimiter=',')
+
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+
+    axes1.set_ylabel('average')
+    axes1.plot(data.mean(axis=0))
+
+    axes2.set_ylabel('max')
+    axes2.plot(data.max(axis=0))
+
+    axes3.set_ylabel('min')
+    axes3.plot(data.min(axis=0))
+
+    fig.tight_layout()
+    fig.savefig(filename + '.png')
+~~~
+
+If we rerun this script, we can see that our graphs have appeared as PNG files in the `data` directory, with the filenames `inflammation-XX.csv.png`.
+
+Now we're satisfied that this works for a few inflammation datasets, we can now remove the `filenames = filenames[0:3]` statement, which will allow the script to work over all the inflammation datasets, which will also appear in the `data` directory.

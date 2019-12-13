@@ -52,7 +52,14 @@ And we should see:
 /Users/nelle/2015-12-15-southampton/novice/python
 ~~~
 
-Ensuring we have run the Python interpreter first, we can load NumPy using:
+First, let's go into the `code` subdirectory, and run the Python interpreter.
+
+~~~ {.bash}
+$ cd code
+$ python
+~~~
+
+We can load NumPy using:
 
 ~~~ {.python}
 import numpy
@@ -61,27 +68,16 @@ import numpy
 Importing a library is like getting a piece of lab equipment out of a storage locker
 and setting it up on the bench.
 Once it's done,
-we can ask the library to read our data file for us:
+we can ask the library to read our data file for us.
+
+Just as we can assign a single value to a variable, we can also assign an array of values
+to a variable using the same syntax:
 
 ~~~ {.python}
-data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
 ~~~
 
 This statement doesn't produce any output because assignment doesn't display anything.
-If we want to check that our data has been loaded, we can print the variable's value:
-
-~~~ {.python}
-print(data)
-~~~
-~~~ {.output}
-array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
-       [ 0.,  1.,  2., ...,  1.,  0.,  1.],
-       [ 0.,  1.,  1., ...,  2.,  1.,  1.],
-       ...,
-       [ 0.,  1.,  1., ...,  1.,  1.,  1.],
-       [ 0.,  0.,  0., ...,  0.,  2.,  0.],
-       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])
-~~~
 
 The expression `numpy.loadtxt(...)` is a [function call](../../reference.html#function-call)
 that asks Python to run the function `loadtxt` that belongs to the `numpy` library.
@@ -101,17 +97,24 @@ To save space,
 Python displays numbers as `1.` instead of `1.0`
 when there's nothing interesting after the decimal point.
 
-Our call to `numpy.loadtxt` read our file,
-but didn't save the data in memory.
-To do that,
-we need to [assign](../../reference.html#assignment) the array to a [variable](../../reference.html#variable).
+Now that our data is in memory, we can start doing things with it.
 
-Just as we can assign a single value to a variable, we can also assign an array of values
-to a variable using the same syntax.
+If we want to check that our data has been loaded, we can print the variable's value:
 
-Now that our data is in memory,
-we can start doing things with it.
-First, let's ask what [type](../../reference.html#type) of thing `data` refers to:
+~~~ {.python}
+print(data)
+~~~
+~~~ {.output}
+array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
+       [ 0.,  1.,  2., ...,  1.,  0.,  1.],
+       [ 0.,  1.,  1., ...,  2.,  1.,  1.],
+       ...,
+       [ 0.,  1.,  1., ...,  1.,  1.,  1.],
+       [ 0.,  0.,  0., ...,  0.,  2.,  0.],
+       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])
+~~~
+
+Let's ask what [type](../../reference.html#type) of thing `data` refers to:
 
 ~~~ {.python}
 print(type(data))
@@ -332,7 +335,7 @@ print('standard deviation:', data.std())
 ~~~ {.output}
 maximum inflammation: 20.0
 minimum inflammation: 0.0
-standard deviation: 4.61383319712
+standard deviation: 4.613833197118566
 ~~~
 
 When analyzing data,
@@ -370,7 +373,7 @@ we want to perform the operation across an axis:
 
 To support this,
 most array methods allow us to specify the axis we want to work on.
-If we ask for the average across axis 0,
+If we ask for the average across axis 0 (representing the patients axis),
 we get:
 
 ~~~ {.python}
@@ -413,7 +416,7 @@ print(data.mean(axis=1))
   6.1    6.825  5.975  6.725  5.7    6.25   6.4    7.05   5.9  ]
 ~~~
 
-which is the average inflammation per patient across all days.
+which is the average inflammation for each patient across all days.
 
 > ## Thin slices {.challenge}
 >
