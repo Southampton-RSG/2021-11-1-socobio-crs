@@ -19,8 +19,8 @@
   <body class="lesson">
     <div class="container card">
       <div class="banner">
-        <a href="http://software-carpentry.org" title="Software Carpentry">
-          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        <a href="https://rsgsoton.net/" title="Research Software Group">
+          <img alt="RSG banner" width="20%" src="img/RSG_logo_orange.png" />
         </a>
       </div>
       <article>
@@ -42,22 +42,22 @@
 </div>
 </section>
 <p>We now know how to explore files and directories, but how do we create them in the first place? Let’s use <code>ls -F</code> to see what our test directory contains:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">pwd</span></code></pre></div>
+<pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2015-12-15-southampton/novice/shell/test_directory</code></pre>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> -F</code></pre></div>
+<pre class="bash"><code>$ ls -F</code></pre>
 <pre class="output"><code>creatures/  molecules/           pizza.cfg
 data/       north-pacific-gyre/  solar.pdf
 Desktop/    notes.txt            writing/</code></pre>
 <p>Let’s create a new directory called <code>thesis</code> using the command <code>mkdir thesis</code> (which has no output):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mkdir</span> thesis</code></pre></div>
+<pre class="bash"><code>$ mkdir thesis</code></pre>
 <p>As you might (or might not) guess from its name, <code>mkdir</code> means “make directory”. Since <code>thesis</code> is a relative path (i.e., doesn’t have a leading slash), the new directory is created in the current working directory:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> -F</code></pre></div>
+<pre class="bash"><code>$ ls -F</code></pre>
 <pre class="output"><code>creatures/  north-pacific-gyre/  thesis/
 data/       notes.txt            writing/
 Desktop/    pizza.cfg
 molecules/  solar.pdf</code></pre>
 <p>However, there’s nothing in it yet:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> -F thesis</code></pre></div>
+<pre class="bash"><code>$ ls -F thesis</code></pre>
 <p>Let’s change our working directory to <code>thesis</code> using <code>cd</code>, then use <strong>VSCode</strong> to create a text file called <code>draft.txt</code>, and save it in the directory:</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
@@ -71,27 +71,25 @@ molecules/  solar.pdf</code></pre>
 </div>
 </aside>
 <p>We launch <strong>VSCode</strong>, select the <em>New File</em> option:</p>
-<div class="figure">
-<img src="img/vscode-new-file.png" alt="New File" />
-<p class="caption">New File</p>
-</div>
+<figure>
+<img src="img/vscode-new-file.png" alt="New File" /><figcaption>New File</figcaption>
+</figure>
 <p>Then type a few lines of text into the file:</p>
-<div class="figure">
-<img src="img/vscode-text.png" alt="Typing Text" />
-<p class="caption">Typing Text</p>
-</div>
+<figure>
+<img src="img/vscode-text.png" alt="Typing Text" /><figcaption>Typing Text</figcaption>
+</figure>
 <p>Then go to file, save as, and navigate to your new <code>thesis</code> directory (in the workshop directory, under <code>novice</code>, <code>shell</code>, <code>test_directory</code> then <code>thesis</code>) and save new file as <code>draft.txt</code>.<br />
 Now we’ve saved the file, we can use <code>ls</code> to see that there is a new file in the directory called <code>draft.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span></code></pre></div>
+<pre class="bash"><code>$ ls</code></pre>
 <pre class="output"><code>draft.txt</code></pre>
 <p>We can use the shell on its own to take a look at its contents using the <code>cat</code> command (which stands for “concatenate”):</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">cat</span> draft.txt</code></pre></div>
+<pre class="bash"><code>$ cat draft.txt</code></pre>
 <pre class="output"><code>This is a regular text editor
 with some extra features.</code></pre>
 <p>Let’s tidy up by running <code>rm draft.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rm</span> draft.txt</code></pre></div>
+<pre class="bash"><code>$ rm draft.txt</code></pre>
 <p>This command removes files (“rm” is short for “remove”). If we run <code>ls</code> again, its output is empty once more, which tells us that our file is gone:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span></code></pre></div>
+<pre class="bash"><code>$ ls</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="deleting-is-forever"><span class="glyphicon glyphicon-pushpin"></span>Deleting Is Forever</h2>
@@ -101,21 +99,21 @@ with some extra features.</code></pre>
 </div>
 </aside>
 <p>Let’s re-create that file and then move up one directory using <code>cd ..</code>. If you kept <code>thesis.txt</code> open in <strong>VSCode</strong> after deleting the file, you should just be able to re-save it in the same location with <code>File-&gt;Save</code>. We can check it out:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">pwd</span></code></pre></div>
+<pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2015-12-15-southampton/novice/shell/test_directory/thesis</code></pre>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span></code></pre></div>
+<pre class="bash"><code>$ ls</code></pre>
 <pre class="output"><code>draft.txt</code></pre>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ..</code></pre></div>
+<pre class="bash"><code>$ cd ..</code></pre>
 <p>If we try to remove the entire <code>thesis</code> directory using <code>rm thesis</code>, we get an error message:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rm</span> thesis</code></pre></div>
+<pre class="bash"><code>$ rm thesis</code></pre>
 <pre class="error"><code>rm: cannot remove `thesis&#39;: Is a directory</code></pre>
 <p>This happens because <code>rm</code> only works on files, not directories. The right command is <code>rmdir</code>, which is short for “remove directory”. It doesn’t work yet either, though, because the directory we’re trying to remove isn’t empty:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rmdir</span> thesis</code></pre></div>
+<pre class="bash"><code>$ rmdir thesis</code></pre>
 <pre class="error"><code>rmdir: failed to remove `thesis&#39;: Directory not empty</code></pre>
 <p>This little safety feature can save you a lot of grief, particularly if you are a bad typist. To really get rid of <code>thesis</code> we must first delete the file <code>draft.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rm</span> thesis/draft.txt</code></pre></div>
+<pre class="bash"><code>$ rm thesis/draft.txt</code></pre>
 <p>The directory is now empty, so <code>rmdir</code> can delete it:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rmdir</span> thesis</code></pre></div>
+<pre class="bash"><code>$ rmdir thesis</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="with-great-power-comes-great-responsibility"><span class="glyphicon glyphicon-pushpin"></span>With Great Power Comes Great Responsibility</h2>
@@ -127,32 +125,32 @@ with some extra features.</code></pre>
 </div>
 </aside>
 <p>Let’s create that directory and file one more time.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">pwd</span></code></pre></div>
+<pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mkdir</span> thesis</code></pre></div>
+<pre class="bash"><code>$ mkdir thesis</code></pre>
 <p>As before, if you kept <code>thesis.txt</code> open in <strong>VSCode</strong> after deleting directory, you should just be able to re-save it in the same location after re-creating the directory! We can check this out:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> thesis</code></pre></div>
+<pre class="bash"><code>$ ls thesis</code></pre>
 <pre class="output"><code>draft.txt</code></pre>
 <p><code>draft.txt</code> isn’t a particularly informative name, so let’s change the file’s name using <code>mv</code>, which is short for “move”:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mv</span> thesis/draft.txt thesis/quotes.txt</code></pre></div>
+<pre class="bash"><code>$ mv thesis/draft.txt thesis/quotes.txt</code></pre>
 <p>The first parameter tells <code>mv</code> what we’re “moving”, while the second is where it’s to go. In this case, we’re moving <code>thesis/draft.txt</code> to <code>thesis/quotes.txt</code>, which has the same effect as renaming the file. Sure enough, <code>ls</code> shows us that <code>thesis</code> now contains one file called <code>quotes.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> thesis</code></pre></div>
+<pre class="bash"><code>$ ls thesis</code></pre>
 <pre class="output"><code>quotes.txt</code></pre>
 <p>Just for the sake of inconsistency, <code>mv</code> also works on directories — there is no separate <code>mvdir</code> command.</p>
 <p>Let’s move <code>quotes.txt</code> into the current working directory. We use <code>mv</code> once again, but this time we’ll just use the name of a directory as the second parameter to tell <code>mv</code> that we want to keep the filename, but put the file somewhere new. (This is why the command is called “move”.) In this case, the directory name we use is the special directory name <code>.</code> that we mentioned earlier.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mv</span> thesis/quotes.txt .</code></pre></div>
+<pre class="bash"><code>$ mv thesis/quotes.txt .</code></pre>
 <p>The effect is to move the file from the directory it was in to the current working directory. <code>ls</code> now shows us that <code>thesis</code> is empty:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> thesis</code></pre></div>
+<pre class="bash"><code>$ ls thesis</code></pre>
 <p>Further, <code>ls</code> with a filename or directory name as a parameter only lists that file or directory. We can use this to see that <code>quotes.txt</code> is still in our current directory:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> quotes.txt</code></pre></div>
+<pre class="bash"><code>$ ls quotes.txt</code></pre>
 <pre class="output"><code>quotes.txt</code></pre>
 <p>The <code>cp</code> command works very much like <code>mv</code>, except it copies a file instead of moving it. We can check that it did the right thing using <code>ls</code> with two paths as parameters — like most Unix commands, <code>ls</code> can be given thousands of paths at once:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">cp</span> quotes.txt thesis/quotations.txt
-$ <span class="fu">ls</span> quotes.txt thesis/quotations.txt</code></pre></div>
+<pre class="bash"><code>$ cp quotes.txt thesis/quotations.txt
+$ ls quotes.txt thesis/quotations.txt</code></pre>
 <pre class="output"><code>quotes.txt   thesis/quotations.txt</code></pre>
 <p>To prove that we made a copy, let’s delete the <code>quotes.txt</code> file in the current directory and then run that same <code>ls</code> again (we can get to this command by pressing the up arrow twice).</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">rm</span> quotes.txt
-$ <span class="fu">ls</span> quotes.txt thesis/quotations.txt</code></pre></div>
+<pre class="bash"><code>$ rm quotes.txt
+$ ls quotes.txt thesis/quotations.txt</code></pre>
 <pre class="error"><code>ls: cannot access quotes.txt: No such file or directory
 thesis/quotations.txt</code></pre>
 <p>This time it tells us that it can’t find <code>quotes.txt</code> in the current directory, but it does find the copy in <code>thesis</code> that we didn’t delete.</p>
@@ -163,7 +161,7 @@ thesis/quotations.txt</code></pre>
 <div class="panel-body">
 <p>Suppose that you created a <code>.txt</code> file in your current directory to contain a list of the statistical tests you will need to do to analyze your data, and named it: <code>statstics.txt</code></p>
 <p>After creating and saving this file you realize you misspelled the filename! You want to correct the mistake, which of the following commands could you use to do so?</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><code>cp statstics.txt statistics.txt</code></li>
 <li><code>mv statstics.txt statistics.txt</code></li>
 <li><code>mv statstics.txt .</code></li>
@@ -185,7 +183,7 @@ $ mkdir recombine
 $ mv proteins.dat recombine
 $ cp recombine/proteins.dat ../proteins-saved.dat
 $ ls</code></pre>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><code>proteins-saved.dat recombine</code></li>
 <li><code>recombine</code></li>
 <li><code>proteins.dat recombine</code></li>

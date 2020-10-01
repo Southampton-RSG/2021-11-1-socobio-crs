@@ -19,8 +19,8 @@
   <body class="lesson">
     <div class="container card">
       <div class="banner">
-        <a href="http://software-carpentry.org" title="Software Carpentry">
-          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        <a href="https://rsgsoton.net/" title="Research Software Group">
+          <img alt="RSG banner" width="20%" src="img/RSG_logo_orange.png" />
         </a>
       </div>
       <article>
@@ -44,8 +44,8 @@
 </section>
 <p>Now that we know a few basic commands, we can finally look at the shell’s most powerful feature: the ease with which it lets us combine existing programs in new ways.</p>
 <p>We’ll start with a directory called <code>data</code>, which is in the <code>novice/shell</code> directory, one directory up from <code>test_directory</code>. i.e. from <code>test_directory</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> ..
-$ <span class="bu">cd</span> data</code></pre></div>
+<pre class="bash"><code>$ cd ..
+$ cd data</code></pre>
 <p>Doing <code>ls</code> shows us three files in this directory:</p>
 <pre class="output"><code>sc_climate_data.csv      sc_climate_data_10.csv   sc_climate_data_1000.csv</code></pre>
 <p>The data in these files is taken from a real climate science research project that is looking into woody biomass yields. The files are as follows:</p>
@@ -61,7 +61,7 @@ $ <span class="bu">cd</span> data</code></pre></div>
 <li><code>wc</code> is the “word count” command, it counts the number of lines, words, and characters in files.</li>
 <li>The <code>*</code> in <code>*.csv</code> matches zero or more characters, so the shell turns <code>*.csv</code> into a complete list of <code>.csv</code> files:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">wc</span> *.csv</code></pre></div>
+<pre class="bash"><code>$ wc *.csv</code></pre>
 <pre class="output"><code> 1048580 1048583 21005146 sc_climate_data.csv
       11      12     487 sc_climate_data_10.csv
     1001    1002   42301 sc_climate_data_1000.csv
@@ -77,50 +77,49 @@ $ <span class="bu">cd</span> data</code></pre></div>
 </div>
 </aside>
 <p>If we run <code>wc -l</code> instead of just <code>wc</code>, the output shows only the number of lines per file:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">wc</span> -l *.csv</code></pre></div>
+<pre class="bash"><code>$ wc -l *.csv</code></pre>
 <pre class="output"><code> 1048580 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049592 total</code></pre>
 <p>We can also use <code>-w</code> to get only the number of words, or <code>-c</code> to get only the number of characters.</p>
 <p>Which of these files is shortest? It’s an easy question to answer when there are only three files, but what if there were 6000? Our first step toward a solution is to run the command:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">wc</span> -l *.csv <span class="op">&gt;</span> lengths.txt</code></pre></div>
+<pre class="bash"><code>$ wc -l *.csv &gt; lengths.txt</code></pre>
 <p>The greater than symbol, <code>&gt;</code>, tells the shell to <strong>redirect</strong> the command’s output to a file instead of printing it to the screen. The shell will create the file if it doesn’t exist, or overwrite the contents of that file if it does. (This is why there is no screen output: everything that <code>wc</code> would have printed has gone into the file <code>lengths.txt</code> instead.) <code>ls lengths.txt</code> confirms that the file exists:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ls</span> lengths.txt</code></pre></div>
+<pre class="bash"><code>$ ls lengths.txt</code></pre>
 <pre class="output"><code>lengths.txt</code></pre>
 <p>We can now send the content of <code>lengths.txt</code> to the screen using <code>cat lengths.txt</code>. <code>cat</code> stands for “concatenate”: it prints the contents of files one after another. There’s only one file in this case, so <code>cat</code> just shows us what it contains:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">cat</span> lengths.txt</code></pre></div>
+<pre class="bash"><code>$ cat lengths.txt</code></pre>
 <pre class="output"><code> 1048580 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1049592 total</code></pre>
 <p>Now let’s use the <code>sort</code> command to sort its contents. We will also use the -n flag to specify that the sort is numerical instead of alphabetical. This does <em>not</em> change the file; instead, it sends the sorted result to the screen:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sort</span> -n lengths.txt</code></pre></div>
+<pre class="bash"><code>$ sort -n lengths.txt</code></pre>
 <pre class="output"><code>      11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
  1048580 sc_climate_data.csv
  1049592 total</code></pre>
 <p>We can put the sorted list of lines in another temporary file called <code>sorted-lengths.txt</code> by putting <code>&gt; sorted-lengths.txt</code> after the command, just as we used <code>&gt; lengths.txt</code> to put the output of <code>wc</code> into <code>lengths.txt</code>. Once we’ve done that, we can run another command called <code>head</code> to get the first few lines in <code>sorted-lengths.txt</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sort</span> -n lengths.txt <span class="op">&gt;</span> sorted-lengths.txt
-$ <span class="fu">head</span> -1 sorted-lengths.txt</code></pre></div>
+<pre class="bash"><code>$ sort -n lengths.txt &gt; sorted-lengths.txt
+$ head -1 sorted-lengths.txt</code></pre>
 <pre class="output"><code>      11 sc_climate_data_10.csv</code></pre>
 <p>Using the parameter <code>-1</code> with <code>head</code> tells it that we only want the first line of the file; <code>-20</code> would get the first 20, and so on. Since <code>sorted-lengths.txt</code> contains the lengths of our files ordered from least to greatest, the output of <code>head</code> must be the file with the fewest lines.</p>
 <p>If you think this is confusing, you’re in good company: even once you understand what <code>wc</code>, <code>sort</code>, and <code>head</code> do, all those intermediate files make it hard to follow what’s going on. We can make it easier to understand by running <code>sort</code> and <code>head</code> together:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sort</span> -n lengths.txt <span class="kw">|</span> <span class="fu">head</span> -1</code></pre></div>
+<pre class="bash"><code>$ sort -n lengths.txt | head -1</code></pre>
 <pre class="output"><code>      11 sc_climate_data_10.csv</code></pre>
 <p>The vertical bar between the two commands is called a <strong>pipe</strong>. It tells the shell that we want to use the output of the command on the left as the input to the command on the right. The computer might create a temporary file if it needs to, or copy data from one program to the other in memory, or something else entirely; we don’t have to know or care.</p>
 <p>We can use another pipe to send the output of <code>wc</code> directly to <code>sort</code>, which then sends its output to <code>head</code>:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">wc</span> -l *.csv <span class="kw">|</span> <span class="fu">sort</span> -n <span class="kw">|</span> <span class="fu">head</span> -1</code></pre></div>
+<pre class="bash"><code>$ wc -l *.csv | sort -n | head -1</code></pre>
 <pre class="output"><code>      11 sc_climate_data_10.csv</code></pre>
 <p>This is exactly like a mathematician nesting functions like <em>log(3x)</em> and saying “the log of three times <em>x</em>”. In our case, the calculation is “head of sort of line count of <code>*.csv</code>”.</p>
 <p>Here’s what actually happens behind the scenes when we create a pipe. When a computer runs a program — any program — it creates a <strong>process</strong> in memory to hold the program’s software and its current state. Every process has an input channel called <strong>standard input</strong>. (By this point, you may be surprised that the name is so memorable, but don’t worry: most Unix programmers call it “stdin”. Every process also has a default output channel called <strong>standard output</strong> (or “stdout”).</p>
 <p>The shell is actually just another program. Under normal circumstances, whatever we type on the keyboard is sent to the shell on its standard input, and whatever it produces on standard output is displayed on our screen. When we tell the shell to run a program, it creates a new process and temporarily sends whatever we type on our keyboard to that process’s standard input, and whatever the process sends to standard output to the screen.</p>
 <p>Here’s what happens when we run <code>wc -l *.csv &gt; lengths.txt</code>. The shell starts by telling the computer to create a new process to run the <code>wc</code> program. Since we’ve provided some filenames as parameters, <code>wc</code> reads from them instead of from standard input. And since we’ve used <code>&gt;</code> to redirect output to a file, the shell connects the process’s standard output to that file.</p>
 <p>If we run <code>wc -l *.csv | sort -n</code> instead, the shell creates two processes (one for each process in the pipe) so that <code>wc</code> and <code>sort</code> run simultaneously. The standard output of <code>wc</code> is fed directly to the standard input of <code>sort</code>; since there’s no redirection with <code>&gt;</code>, <code>sort</code>’s output goes to the screen. And if we run <code>wc -l *.csv | sort -n | head -1</code>, we get three processes with data flowing from the files, through <code>wc</code> to <code>sort</code>, and from <code>sort</code> through <code>head</code> to the screen.</p>
-<div class="figure">
-<img src="fig/redirects-and-pipes.png" alt="Redirects and Pipes" />
-<p class="caption">Redirects and Pipes</p>
-</div>
+<figure>
+<img src="fig/redirects-and-pipes.png" alt="Redirects and Pipes" /><figcaption>Redirects and Pipes</figcaption>
+</figure>
 <p>This simple idea is why Unix has been so successful. Instead of creating enormous programs that try to do many different things, Unix programmers focus on creating lots of simple tools that each do one job well, and that work well with each other. This programming model is called “pipes and filters”. We’ve already seen pipes; a <strong>filter</strong> is a program like <code>wc</code> or <code>sort</code> that transforms a stream of input into a stream of output. Almost all of the standard Unix tools can work this way: unless told to do otherwise, they read from standard input, do something with what they’ve read, and write to standard output.</p>
 <p>The key is that any program that reads lines of text from standard input and writes lines of text to standard output can be combined with every other program that behaves this way as well. You can <em>and should</em> write your programs this way so that you and other people can put those programs into pipes to multiply their power.</p>
 <aside class="callout panel panel-info">
@@ -186,7 +185,7 @@ $ <span class="fu">head</span> -1 sorted-lengths.txt</code></pre></div>
 </div>
 <div class="panel-body">
 <p>In our current directory, we want to find the 3 files which have the least number of lines. Which command listed below would work?</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><code>wc -l * &gt; sort -n &gt; head -3</code></li>
 <li><code>wc -l * | sort -n | head 1-3</code></li>
 <li><code>wc -l * | head -3 | sort -n</code></li>

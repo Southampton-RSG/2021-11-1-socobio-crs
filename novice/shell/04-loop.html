@@ -19,8 +19,8 @@
   <body class="lesson">
     <div class="container card">
       <div class="banner">
-        <a href="http://software-carpentry.org" title="Software Carpentry">
-          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        <a href="https://rsgsoton.net/" title="Research Software Group">
+          <img alt="RSG banner" width="20%" src="img/RSG_logo_orange.png" />
         </a>
       </div>
       <article>
@@ -43,17 +43,17 @@
 </div>
 </section>
 <p>Wildcards and tab completion are two ways to reduce typing (and typing mistakes). Another is to tell the shell to do something over and over again. Suppose we have several hundred genome data files named <code>basilisk.dat</code>, <code>minotaur.dat</code>, <code>unicorn.dat</code>, and so on. In this example, we’ll use the <code>test_directory/creatures</code> directory which only has three example files, but the principles can be applied to many many more files at once. We would like to modify these files, but also save a version of the original files and rename them as <code>original-basilisk.dat</code>, <code>original-minotaur.dat</code>, <code>original-unicorn.dat</code>. We can’t use:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mv</span> *.dat original-*.dat</code></pre></div>
+<pre class="bash"><code>$ mv *.dat original-*.dat</code></pre>
 <p>because that would expand to:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">mv</span> basilisk.dat minotaur.dat unicorn.dat original-*.dat</code></pre></div>
+<pre class="bash"><code>$ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat</code></pre>
 <p>This wouldn’t back up our files, instead we get an error</p>
 <pre class="error"><code>mv: target `original-*.dat&#39; is not a directory</code></pre>
 <p>This a problem arises when <code>mv</code> receives more than two inputs. When this happens, it expects the last input to be a directory where it can move all the files it was passed. Since there is no directory named <code>original-*.dat</code> in the <code>creatures</code> directory we get an error.</p>
 <p>Instead, we can use a <strong>loop</strong> to do some operation once for each thing in a list. Here’s a simple example that displays the first three lines of each file in turn:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">for</span> <span class="ex">filename</span> in basilisk.dat minotaur.dat unicorn.dat
-<span class="op">&gt;</span> <span class="kw">do</span>
-<span class="op">&gt;</span>    <span class="fu">head</span> -3 <span class="va">$filename</span>
-<span class="op">&gt;</span> <span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>$ for filename in basilisk.dat minotaur.dat unicorn.dat
+&gt; do
+&gt;    head -3 $filename
+&gt; done</code></pre>
 <pre class="output"><code>COMMON NAME: basilisk
 CLASSIFICATION: basiliscus vulgaris
 UPDATED: 1745-05-02
@@ -75,32 +75,32 @@ UPDATED: 1738-11-24</code></pre>
 </div>
 </aside>
 <p>We have called the variable in this loop <code>filename</code> in order to make its purpose clearer to human readers. The shell itself doesn’t care what the variable is called; if we wrote this loop as:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="ex">x</span> in basilisk.dat minotaur.dat unicorn.dat
-<span class="kw">do</span>
-    <span class="fu">head</span> -3 <span class="va">$x</span>
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for x in basilisk.dat minotaur.dat unicorn.dat
+do
+    head -3 $x
+done</code></pre>
 <p>or:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="ex">temperature</span> in basilisk.dat minotaur.dat unicorn.dat
-<span class="kw">do</span>
-    <span class="fu">head</span> -3 <span class="va">$temperature</span>
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for temperature in basilisk.dat minotaur.dat unicorn.dat
+do
+    head -3 $temperature
+done</code></pre>
 <p>it would work exactly the same way. <em>Don’t do this.</em> Programs are only useful if people can understand them, so meaningless names (like <code>x</code>) or misleading names (like <code>temperature</code>) increase the odds that the program won’t do what its readers think it does.</p>
 <p>Here’s a slightly more complicated loop:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="ex">filename</span> in *.dat
-<span class="kw">do</span>
-    <span class="bu">echo</span> <span class="va">$filename</span>
-    <span class="fu">head</span> -100 <span class="va">$filename</span> <span class="kw">|</span> <span class="fu">tail</span> -20
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for filename in *.dat
+do
+    echo $filename
+    head -100 $filename | tail -20
+done</code></pre>
 <p>The shell starts by expanding <code>*.dat</code> to create the list of files it will process. The <strong>loop body</strong> then executes two commands for each of those files. The first, <code>echo</code>, just prints its command-line parameters to standard output. For example:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">echo</span> hello there</code></pre></div>
+<pre class="bash"><code>$ echo hello there</code></pre>
 <p>prints:</p>
 <pre class="output"><code>hello there</code></pre>
 <p>In this case, since the shell expands <code>$filename</code> to be the name of a file, <code>echo $filename</code> just prints the name of the file. Note that we can’t write this as:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="ex">filename</span> in *.dat
-<span class="kw">do</span>
-    <span class="va">$filename</span>
-    <span class="fu">head</span> -100 <span class="va">$filename</span> <span class="kw">|</span> <span class="fu">tail</span> -20
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for filename in *.dat
+do
+    $filename
+    head -100 $filename | tail -20
+done</code></pre>
 <p>because then the first time through the loop, when <code>$filename</code> expanded to <code>basilisk.dat</code>, the shell would try to run <code>basilisk.dat</code> as a program. Finally, the <code>head</code> and <code>tail</code> combination selects lines 81-100 from whatever file is being processed.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
@@ -133,16 +133,16 @@ done</code></pre>
 </div>
 </aside>
 <p>Going back to our original file renaming problem, we can solve it using this loop:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="ex">filename</span> in *.dat
-<span class="kw">do</span>
-    <span class="fu">mv</span> <span class="va">$filename</span> original-<span class="va">$filename</span>
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for filename in *.dat
+do
+    mv $filename original-$filename
+done</code></pre>
 <p>This loop runs the <code>mv</code> command once for each filename. The first time, when <code>$filename</code> expands to <code>basilisk.dat</code>, the shell executes:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> basilisk.dat original-basilisk.dat</code></pre></div>
+<pre class="bash"><code>mv basilisk.dat original-basilisk.dat</code></pre>
 <p>The second time, the command is:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> minotaur.dat original-minotaur.dat</code></pre></div>
+<pre class="bash"><code>mv minotaur.dat original-minotaur.dat</code></pre>
 <p>The third time, the command is:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="fu">mv</span> unicorn.dat original-unicorn.dat</code></pre></div>
+<pre class="bash"><code>mv unicorn.dat original-unicorn.dat</code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="measure-twice-run-once"><span class="glyphicon glyphicon-pushpin"></span>Measure Twice, Run Once</h2>
@@ -205,7 +205,7 @@ do
     echo $sugar
     cat $sugar &gt; xylose.dat
 done</code></pre>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
 <li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>, and the text from all three files would be concatenated and saved to a file called <code>xylose.dat</code>.</li>
 <li>Prints <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code>, and <code>xylose.dat</code>, and the text from <code>sucrose.dat</code> will be saved to a file called <code>xylose.dat</code>.</li>
@@ -225,7 +225,7 @@ done</code></pre>
 do
     cat $datafile &gt;&gt; sugar.dat
 done</code></pre>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code> and <code>sucrose.dat</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
 <li>The text from <code>sucrose.dat</code> will be saved to a file called <code>sugar.dat</code>.</li>
 <li>All of the text from <code>fructose.dat</code>, <code>glucose.dat</code>, <code>sucrose.dat</code> and <code>maltose.txt</code> would be concatenated and saved to a file called <code>sugar.dat</code>.</li>
@@ -239,21 +239,21 @@ done</code></pre>
 </div>
 <div class="panel-body">
 <p>Suppose we want to preview the commands the following loop will execute without actually running those commands:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="fu">file</span> in *.dat
-<span class="kw">do</span>
-  <span class="ex">analyze</span> <span class="va">$file</span> <span class="op">&gt;</span> analyzed-<span class="va">$file</span>
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code>for file in *.dat
+do
+  analyze $file &gt; analyzed-$file
+done</code></pre>
 <p>What is the difference between the the two loops below, and which one would we want to run?</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Version 1</span>
-<span class="kw">for</span> <span class="fu">file</span> in *.dat
-<span class="kw">do</span>
-  <span class="bu">echo</span> analyze <span class="va">$file</span> <span class="op">&gt;</span> analyzed-<span class="va">$file</span>
-<span class="kw">done</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Version 2</span>
-<span class="kw">for</span> <span class="fu">file</span> in *.dat
-<span class="kw">do</span>
-  <span class="bu">echo</span> <span class="st">&quot;analyze </span><span class="va">$file</span><span class="st"> &gt; analyzed-</span><span class="va">$file</span><span class="st">&quot;</span>
-<span class="kw">done</span></code></pre></div>
+<pre class="bash"><code># Version 1
+for file in *.dat
+do
+  echo analyze $file &gt; analyzed-$file
+done</code></pre>
+<pre class="bash"><code># Version 2
+for file in *.dat
+do
+  echo &quot;analyze $file &gt; analyzed-$file&quot;
+done</code></pre>
 </div>
 </section>
 <section class="challenge panel panel-success">
