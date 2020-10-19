@@ -78,10 +78,12 @@ Download and run the [RStudio Desktop 1.3 Installer for Windows](https://downloa
 #### Mac OS
 
 Download the [R 4.0.3 Package for Mac OS](https://cran.rstudio.com/bin/macosx/R-4.0.3.pkg).
+
 - If prompted, choose to allow downloads from cran.rstudio.com.
 - Open the downloaded pkg file from the Downloads folder to install.
 
 Download the [RStudio Desktop 1.3 Installer for Mac OS](https://download1.rstudio.org/desktop/macos/RStudio-1.3.1093.dmg).
+
 - If prompted, choose to allow downloads from rstudio.com.
 - Open the downloaded dmg archive from the Downloads folder.
 - Drag the RStudio icon to the Applications folder to install.
@@ -107,6 +109,7 @@ Git is the version control software we will use. It allows you to keep track of 
 #### Windows
 
 Download and install [Git for Windows](https://github.com/git-for-windows/git/releases/download/v2.28.0.windows.1/Git-2.28.0-64-bit.exe).
+
 - When prompted to choose the default editor used by Git, select your preference, or Nano if you have none.
 - When prompted to Adjust your PATH environment, accept the default choice to use Git from the command line and 3rd-party software.
 - Accept the default values for the remaining installation options. dio
