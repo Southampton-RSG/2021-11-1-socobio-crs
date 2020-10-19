@@ -11,7 +11,7 @@ There is little time during the workshop to deal with installation problems, so 
 
 ## Spreadsheets
 
-If you have access to **Microsoft Excel**, either as a standalone application, or via **Office 365**, please use this.
+If you have access to **Microsoft Excel**, as a standalone application, please use this.  (Unfortunately Office 365 Online is not suitable for this workshop).
 If you have no access to Microsoft Excel, please download and install **LibreOffice** Calc.
 
 #### Windows
