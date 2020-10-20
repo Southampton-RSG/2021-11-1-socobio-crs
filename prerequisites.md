@@ -74,6 +74,7 @@ R is a programming language and software environment for statistical computing a
 #### Windows
 
 Download and run the [R 4.0.3 for Windows Installer](https://cran.rstudio.com/bin/windows/base/R-4.0.3-win.exe).
+
 Download and run the [RStudio Desktop 1.3 Installer for Windows](https://download1.rstudio.org/desktop/windows/RStudio-1.3.1093.exe).
 
 #### Mac OS
