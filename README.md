@@ -1,7 +1,7 @@
-# Material for SWC Southampton workshop
-=================================
+# Material for 'Computational Research Skills' training course
+==============================================================
+
 This git repository contains the files needed to help
 you get started with the exercises associated with the
-Software Carpentry workshop at the University of Southampton.
-Further information can be found online at the [workshop homepage]
-(http://southampton-rsg.github.io/2019-12-16-southampton-swc/).
+'Computational Research Skills' training course at the University of Southampton.
+Further information can be found online at the [workshop homepage](https://southampton-rsg.github.io/2020-10-29-socobio-crs/).
