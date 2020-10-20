@@ -5,9 +5,17 @@ title: Software Prerequisites
 
 [[Home]](https://southampton-rsg.github.io/2020-10-29-socobio-crs/)
 
-**Prior to the workshop sessions, it is _vital_ that you install the required software on your laptop by following the instructions below**
+**By 5.00pm on 26th October, you must install the required software on your laptop. Instructions are provided below.**
 
-There is little time during the workshop to deal with installation problems, so it makes the session run more smoothly if you arrive with your software already installed.
+There is no time during the workshop to deal with installation problems, so you must arrive with your software already installed.
+
+## Installation Day: 26 October 2020
+
+We've set aside 26th October to provide help with installing software. Our Research Software Engineers will be online
+from 9.00 am-5.00 pm to help with your installation.
+
+The installation is fairly straightforward, but if you have any problems, let us know via the [Teams group](https://teams.microsoft.com/l/channel/19%3a68e3a937446d4ac1a2e499f18ffddccd%40thread.tacv2/Data%2520Management%2520Module?groupId=e9cf73f0-713a-4d5e-b62b-4c141212a8b6&tenantId=4a5378f9-29f4-4d3e-be89-669d03ada9d8)
+or by [emailing us](mailto:rsg-info@soton.ac.uk). We'll arrange a Teams call with you to talk you through the process.
 
 ## Spreadsheets
 
@@ -101,7 +109,7 @@ Nano is provided as part of the Git for Windows installation as described below.
 
 #### Mac OS X
 
-Nano is provided as part of the Mac OS X base install.
+Nano is already installed as part of the Mac OS X base install.
 
 
 ## Git
