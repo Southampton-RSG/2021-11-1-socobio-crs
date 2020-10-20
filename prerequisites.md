@@ -21,6 +21,7 @@ Download the and run the [LibreOffice 6.4 installer for Windows](https://www.lib
 #### Mac OS (10.15 / Catalina)
 
 Download the [LibreOffice 6.4 installer for Mac](https://www.libreoffice.org/donate/dl/mac-x86_64/6.4.6/en-GB/LibreOffice_6.4.6_MacOS_x86-64.dmg).
+
 - If prompted, choose to allow downloads from libreoffice.org.
 - Open the downloaded dmg archive from the Downloads folder.
 - Drag the LibreOffice icon into the Applications folder.
