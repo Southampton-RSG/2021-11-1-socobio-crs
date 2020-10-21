@@ -120,7 +120,7 @@ Git is the version control software we will use. It allows you to keep track of 
 
 Download and install [Git for Windows](https://github.com/git-for-windows/git/releases/download/v2.28.0.windows.1/Git-2.28.0-64-bit.exe).
 
-- When prompted to choose the default editor used by Git, select your preference, or Nano if you have none.
+- When prompted to choose the default editor used by Git, select your preference, or Nano (at the top of the list) if you have none.
 - When prompted to Adjust your PATH environment, accept the default choice to use Git from the command line and 3rd-party software.
 - Accept the default values for the remaining installation options. dio
 
