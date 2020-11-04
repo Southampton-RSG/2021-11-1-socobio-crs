@@ -105,7 +105,7 @@ head &quot;$2&quot; &quot;$1&quot; | tail &quot;$3&quot;</code></pre>
 <p>A comment starts with a <code>#</code> character and runs to the end of the line. The computer ignores comments, but they’re invaluable for helping people understand and use scripts.</p>
 <p>What if we want to process many files in a single pipeline? For example, if we want to sort our <code>.csv</code> files by length, we would type:</p>
 <pre class="bash"><code>$ wc -l *.csv | sort -n</code></pre>
-<p>because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the -l flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>&quot;$@&quot;</code> is equivalent to <code>&quot;$1&quot;</code> <code>&quot;$2&quot;</code> …) Here’s an example:</p>
+<p>This is because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code>-l</code> flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>&quot;$@&quot;</code> is equivalent to <code>&quot;$1&quot;</code> <code>&quot;$2&quot;</code> …) Here’s an example:</p>
 <pre class="bash"><code>$ cat sorted.sh</code></pre>
 <pre class="output"><code>wc -l &quot;$@&quot; | sort -n</code></pre>
 <pre class="bash"><code>$ bash sorted.sh *.csv ../test_directory/creatures/*.dat</code></pre>
@@ -128,13 +128,15 @@ head &quot;$2&quot; &quot;$1&quot; | tail &quot;$3&quot;</code></pre>
 <p>Since it doesn’t have any filenames, <code>wc</code> assumes it is supposed to process standard input, so it just sits there and waits for us to give it some data interactively. From the outside, though, all we see is it sitting there: the script doesn’t appear to do anything.</p>
 </div>
 </aside>
-<p>We have two more things to do before we’re finished with our simple shell scripts. If you look at a script like:</p>
+<h2 id="explain-what-your-code-does---by-adding-comments">Explain what your code does - by adding comments!</h2>
+<p>If you look at a script like:</p>
 <pre><code>wc -l &quot;$@&quot; | sort -n</code></pre>
 <p>you can probably puzzle out what it does. On the other hand, if you look at this script:</p>
 <pre><code># List files sorted by number of lines.
 wc -l &quot;$@&quot; | sort -n</code></pre>
-<p>you don’t have to puzzle it out — the comment at the top tells you what it does. A line or two of documentation like this make it much easier for other people (including your future self) to re-use your work. The only caveat is that each time you modify the script, you should check that the comment is still accurate: an explanation that sends the reader in the wrong direction is worse than none at all.</p>
-<p>Second, suppose we have just run a series of commands that did something useful — for example, that created a graph we’d like to use in a paper. We’d like to be able to re-create the graph later if we need to, so we want to save the commands in a file. Instead of typing them in again (and potentially getting them wrong) we can do this:</p>
+<p>you don’t have to puzzle it out — the comment at the top tells you what it does. A line or two of documentation like this make it much easier for other people (including your future self) to re-use your work. The only caveat is that each time you modify the script, you should check that its comments are still accurate: an explanation that sends the reader in the wrong direction is worse than none at all.</p>
+<h2 id="what-did-i-type-to-get-that-to-work">What did I type to get that to work?</h2>
+<p>Here’s something that can be useful as an aid to memory. Suppose we have just run a series of commands that did something useful — for example, that created a graph we’d like to use in a paper. We’d like to be able to re-create the graph later if we need to, so we want to save the commands in a file. Instead of typing them in again (and potentially getting them wrong) we can do this:</p>
 <pre class="bash"><code>$ history | tail -4 &gt; redo-figure-3.sh</code></pre>
 <p>The file <code>redo-figure-3.sh</code> now contains:</p>
 <pre><code>297 bash goostats -r NENE01729B.txt stats-NENE01729B.txt
@@ -164,6 +166,7 @@ history | tail -5 | colrm 1 7</code></pre>
 </div>
 </aside>
 <p>In practice, most people develop shell scripts by running commands at the shell prompt a few times to make sure they’re doing the right thing, then saving them in a file for re-use. This style of work allows people to recycle what they discover about their data and their workflow with one call to <code>history</code> and a bit of editing to clean up the output and save it as a shell script.</p>
+<h2 id="challenges">Challenges</h2>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="variables-in-shell-scripts"><span class="glyphicon glyphicon-pencil"></span>Variables in shell scripts</h2>

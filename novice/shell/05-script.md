@@ -170,8 +170,8 @@ For example, if we want to sort our `.csv` files by length, we would type:
 $ wc -l *.csv | sort -n
 ~~~
 
-because `wc -l` lists the number of lines in the files
-(recall that wc stands for 'word count', adding the -l flag means 'count lines' instead)
+This is because `wc -l` lists the number of lines in the files
+(recall that wc stands for 'word count', adding the `-l` flag means 'count lines' instead)
 and `sort -n` sorts things numerically.
 We could put this in a file,
 but then it would only ever sort a list of `.csv` files in the current directory.
@@ -226,7 +226,8 @@ $ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 > it some data interactively. From the outside, though, all we see is it
 > sitting there: the script doesn't appear to do anything.
 
-We have two more things to do before we're finished with our simple shell scripts.
+## Explain what your code does - by adding comments!
+
 If you look at a script like:
 
 ~~~
@@ -244,14 +245,15 @@ wc -l "$@" | sort -n
 
 you don't have to puzzle it out --- the comment at the top tells you what it does.
 A line or two of documentation like this make it much easier for other people
-(including your future self)
-to re-use your work.
+(including your future self) to re-use your work.
 The only caveat is that each time you modify the script,
-you should check that the comment is still accurate:
+you should check that its comments are still accurate:
 an explanation that sends the reader in the wrong direction is worse than none at all.
 
-Second,
-suppose we have just run a series of commands that did something useful --- for example,
+## What did I type to get that to work?
+
+Here's something that can be useful as an aid to memory.
+Suppose we have just run a series of commands that did something useful --- for example,
 that created a graph we'd like to use in a paper.
 We'd like to be able to re-create the graph later if we need to,
 so we want to save the commands in a file.
@@ -275,28 +277,6 @@ The file `redo-figure-3.sh` now contains:
 After a moment's work in an editor to remove the serial numbers on the commands,
 we have a completely accurate record of how we created that figure.
 
-> ## Unnumbering {.callout}
->
-> Nelle could also use `colrm` (short for "column removal") to remove the
-> serial numbers on her previous commands.
-> Its parameters are the range of characters to strip from its input:
->
-> ~~~
-> $ history | tail -5
->   173  cd /tmp
->   174  ls
->   175  mkdir bakup
->   176  mv bakup backup
->   177  history | tail -5
-> $ history | tail -5 | colrm 1 7
-> cd /tmp
-> ls
-> mkdir bakup
-> mv bakup backup
-> history | tail -5
-> history | tail -5 | colrm 1 7
-> ~~~
-
 In practice, most people develop shell scripts by running commands at the shell prompt a few times
 to make sure they're doing the right thing,
 then saving them in a file for re-use.
@@ -304,6 +284,8 @@ This style of work allows people to recycle
 what they discover about their data and their workflow with one call to `history`
 and a bit of editing to clean up the output
 and save it as a shell script.
+
+## Challenges
 
 > ## Variables in shell scripts {.challenge}
 >
