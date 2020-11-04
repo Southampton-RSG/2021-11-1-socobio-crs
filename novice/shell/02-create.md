@@ -6,8 +6,9 @@ minutes: 15
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   Create new directories.
-> *   Create files in that hierarchy using an editor or by copying and renaming existing files.
+> *   Create new directories, also known as folders.
+> *   List the contents of directories.
+> *   Create files within directories using an editor or by copying and renaming existing files.
 > *   Display the contents of a file using the command line.
 > *   Delete specified files and/or directories.
 
@@ -64,31 +65,45 @@ then use **VSCode** to create a text file called `draft.txt`, and save it in the
 
 > ## Which Editor? {.callout}
 >
-> We use **VSCode** as it is a fairly standard text editor that can be 
-> installed on Windows, Mac or Linux and has some handy features like
-> code highlighting that make it easy to write scripts and code in. Similar
-> editors exist like **Atom**, a highly customisable text editor.
+> When we say, "`nano` is a text editor," we really do mean "text": it can
+> only work with plain character data, not tables, images, or any other
+> human-friendly media. We use it in examples because almost anyone can
+> drive it anywhere without training, but please use something more
+> powerful for real work. 
 >
-> Other editors exist that offer even more features to help you write code, 
-> and are referred to as **IDEs**, or **Integrated Development Environments**.
-> A popular example would be **PyCharm**.
->
-> Finally, some editors are small and simple and can be run entirely in the
-> terminal, like for example **Nano**. These are often much harder to use, 
-> but can be handy for small edits, and may be required on remote servers.
+> On Windows, you may wish to use [Notepad++](http://notepad-plus-plus.org/).
+> A more powerful example is Microsoft's [VSCode](https://code.visualstudio.com/).
+> It's a fairly standard text editor that can be 
+> installed on Windows, Mac or Linux but also has some handy features like
+> code highlighting that make it easy to write scripts and code. Similar
+> editors exist like [Atom](https://atom.io/), a highly customisable text editor which
+> also runs on these platforms.
 >
 > Your choice of editor will depend on the size of project you're working on,
-> and how comfortable you are with the terminal. 
+> and how comfortable you are with the terminal.
+>
+> No matter what editor you use, you will need to know where it searches
+> for and saves files. If you start it from the shell, it will (probably)
+> use your current working directory as its default location. If you use
+> your computer's start menu, it may want to save files in your desktop or
+> documents directory instead.
+>
+> For the purposes of this training, you can change its starting directory by navigating to
+> another directory the first time you "Save As...", and point it to the
+> 2020-10-29-socobio-crs/novice/shell/test_directory/thesis folder in your
+> user's home directory.
 
-We launch **VSCode**, select the *New File* option:
+Let's type in a few lines of text,
+then use `Control-O` (pressing `Control` and `O` at the same time) to write our data to disk:
 
-![New File](img/vscode-new-file.png)
+![Nano in action](fig/nano-screenshot.png)
 
-Then type a few lines of text into the file:
+Once our file is saved,
+we can use `Control-X` to quit the editor and return to the shell.
+(Unix documentation often uses the shorthand `^A` to mean `Control-A`.)
+`nano` doesn't leave any output on the screen after it exits,
+but `ls` now shows that we have created a file called `draft.txt`:
 
-![Typing Text](img/vscode-text.png)
-
-Then go to file, save as, and navigate to your new `thesis` directory (in the workshop directory, under `novice`, `shell`, `test_directory` then `thesis`) and save new file as `draft.txt`.  
 Now we've saved the file, we can use `ls` to see that there is a new file in the directory called `draft.txt`:
 
 ~~~ {.bash}
@@ -134,9 +149,7 @@ $ ls
 > file's disk space right away.
 
 Let's re-create that file
-and then move up one directory using `cd ..`. If you kept `thesis.txt` 
-open in **VSCode** after deleting the file, you should just be able to 
-re-save it in the same location with `File->Save`. We can check it out:
+and then move up one directory using `cd ..`:
 
 ~~~ {.bash}
 $ pwd
@@ -145,6 +158,7 @@ $ pwd
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis
 ~~~
 ~~~ {.bash}
+$ nano draft.txt
 $ ls
 ~~~
 ~~~ {.output}
@@ -217,12 +231,8 @@ $ pwd
 ~~~ {.bash}
 $ mkdir thesis
 ~~~
-
-As before, if you kept `thesis.txt` open in **VSCode** after deleting directory, 
-you should just be able to re-save it in the same location after re-creating the directory! 
-We can check this out:
-
 ~~~ {.bash}
+$ nano thesis/draft.txt
 $ ls thesis
 ~~~
 ~~~ {.output}
@@ -315,6 +325,8 @@ thesis/quotations.txt
 This time it tells us that it can't find `quotes.txt` in the current directory,
 but it does find the copy in `thesis` that we didn't delete.
 
+## Challenges
+
 > ## Renaming files {.challenge}
 >
 > Suppose that you created a `.txt` file in your current directory to contain a list of the
@@ -385,12 +397,3 @@ but it does find the copy in `thesis` that we didn't delete.
 > intro.txt    methods.txt    survey.txt
 > $ cp intro.txt methods.txt survey.txt
 > ~~~
-
-> ## Listing Recursively and By Time {.challenge}
->
-> The command `ls -R` lists the contents of directories recursively,
-> i.e., lists their sub-directories, sub-sub-directories, and so on
-> in alphabetical order at each level.
-> The command `ls -t` lists things by time of last change,
-> with most recently changed files or directories first.
-> In what order does `ls -R -t` display things?
