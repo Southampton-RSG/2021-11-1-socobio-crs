@@ -47,17 +47,17 @@
 <p>Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let’s open a shell window:</p>
 <pre class="bash"><code>$</code></pre>
 <p>The dollar sign is a <strong>prompt</strong>, which represents our input interface to the shell. It shows us that the shell is waiting for input; your shell may show something more elaborate.</p>
-<p>Type the command <code>whoami</code>, then press the Enter key (sometimes called Return) to send the command to the shell. The command’s output is the ID of the current user, i.e., it shows us who the shell thinks we are:</p>
+<p>Type the command <code>whoami</code>, then press the Enter key (sometimes called Return) to send the command to the shell. The command’s output is the identity of the current user, i.e., it shows us who the shell thinks we are (yours will be something different!):</p>
 <pre class="bash"><code>$ whoami</code></pre>
 <pre class="output"><code>nelle</code></pre>
-<p>More specifically, when we type <code>whoami</code> the shell:</p>
+<p>So what’s happening? When we type <code>whoami</code> the shell:</p>
 <ol type="1">
-<li>finds a program called <code>whoami</code>,</li>
-<li>runs that program,</li>
-<li>displays that program’s output, then</li>
-<li>displays a new prompt to tell us that it’s ready for more commands.</li>
+<li>Finds a program called <code>whoami</code>,</li>
+<li>Runs that program,</li>
+<li>Displays that program’s output (if there is any), then</li>
+<li>Displays a new prompt to tell us that it’s ready for more commands.</li>
 </ol>
-<p>Next, let’s find out where we are by running a command called <code>pwd</code> (which stands for “print working directory”). At any moment, our <strong>current working directory</strong> is our current default directory, i.e., the directory that the computer assumes we want to run commands in unless we explicitly specify something else. Here, the computer’s response is <code>/Users/nelle</code>, which is Nelle’s <strong>home directory</strong>:</p>
+<p>Next, let’s find out where we are by running a command called <code>pwd</code> (which stands for “print working directory”). At any moment, our <strong>current working directory</strong> is our current default directory. This is the directory that the computer assumes we want to run commands in unless we explicitly specify something else. Here, the computer’s response is <code>/Users/nelle</code>, which is Nelle’s <strong>home directory</strong>:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
 <aside class="callout panel panel-info">
@@ -86,7 +86,7 @@
 </div>
 </aside>
 <p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else. We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/Users/nelle</code>.</p>
-<p>Inside that directory are several other directories, e.g.: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (for miscellaneous data files), <code>Users</code> (where users’ personal directories are located), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on:</p>
+<p>Let’s continue looking at Nelle’s hypothetical file system as an example. Inside the <code>/</code> directory are several other directories, e.g.: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (for miscellaneous data files), <code>Users</code> (where users’ personal directories are located), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on:</p>
 <figure>
 <img src="fig/filesystem.svg" alt="The File System" /><figcaption>The File System</figcaption>
 </figure>
@@ -103,9 +103,9 @@
 <p>Notice that there are two meanings for the <code>/</code> character. When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
 </div>
 </aside>
-<p>Let’s see what’s in our home directory by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
+<p>Let’s see what’s in our own home directory by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
 <pre class="bash"><code>$ ls</code></pre>
-<pre class="output"><code>2015-12-15-southampton Misc                   Solar.pdf
+<pre class="output"><code>2020-10-29-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -113,14 +113,14 @@ Documents              Pictures               bin
 Downloads              Pizza.cfg              mbox
 ...</code></pre>
 <p>Of course, this listing will depend on what you have in your own home directory.</p>
-<p>We need to get into the repository directory <code>2015-12-15-southampton</code>, so what if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/Users/nelle</code>.</p>
+<p>We need to get into the repository directory <code>2020-10-29-socobio-crs</code>, so what if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/Users/nelle</code>.</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
 <p>We can use <code>cd</code> followed by a directory name to change our working directory. <code>cd</code> stands for “change directory”, which is a bit misleading: the command doesn’t change the directory, it changes the shell’s idea of what directory we are in.</p>
-<pre class="bash"><code>$ cd 2015-12-15-southampton</code></pre>
-<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2015-12-15-southampton</code>. If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2015-12-15-southampton</code>, because that’s where we now are:</p>
+<pre class="bash"><code>$ cd 2020-10-29-socobio-crs</code></pre>
+<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2020-10-29-socobio-crs</code>. If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2020-10-29-socobio-crs</code>, because that’s where we now are:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2015-12-15-southampton</code></pre>
+<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs</code></pre>
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 <p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns (where there is space to do so). We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
 <pre class="bash"><code>$ ls -F</code></pre>
@@ -189,14 +189,14 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>This is known as <em>tab completion</em> on any matches with those first few letters. If there are more than one files or directories that match those letters, the shell will show you both — you can then enter more characters (then using <em>TAB</em> again) until it is able to identify the precise file you want and finish the tab completion.</p>
 <p>Let’s change our directory to <code>test_directory</code>:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
-<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2015-12-15-southampton/novice/shell</code>.</p>
+<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
 <p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2015-12-15-southampton/novice/shell/test_directory</code></pre>
+<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
 <pre class="bash"><code>$ cd ..</code></pre>
 <p><code>..</code> is a special directory name meaning “the directory containing this one”, or more succinctly, the <strong>parent</strong> of the current directory.</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2015-12-15-southampton/novice/shell/</code></pre>
+<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/</code></pre>
 <p>Let’s go back into our test directory:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
 <p>The special directory <code>..</code> doesn’t usually show up when we run <code>ls</code>. If we want to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
@@ -204,13 +204,13 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <pre class="output"><code>./                  data/               notes.txt           writing/
 ../                 molecules/          pizza.cfg
 creatures/          north-pacific-gyre/ solar.pdf</code></pre>
-<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code> (which, if we’re in <code>/Users/nelle/2015-12-15-southampton/shell/novice/test_directory</code>, refers to the <code>/Users/nelle/2015-12-15-southampton/2015-12-15-southampton/novice/shell/</code> directory). As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
+<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code> (which, if we’re in <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code>, refers to the <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell</code> directory). As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="orthogonality"><span class="glyphicon glyphicon-pushpin"></span>Orthogonality</h2>
 </div>
 <div class="panel-body">
-<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2015-12-15-southampton</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>. When the meanings of the parts are the same no matter how they’re combined, programmers say they are <strong>orthogonal</strong>: Orthogonal systems tend to be easier for people to learn because there are fewer special cases and exceptions to keep track of.</p>
+<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-10-29-socobio-crs/</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>. When the meanings of the parts are the same no matter how they’re combined, programmers say they are <strong>orthogonal</strong>: Orthogonal systems tend to be easier for people to learn because there are fewer special cases and exceptions to keep track of.</p>
 </div>
 </aside>
 <aside class="callout panel panel-info">
@@ -222,7 +222,7 @@ creatures/          north-pacific-gyre/ solar.pdf</code></pre>
 </div>
 </aside>
 <p>Another handy feature is that we can reference our home directory with <code>~</code>, e.g.:</p>
-<pre class="bash"><code>$ ls ~/2015-12-15-southampton</code></pre>
+<pre class="bash"><code>$ ls ~/2020-10-29-socobio-crs</code></pre>
 <pre class="output"><code>CONDUCT.md              _config.yml             prerequisites.html
 CONTRIBUTING.md         _includes/              prerequisites.md
 CUSTOMIZATION.md        _layouts/               reference.html

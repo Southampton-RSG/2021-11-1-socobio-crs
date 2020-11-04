@@ -10,7 +10,7 @@ it helps them combine existing programs in new ways
 and automate repetitive tasks
 so that they don't have to type the same things over and over again.
 Use of the shell is fundamental to using a wide range of other powerful tools 
-and computing resources (including "high-performance computing" supercomputers).
+and computing resources (including "high-performance computing" supercomputers, like IRIDIS at the University of Southampton).
 These lessons will start you on a path towards using these resources effectively.
 
 > ## Prerequisites {.prereq}
@@ -26,13 +26,17 @@ These lessons will start you on a path towards using these resources effectively
 
 > ## Getting ready {.getready}
 >
-> You need to download some files to follow this lesson. Open a terminal (Linux, 
-> Mac OS X), or run Git Bash under Windows and then type the following into the 
+> You need to download some files to follow this lesson. First, you need to open a terminal:
+> 
+> - On Windows: run Git Bash, which you installed as part of the software prerequisites
+> - On Mac OS X: accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder
+> 
+> Once you've done this, a window should appear. Type the following into the 
 > prompt that appears (pressing enter/return after each line):
 > 
 > ~~~ {.input}
 > $ cd
-> $ git clone https://github.com/Southampton-RSG/2019-12-16-southampton-swc
+> $ git clone https://github.com/Southampton-RSG/2020-10-29-socobio-crs
 > ~~~
 
 ## Topics

@@ -34,9 +34,8 @@ your shell may show something more elaborate.
 
 Type the command `whoami`,
 then press the Enter key (sometimes called Return) to send the command to the shell.
-The command's output is the ID of the current user,
-i.e.,
-it shows us who the shell thinks we are:
+The command's output is the identity of the current user,
+i.e., it shows us who the shell thinks we are (yours will be something different!):
 
 ~~~ {.bash}
 $ whoami
@@ -45,21 +44,20 @@ $ whoami
 nelle
 ~~~
 
-More specifically, when we type `whoami` the shell:
+So what's happening? When we type `whoami` the shell:
 
-1.  finds a program called `whoami`,
-2.  runs that program,
-3.  displays that program's output, then
-4.  displays a new prompt to tell us that it's ready for more commands.
+1.  Finds a program called `whoami`,
+2.  Runs that program,
+3.  Displays that program's output (if there is any), then
+4.  Displays a new prompt to tell us that it's ready for more commands.
 
 Next,
 let's find out where we are by running a command called `pwd`
 (which stands for "print working directory").
 At any moment,
 our **current working directory**
-is our current default directory,
-i.e.,
-the directory that the computer assumes we want to run commands in
+is our current default directory.
+This is the directory that the computer assumes we want to run commands in
 unless we explicitly specify something else.
 Here,
 the computer's response is `/Users/nelle`,
@@ -110,7 +108,7 @@ that holds everything else.
 We refer to it using a slash character `/` on its own;
 this is the leading slash in `/Users/nelle`.
 
-Inside that directory are several other directories, e.g.:
+Let's continue looking at Nelle's hypothetical file system as an example. Inside the `/` directory are several other directories, e.g.:
 `bin` (which is where some built-in programs are stored),
 `data` (for miscellaneous data files),
 `Users` (where users' personal directories are located),
@@ -141,14 +139,14 @@ which is why `nelle` is the last part of the directory's name.
 > it refers to the root directory. When it appears *inside* a name,
 > it's just a separator.
 
-Let's see what's in our home directory by running `ls`,
+Let's see what's in our own home directory by running `ls`,
 which stands for "listing" (the `...` refers to other files and directories that have been left out for clarity):
 
 ~~~ {.bash}
 $ ls
 ~~~
 ~~~ {.output}
-2015-12-15-southampton Misc                   Solar.pdf
+2020-10-29-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -159,7 +157,7 @@ Downloads              Pizza.cfg              mbox
 
 Of course, this listing will depend on what you have in your own home directory.
 
-We need to get into the repository directory `2015-12-15-southampton`, so what if we want to change our current working directory?
+We need to get into the repository directory `2020-10-29-socobio-crs`, so what if we want to change our current working directory?
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.
 
@@ -177,20 +175,20 @@ the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
 ~~~ {.bash}
-$ cd 2015-12-15-southampton
+$ cd 2020-10-29-socobio-crs
 ~~~
 
 `cd` doesn't print anything,
-but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2015-12-15-southampton`.
+but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`.
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/2015-12-15-southampton`,
+it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
 because that's where we now are:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-12-15-southampton
+/Users/nelle/2020-10-29-socobio-crs
 ~~~
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
@@ -352,7 +350,7 @@ $ cd test_directory
 
 We know how to go down the directory tree:
 but how do we go up?
-We could use an absolute path, e.g. `cd /Users/nelle/2015-12-15-southampton/novice/shell`.
+We could use an absolute path, e.g. `cd /Users/nelle/2020-10-29-socobio-crs/novice/shell`.
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
@@ -360,7 +358,7 @@ but it's almost always simpler to use `cd ..` to go up one level:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-12-15-southampton/novice/shell/test_directory
+/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ cd ..
@@ -375,7 +373,7 @@ the **parent** of the current directory.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-12-15-southampton/novice/shell/
+/Users/nelle/2020-10-29-socobio-crs/novice/shell/
 ~~~
 
 Let's go back into our test directory:
@@ -398,7 +396,7 @@ creatures/          north-pacific-gyre/ solar.pdf
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle/2015-12-15-southampton/shell/novice/test_directory`, refers to the `/Users/nelle/2015-12-15-southampton/2015-12-15-southampton/novice/shell/` directory).
+such as `..` (which, if we're in `/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory`, refers to the `/Users/nelle/2020-10-29-socobio-crs/novice/shell` directory).
 As you can see,
 it also displays another special directory that's just called `.`,
 which means "the current working directory".
@@ -410,7 +408,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/2015-12-15-southampton`,
+> if we are in `/Users/nelle/2020-10-29-socobio-crs/`,
 > the command `ls ..` will give us a listing of `/Users/nelle`.
 > When the meanings of the parts are the same no matter how they're combined,
 > programmers say they are **orthogonal**:
@@ -428,7 +426,7 @@ but we'll see some uses for it soon.
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
 ~~~ {.bash}
-$ ls ~/2015-12-15-southampton
+$ ls ~/2020-10-29-socobio-crs
 ~~~
 ~~~ {.output}
 CONDUCT.md              _config.yml             prerequisites.html

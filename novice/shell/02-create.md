@@ -19,7 +19,7 @@ Let's use `ls -F` to see what our test directory contains:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-12-15-southampton/novice/shell/test_directory
+/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ ls -F
@@ -142,7 +142,7 @@ re-save it in the same location with `File->Save`. We can check it out:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2015-12-15-southampton/novice/shell/test_directory/thesis
+/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis
 ~~~
 ~~~ {.bash}
 $ ls
