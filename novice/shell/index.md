@@ -28,7 +28,7 @@ These lessons will start you on a path towards using these resources effectively
 >
 > You need to download some files to follow this lesson. First, you need to open a terminal:
 > 
-> - On Windows: run Git Bash, which you installed as part of the software prerequisites
+> - On Windows: run "Git Bash", which you installed as part of the software prerequisites
 > - On Mac OS X: accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder
 > 
 > Once you've done this, a window should appear. Type the following into the 
