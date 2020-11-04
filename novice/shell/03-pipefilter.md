@@ -6,15 +6,21 @@ minutes: 15
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   Redirect a command's output to a file.
-> *   Process a file instead of keyboard input using redirection.
-> *   Construct command pipelines with two or more stages.
+> *   Capture a command's output in a file using redirection.
+> *   Use redirection to have a command use a file's contents instead of keyboard input.
+> *   Add commands together in a sequence using pipes, so output of one command becomes input of another.
 > *   Explain what usually happens if a program or pipeline isn't given any input to process.
 > *   Explain Unix's "small pieces, loosely joined" philosophy.
 
 Now that we know a few basic commands,
 we can finally look at the shell's most powerful feature:
 the ease with which it lets us combine existing programs in new ways.
+
+
+## Joining commands together using files
+
+One way we can use programs together is to have the output of one command captured
+in a file, and use that file as the input to another command.
 
 We'll start with a directory called `data`, which is in the `novice/shell` 
 directory, one directory up from `test_directory`. i.e. from `test_directory`:
@@ -40,13 +46,16 @@ that is looking into woody biomass yields. The files are as follows:
 We'll largely be working on the 10-row version, since this allows us to more
 easily reason about the data in the file and the operations we're performing on
 it.
-Running various commands over a 20MB data set could take some time. 
-It's generally good practice when developing code, scripts, or just using 
-shell commands, to use a representative subset of data that is manageable to 
-start with, in order to make progress efficiently.
-Otherwise, we'll be here all day!
-Once we're confident our commands, code, scripts, etc. work the way we want, we 
-can then test them on the entire data set.
+
+> ## Why not just use the entire 20MB data set? {.callout}
+>
+> Running various commands over a 20MB data set could take some time. 
+> It's generally good practice when developing code, scripts, or just using 
+> shell commands, to use a representative subset of data that is manageable to 
+> start with, in order to make progress efficiently.
+> Otherwise, we'll be here all day!
+> Once we're confident our commands, code, scripts, etc. work the way we want, we 
+> can then test them on the entire data set.
 
 The `.csv` extension indicates that these files are in Comma Separated Value 
 format,
@@ -69,9 +78,13 @@ $ wc *.csv
  1049592 1049597 21047934 total
 ~~~
 
-> ## Wildcards {.callout}
+> ## Wildcards and why they're useful {.callout}
 > 
-> `*` is a **wildcard**. It matches zero or more
+> Sometimes we need to pass multiple filenames to a single command,
+> or find or use filenames that match a given pattern,
+> and this is where **wildcards** can be really useful.
+>
+> `*` is a wildcard. It matches zero or more
 > characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
 > On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the 'sc_climate_data_100' at the front only matches those two files.
 > 
@@ -85,7 +98,7 @@ $ wc *.csv
 > match no characters at all), but not `quality.practice` (doesn't start
 > with 'p') or `preferred.p` (there isn't at least one character after the
 > '.p').
-> 
+>
 > When the shell sees a wildcard, it expands the wildcard to create a
 > list of matching filenames *before* running the command that was
 > asked for. As an exception, if a wildcard expression does not match
@@ -200,6 +213,11 @@ If you think this is confusing,
 you're in good company:
 even once you understand what `wc`, `sort`, and `head` do,
 all those intermediate files make it hard to follow what's going on.
+Fortunately, there's a way to make this much simpler.
+
+
+## Using pipes to join commands together
+
 We can make it easier to understand by running `sort` and `head` together:
 
 ~~~ {.bash}
@@ -235,50 +253,52 @@ and saying "the log of three times *x*".
 In our case,
 the calculation is "head of sort of line count of `*.csv`".
 
-Here's what actually happens behind the scenes when we create a pipe.
-When a computer runs a program --- any program --- it creates a **process**
-in memory to hold the program's software and its current state.
-Every process has an input channel called **standard input**.
-(By this point, you may be surprised that the name is so memorable, but don't worry:
-most Unix programmers call it "stdin".
-Every process also has a default output channel called **standard output**
-(or "stdout").
-
-The shell is actually just another program.
-Under normal circumstances,
-whatever we type on the keyboard is sent to the shell on its standard input,
-and whatever it produces on standard output is displayed on our screen.
-When we tell the shell to run a program,
-it creates a new process
-and temporarily sends whatever we type on our keyboard to that process's standard input,
-and whatever the process sends to standard output to the screen.
-
-Here's what happens when we run `wc -l *.csv > lengths.txt`.
-The shell starts by telling the computer to create a new process to run the `wc` program.
-Since we've provided some filenames as parameters,
-`wc` reads from them instead of from standard input.
-And since we've used `>` to redirect output to a file,
-the shell connects the process's standard output to that file.
-
-If we run `wc -l *.csv | sort -n` instead,
-the shell creates two processes
-(one for each process in the pipe)
-so that `wc` and `sort` run simultaneously.
-The standard output of `wc` is fed directly to the standard input of `sort`;
-since there's no redirection with `>`,
-`sort`'s output goes to the screen.
-And if we run `wc -l *.csv | sort -n | head -1`,
-we get three processes with data flowing from the files,
-through `wc` to `sort`,
-and from `sort` through `head` to the screen.
-
-![Redirects and Pipes](fig/redirects-and-pipes.png)
+> ## What's actually happening - pipes in more detail {.callout}
+> 
+> Here's what actually happens behind the scenes when we create a pipe.
+> When a computer runs a program --- any program --- it creates a **process**
+> in memory to hold the program's software and its current state.
+> Every process has an input channel called **standard input**.
+> (By this point, you may be surprised that the name is so memorable, but don't worry:
+> most Unix programmers call it "stdin").
+> Every process also has a default output channel called **standard output**
+> (or "stdout").
+> 
+> The shell is actually just another program.
+> Under normal circumstances,
+> whatever we type on the keyboard is sent to the shell on its standard input,
+> and whatever it produces on standard output is displayed on our screen.
+> When we tell the shell to run a program,
+> it creates a new process
+> and temporarily sends whatever we type on our keyboard to that process's standard input,
+> and whatever the process sends to standard output to the screen.
+> 
+> Here's what happens when we run `wc -l *.csv > lengths.txt`.
+> The shell starts by telling the computer to create a new process to run the `wc` program.
+> Since we've provided some filenames as parameters,
+> `wc` reads from them instead of from standard input.
+> And since we've used `>` to redirect output to a file,
+> the shell connects the process's standard output to that file.
+> 
+> If we run `wc -l *.csv | sort -n` instead,
+> the shell creates two processes
+> (one for each process in the pipe)
+> so that `wc` and `sort` run simultaneously.
+> The standard output of `wc` is fed directly to the standard input of `sort`;
+> since there's no redirection with `>`,
+> `sort`'s output goes to the screen.
+> And if we run `wc -l *.csv | sort -n | head -1`,
+> we get three processes with data flowing from the files,
+> through `wc` to `sort`,
+> and from `sort` through `head` to the screen.
+> 
+> ![Redirects and Pipes](fig/redirects-and-pipes.png)
 
 This simple idea is why Unix has been so successful.
 Instead of creating enormous programs that try to do many different things,
 Unix programmers focus on creating lots of simple tools that each do one job well,
 and that work well with each other.
-This programming model is called "pipes and filters".
+This programming model is called "pipes and filters", and is based on this "small pieces, loosely joined" philosophy.
 We've already seen pipes;
 a **filter** is a program like `wc` or `sort`
 that transforms a stream of input into a stream of output.
@@ -304,6 +324,8 @@ so that you and other people can put those programs into pipes to multiply their
 > any command line parameters, so it reads from standard input, but we
 > have told the shell to send the contents of `sc_climate_data_10.csv` to `wc`'s
 > standard input.
+
+## Challenges
 
 > ## What does `sort -n` do? {.challenge}
 >
