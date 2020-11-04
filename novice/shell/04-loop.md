@@ -295,6 +295,8 @@ mv unicorn.dat original-unicorn.dat
 > then she can re-run `goostats` on `NENE01729B.txt` simply by typing
 > `!458`.
 
+## Challenges
+
 > ## Variables in Loops {.challenge}
 > 
 > Suppose that `ls` initially displays:
