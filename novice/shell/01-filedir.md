@@ -408,7 +408,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/2020-10-29-socobio-crs/`,
+> if we are in `/Users/nelle/2020-10-29-socobio-crs`,
 > the command `ls ..` will give us a listing of `/Users/nelle`.
 > When the meanings of the parts are the same no matter how they're combined,
 > programmers say they are **orthogonal**:
@@ -443,6 +443,8 @@ SETUP.md                prerequisites-ref.html
 Which again shows us our repository directory.
 
 ![File System for Challenge Questions](fig/filesystem-challenge.svg)
+
+## Challenges
 
 > ## Relative path resolution {.challenge}
 >
