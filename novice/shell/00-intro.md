@@ -9,21 +9,25 @@ minutes: 5
 > *   Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.
 > *   Explain when and why command-line interfaces should be used instead of graphical interfaces.
 
+## Interacting with a computer
+
 At a high level, computers do four things:
 
--   run programs
--   store data
--   communicate with each other
--   interact with us
+-   Run programs
+-   Store data
+-   Communicate with each other
+-   Interact with us
 
 They can do the last of these in many different ways,
-including direct brain-computer links and speech interfaces.
-Since these are still in their infancy,
+with more modern methods including virtual headsets and speech interfaces.
+Since these are still in their relative infancy,
 most of us use windows, icons, mice, and pointers.
 These technologies didn't become widespread until the 1980s,
 but their roots go back to Doug Engelbart's work in the 1960s,
 which you can see in what has been called
 "[The Mother of All Demos](https://www.youtube.com/watch?v=B6rKUf9DWRI)".
+
+## The command line versus the graphical user interface
 
 Going back even further,
 the only way to interact with early computers was to rewire them.
@@ -44,7 +48,7 @@ the computer reads it,
 executes it,
 and prints its output.
 The user then types another command,
-and so on until the user logs off.
+and so on until the user closes the CLI.
 
 This description makes it sound as though the user sends commands directly to the computer,
 and the computer sends output directly to the user.
@@ -53,6 +57,8 @@ there is usually a program in between called a
 **command shell**.
 What the user types goes into the shell,
 which then figures out what commands to run and orders the computer to execute them. Note, the shell is called *the shell* because it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.
+
+## The Bash shell
 
 A shell is a program like any other.
 What's special about it is that its job is to run other programs
@@ -69,6 +75,7 @@ sometimes feels more like programming than like using a mouse.
 Commands are terse (often only a couple of characters long),
 their names are frequently cryptic,
 and their output is lines of text rather than something visual like a graph.
+
 On the other hand,
 the shell allows us to combine existing tools in powerful ways with only a few keystrokes
 and to set up pipelines to handle large volumes of data automatically.
