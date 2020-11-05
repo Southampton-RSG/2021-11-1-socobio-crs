@@ -44,20 +44,22 @@
 </div>
 </section>
 <p>The part of the operating system responsible for managing files and directories is called the <strong>file system</strong>. It organizes our data into files, which hold information, and directories (also called “folders”, for example, on Windows systems), which hold files or other directories.</p>
-<p>Several commands are frequently used to create, inspect, rename, and delete files and directories. To start exploring them, let’s open a shell window:</p>
+<p>The shell has a notion of <em>where you currently are</em>, and as we’ll see, works by running programs at that location. For this reason, the most fundamental skills to using the shell are navigating and browsing the file system, so let’s take a look at some important commands that let us do these things.</p>
+<p>To start exploring them, let’s open a shell window:</p>
 <pre class="bash"><code>$</code></pre>
 <p>The dollar sign is a <strong>prompt</strong>, which represents our input interface to the shell. It shows us that the shell is waiting for input; your shell may show something more elaborate.</p>
-<p>Type the command <code>whoami</code>, then press the Enter key (sometimes called Return) to send the command to the shell. The command’s output is the identity of the current user, i.e., it shows us who the shell thinks we are (yours will be something different!):</p>
+<h2 id="working-out-who-we-are-and-where-we-are">Working out who we are and where we are</h2>
+<p>Type the command <code>whoami</code>, then press the <code>Enter</code> key (sometimes called <code>Return</code>) to send the command to the shell. The command’s output is the identity of the current user, i.e., it shows us who the shell thinks we are (yours will be something different!):</p>
 <pre class="bash"><code>$ whoami</code></pre>
 <pre class="output"><code>nelle</code></pre>
 <p>So what’s happening? When we type <code>whoami</code> the shell:</p>
 <ol type="1">
-<li>Finds a program called <code>whoami</code>,</li>
-<li>Runs that program,</li>
+<li>Finds a program called <code>whoami</code></li>
+<li>Runs that program</li>
 <li>Displays that program’s output (if there is any), then</li>
-<li>Displays a new prompt to tell us that it’s ready for more commands.</li>
+<li>Displays a new prompt to tell us that it’s ready for more commands</li>
 </ol>
-<p>Next, let’s find out where we are by running a command called <code>pwd</code> (which stands for “print working directory”). At any moment, our <strong>current working directory</strong> is our current default directory. This is the directory that the computer assumes we want to run commands in unless we explicitly specify something else. Here, the computer’s response is <code>/Users/nelle</code>, which is Nelle’s <strong>home directory</strong>:</p>
+<p>Next, let’s find out where we are in our file system by running a command called <code>pwd</code> (which stands for “print working directory”). At any moment, our <strong>current working directory</strong> is our current default directory. This is the directory that the computer assumes we want to run commands in unless we explicitly specify something else. Here, the computer’s response is <code>/Users/nelle</code>, which is Nelle’s <strong>home directory</strong>:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
 <aside class="callout panel panel-info">
@@ -65,7 +67,7 @@
 <h2 id="home-directory"><span class="glyphicon glyphicon-pushpin"></span>Home directory</h2>
 </div>
 <div class="panel-body">
-<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/nelle</code>, on Git Bash on Windows it will look like <code>/c/Users/nelle</code>, and on Windows itself it will be similar to <code>C:\Documents and Settings\nelle</code>. Note that it may also look slightly different for different versions of Windows.</p>
+<p>The home directory path will look different on different operating systems. On Linux it will look like <code>/home/nelle</code>, on Git Bash on Windows it will look something like <code>/c/Users/nelle</code>, and on Windows itself it will be similar to <code>C:\Users\nelle</code>. Note that it may also look slightly different for different versions of Windows.</p>
 </div>
 </aside>
 <aside class="callout panel panel-info">
@@ -81,19 +83,27 @@
 <h2 id="save-yourself-some-unnecessary-keypresses"><span class="glyphicon glyphicon-pushpin"></span>Save yourself some unnecessary keypresses</h2>
 </div>
 <div class="panel-body">
-<p>We can move to the beginning of a line in the shell by typing <code>^A</code> (which means Control-A) and to the end using <code>^E</code>. Much quicker on long lines than just using the left/right arrow keys.</p>
 <p>Using the up and down arrow keys allow you to cycle through your previous commands - plus, useful if you forget exactly what you typed earlier!</p>
+<p>We can also move to the beginning of a line in the shell by typing <code>^A</code> (which means Control-A) and to the end using <code>^E</code>. Much quicker on long lines than just using the left/right arrow keys.</p>
 </div>
 </aside>
+<h2 id="how-file-systems-are-organised">How file systems are organised</h2>
 <p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else. We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/Users/nelle</code>.</p>
-<p>Let’s continue looking at Nelle’s hypothetical file system as an example. Inside the <code>/</code> directory are several other directories, e.g.: <code>bin</code> (which is where some built-in programs are stored), <code>data</code> (for miscellaneous data files), <code>Users</code> (where users’ personal directories are located), <code>tmp</code> (for temporary files that don’t need to be stored long-term), and so on:</p>
+<p>Let’s continue looking at Nelle’s hypothetical file system as an example. Inside the <code>/</code> directory are several other directories, for example:</p>
 <figure>
-<img src="fig/filesystem.svg" alt="The File System" /><figcaption>The File System</figcaption>
+<img src="fig/filesystem.svg" alt="1. The File System" /><figcaption>1. The File System</figcaption>
 </figure>
+<p>So here we have the following directories:</p>
+<ul>
+<li><code>bin</code> (which is where some built-in programs are stored),</li>
+<li><code>data</code> (for miscellaneous data files),</li>
+<li><code>Users</code> (where users’ personal directories are located),</li>
+<li><code>tmp</code> (for temporary files that don’t need to be stored long-term),</li>
+</ul>
 <p>We know that our current working directory <code>/Users/nelle</code> is stored inside <code>/Users</code> because <code>/Users</code> is the first part of its name. Similarly, we know that <code>/Users</code> is stored inside the root directory <code>/</code> because its name begins with <code>/</code>.</p>
 <p>Underneath <code>/Users</code>, we find one directory for each user with an account on this machine, e.g.: <code>/Users/imhotep</code>, <code>/Users/larry</code>, and ours in <code>/Users/nelle</code>, which is why <code>nelle</code> is the last part of the directory’s name.</p>
 <figure>
-<img src="fig/home-directories.svg" alt="Home Directories" /><figcaption>Home Directories</figcaption>
+<img src="fig/home-directories.svg" alt="2. Home Directories" /><figcaption>2. Home Directories</figcaption>
 </figure>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
@@ -103,7 +113,9 @@
 <p>Notice that there are two meanings for the <code>/</code> character. When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
 </div>
 </aside>
-<p>Let’s see what’s in our own home directory by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
+<h2 id="listing-the-contents-ot-directories-and-moving-around">Listing the contents ot directories and moving around</h2>
+<p>But how can we tell what’s in directories, and how can we move around the file system?</p>
+<p>We’re currently in our home directory, and can see what’s in it by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
 <pre class="bash"><code>$ ls</code></pre>
 <pre class="output"><code>2020-10-29-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
@@ -118,22 +130,29 @@ Downloads              Pizza.cfg              mbox
 <pre class="output"><code>/Users/nelle</code></pre>
 <p>We can use <code>cd</code> followed by a directory name to change our working directory. <code>cd</code> stands for “change directory”, which is a bit misleading: the command doesn’t change the directory, it changes the shell’s idea of what directory we are in.</p>
 <pre class="bash"><code>$ cd 2020-10-29-socobio-crs</code></pre>
-<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2020-10-29-socobio-crs</code>. If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2020-10-29-socobio-crs</code>, because that’s where we now are:</p>
+<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2020-10-29-socobio-crs</code>:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs</code></pre>
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
+<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2020-10-29-socobio-crs</code>, because that’s where we now are:</p>
+<pre class="bash"><code>$ ls</code></pre>
+<pre class="output"><code>404.html           Makefile           deck.js            requirements.txt
+CONDUCT.md         README.md          index.html         schedule.html
+CONTRIBUTING.md    SETUP.md           js                 setup
+CUSTOMIZATION.md   _config.yml        novice             template
+DESIGN.md          _includes          prerequisites.html tools
+FAQ.md             _layouts           prerequisites.md   welcome
+LICENSE.md         css                reference.html</code></pre>
 <p><code>ls</code> prints the names of the files and directories in the current directory in alphabetical order, arranged neatly into columns (where there is space to do so). We can make its output more comprehensible by using the <strong>flag</strong> <code>-F</code>, which tells <code>ls</code> to add a trailing <code>/</code> to the names of directories:</p>
 <pre class="bash"><code>$ ls -F</code></pre>
-<pre class="output"><code>CONDUCT.md              _config.yml             prerequisites.html
-CONTRIBUTING.md         _includes/              prerequisites.md
-CUSTOMIZATION.md        _layouts/               reference.html
-DESIGN.md               css/                    schedule.html
-FAQ.md                  deck.js/                setup/
-LICENSE.md              index.html              template/
-Makefile                js/                     tools/
-README.md               novice/                 welcome/
-SETUP.md                prerequisites-ref.html</code></pre>
-<p>Here, we can see that this directory contains a number of <strong>sub-directories</strong>. The names that don’t have trailing slashes, like <code>reference.html</code>, <code>prerequisites.md</code>, and <code>preqrequisites.pdf</code>, are plain old files. And note that there is a space between <code>ls</code> and <code>-F</code>: without it, the shell thinks we’re trying to run a command called <code>ls-F</code>, which doesn’t exist.</p>
+<pre class="output"><code>404.html            Makefile            deck.js/            requirements.txt
+CONDUCT.md          README.md           index.html          schedule.html
+CONTRIBUTING.md     SETUP.md            js/                 setup/
+CUSTOMIZATION.md    _config.yml         novice/             template/
+DESIGN.md           _includes/          prerequisites.html  tools/
+FAQ.md              _layouts/           prerequisites.md    welcome/
+LICENSE.md          css/                reference.html</code></pre>
+<p>Here, we can see that this directory contains a number of <strong>sub-directories</strong>. The names that don’t have trailing slashes, like <code>reference.html</code>, <code>prerequisites.md</code>, and <code>requirements.txt</code>, are plain old files. And note that there is a space between <code>ls</code> and <code>-F</code>: without it, the shell thinks we’re trying to run a command called <code>ls-F</code>, which doesn’t exist.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="whats-in-a-name"><span class="glyphicon glyphicon-pushpin"></span>What’s In A Name?</h2>
@@ -163,13 +182,12 @@ SETUP.md                prerequisites-ref.html</code></pre>
 06-find.html           discussion.md          test_directory/
 06-find.md             fig/                   tools/</code></pre>
 <p>Note that under Git Bash in Windows, the <code>/</code> is appended automatically.</p>
-<p>Now let’s take a look at what’s in the directory <code>test_directory</code>, by running <code>ls -F test_directory</code>.</p>
-<p>i.e., the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>test_directory</code>. The second argument — the one <em>without</em> a leading dash — tells <code>ls</code> that we want a listing of something other than our current working directory:</p>
+<p>Now let’s take a look at what’s in the directory <code>test_directory</code>, by running <code>ls -F test_directory</code>. So here, we’re giving the shell the command <code>ls</code> with the <strong>arguments</strong> <code>-F</code> and <code>test_directory</code>. The first argument is the <code>-F</code> flag we’ve seen before. The second argument — the one <em>without</em> a leading dash — tells <code>ls</code> that we want a listing of something other than our current working directory:</p>
 <pre class="bash"><code>$ ls -F test_directory</code></pre>
 <pre class="output"><code>creatures/          molecules/          notes.txt           solar.pdf
 data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre>
 <p>The output shows us that there are some files and sub-directories. Organising things hierarchically in this way helps us keep track of our work: it’s a bit like using a filing cabinet to store things. It’s possible to put hundreds of files in our home directory, for example, just as it’s possible to pile hundreds of printed papers on our desk, but it’s a self-defeating strategy.</p>
-<p>Notice, by the way, that we spelled the directory name <code>test_directory</code>. It doesn’t have a trailing slash: that’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong>, i.e., it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
+<p>Notice, by the way, that we spelled the directory name <code>test_directory</code>, and it doesn’t have a trailing slash. That’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong> - it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="parameters-vs.arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
@@ -182,7 +200,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <pre class="bash"><code>$ ls -F /test_directory</code></pre>
 <pre class="output"><code>ls: /test_directory: No such file or directory</code></pre>
 <p>The leading <code>/</code> tells the computer to follow the path from the root of the file system, so it always refers to exactly one directory, no matter where we are when we run the command. In this case, there is no <code>data</code> directory in the root of the file system.</p>
-<p>Typing <code>ls -F test_directory</code> is a bit painful, so a handy shortcut is to type in the first few letters and press the <em>TAB</em> key, e.g.</p>
+<p>Typing <code>ls -F test_directory</code> is a bit painful, so a handy shortcut is to type in the first few letters and press the <em>TAB</em> key, for example:</p>
 <pre class="bash"><code>$ ls -F tes</code></pre>
 <p>Pressing <em>TAB</em>, the shell automatically completes the directory name:</p>
 <pre class="bash"><code>$ ls -F test_directory/</code></pre>
@@ -213,30 +231,21 @@ creatures/          north-pacific-gyre/ solar.pdf</code></pre>
 <p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-10-29-socobio-crs</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>. When the meanings of the parts are the same no matter how they’re combined, programmers say they are <strong>orthogonal</strong>: Orthogonal systems tend to be easier for people to learn because there are fewer special cases and exceptions to keep track of.</p>
 </div>
 </aside>
-<aside class="callout panel panel-info">
-<div class="panel-heading">
-<h2 id="another-useful-abbreviation"><span class="glyphicon glyphicon-pushpin"></span>Another Useful Abbreviation</h2>
-</div>
-<div class="panel-body">
-<p>The shell interprets the character <code>~</code> (tilde) at the start of a path to mean “the current user’s home directory”. For example, if Nelle’s home directory is <code>/Users/nelle</code>, then <code>~/data</code> is equivalent to <code>/Users/nelle/data</code>. This only works if it is the first character in the path: <code>here/there/~/elsewhere</code> is <em>not</em> <code>/Users/nelle/elsewhere</code>.</p>
-</div>
-</aside>
 <p>Another handy feature is that we can reference our home directory with <code>~</code>, e.g.:</p>
 <pre class="bash"><code>$ ls ~/2020-10-29-socobio-crs</code></pre>
-<pre class="output"><code>CONDUCT.md              _config.yml             prerequisites.html
-CONTRIBUTING.md         _includes/              prerequisites.md
-CUSTOMIZATION.md        _layouts/               reference.html
-DESIGN.md               css/                    schedule.html
-FAQ.md                  deck.js/                setup/
-LICENSE.md              index.html              template/
-Makefile                js/                     tools/
-README.md               novice/                 welcome/
-SETUP.md                prerequisites-ref.html</code></pre>
+<pre class="output"><code>404.html           Makefile           deck.js            requirements.txt
+CONDUCT.md         README.md          index.html         schedule.html
+CONTRIBUTING.md    SETUP.md           js                 setup
+CUSTOMIZATION.md   _config.yml        novice             template
+DESIGN.md          _includes          prerequisites.html tools
+FAQ.md             _layouts           prerequisites.md   welcome
+LICENSE.md         css                reference.html</code></pre>
 <p>Which again shows us our repository directory.</p>
+<p>Note that <code>~</code> only works if it is the first character in the path: <code>here/there/~/elsewhere</code> is <em>not</em> <code>/Users/nelle/elsewhere</code>.</p>
+<h2 id="exercises">Exercises</h2>
 <figure>
-<img src="fig/filesystem-challenge.svg" alt="File System for Challenge Questions" /><figcaption>File System for Challenge Questions</figcaption>
+<img src="fig/filesystem-challenge.svg" alt="3. File System for Challenge Questions" /><figcaption>3. File System for Challenge Questions</figcaption>
 </figure>
-<h2 id="challenges">Challenges</h2>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="relative-path-resolution"><span class="glyphicon glyphicon-pencil"></span>Relative path resolution</h2>

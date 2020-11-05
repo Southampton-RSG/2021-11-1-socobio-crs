@@ -19,7 +19,8 @@ which hold information,
 and directories (also called "folders", for example, on Windows systems),
 which hold files or other directories.
 
-Several commands are frequently used to create, inspect, rename, and delete files and directories.
+The shell has a notion of *where you currently are*, and as we'll see, works by running programs at that location. For this reason, the most fundamental skills to using the shell are navigating and browsing the file system, so let's take a look at some important commands that let us do these things.
+
 To start exploring them,
 let's open a shell window:
 
@@ -32,8 +33,10 @@ which represents our input interface to the shell.
 It shows us that the shell is waiting for input;
 your shell may show something more elaborate.
 
+## Working out who we are and where we are
+
 Type the command `whoami`,
-then press the Enter key (sometimes called Return) to send the command to the shell.
+then press the `Enter` key (sometimes called `Return`) to send the command to the shell.
 The command's output is the identity of the current user,
 i.e., it shows us who the shell thinks we are (yours will be something different!):
 
@@ -46,13 +49,12 @@ nelle
 
 So what's happening? When we type `whoami` the shell:
 
-1.  Finds a program called `whoami`,
-2.  Runs that program,
+1.  Finds a program called `whoami`
+2.  Runs that program
 3.  Displays that program's output (if there is any), then
-4.  Displays a new prompt to tell us that it's ready for more commands.
+4.  Displays a new prompt to tell us that it's ready for more commands
 
-Next,
-let's find out where we are by running a command called `pwd`
+Next, let's find out where we are in our file system by running a command called `pwd`
 (which stands for "print working directory").
 At any moment,
 our **current working directory**
@@ -74,8 +76,8 @@ $ pwd
 >
 > The home directory path will look different on different operating systems.
 > On Linux it will look like `/home/nelle`,
-> on Git Bash on Windows it will look like `/c/Users/nelle`,
-> and on Windows itself it will be similar to `C:\Documents and Settings\nelle`.
+> on Git Bash on Windows it will look something like `/c/Users/nelle`,
+> and on Windows itself it will be similar to `C:\Users\nelle`.
 > Note that it may also look slightly different for different versions of
 > Windows.
 
@@ -94,12 +96,14 @@ $ pwd
 
 > ## Save yourself some unnecessary keypresses {.callout}
 >
-> We can move to the beginning of a line in the shell by typing `^A`
-> (which means Control-A) and to the end using `^E`. Much quicker on long
-> lines than just using the left/right arrow keys.
->
 > Using the up and down arrow keys allow you to cycle through your previous
 > commands - plus, useful if you forget exactly what you typed earlier!
+> 
+> We can also move to the beginning of a line in the shell by typing `^A`
+> (which means Control-A) and to the end using `^E`. Much quicker on long
+> lines than just using the left/right arrow keys.
+
+## How file systems are organised
 
 To understand what a "home directory" is,
 let's have a look at how the file system as a whole is organized.
@@ -108,14 +112,16 @@ that holds everything else.
 We refer to it using a slash character `/` on its own;
 this is the leading slash in `/Users/nelle`.
 
-Let's continue looking at Nelle's hypothetical file system as an example. Inside the `/` directory are several other directories, e.g.:
-`bin` (which is where some built-in programs are stored),
-`data` (for miscellaneous data files),
-`Users` (where users' personal directories are located),
-`tmp` (for temporary files that don't need to be stored long-term),
-and so on:
+Let's continue looking at Nelle's hypothetical file system as an example. Inside the `/` directory are several other directories, for example:
 
-![The File System](fig/filesystem.svg)
+![1. The File System](fig/filesystem.svg)
+
+So here we have the following directories:
+
+- `bin` (which is where some built-in programs are stored),
+- `data` (for miscellaneous data files),
+- `Users` (where users' personal directories are located),
+- `tmp` (for temporary files that don't need to be stored long-term),
 
 We know that our current working directory `/Users/nelle` is stored inside `/Users`
 because `/Users` is the first part of its name.
@@ -130,7 +136,7 @@ we find one directory for each user with an account on this machine, e.g.:
 and ours in `/Users/nelle`,
 which is why `nelle` is the last part of the directory's name.
 
-![Home Directories](fig/home-directories.svg)
+![2. Home Directories](fig/home-directories.svg)
 
 > ## Path {.callout}
 >
@@ -139,7 +145,11 @@ which is why `nelle` is the last part of the directory's name.
 > it refers to the root directory. When it appears *inside* a name,
 > it's just a separator.
 
-Let's see what's in our own home directory by running `ls`,
+## Listing the contents ot directories and moving around
+
+But how can we tell what's in directories, and how can we move around the file system?
+
+We're currently in our home directory, and can see what's in it by running `ls`,
 which stands for "listing" (the `...` refers to other files and directories that have been left out for clarity):
 
 ~~~ {.bash}
@@ -179,10 +189,7 @@ $ cd 2020-10-29-socobio-crs
 ~~~
 
 `cd` doesn't print anything,
-but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`.
-If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
-because that's where we now are:
+but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`:
 
 ~~~ {.bash}
 $ pwd
@@ -193,6 +200,24 @@ $ pwd
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
+If we run `ls` without arguments now,
+it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
+because that's where we now are:
+
+~~~ {.bash}
+$ ls
+~~~
+
+~~~ {.output}
+404.html           Makefile           deck.js            requirements.txt
+CONDUCT.md         README.md          index.html         schedule.html
+CONTRIBUTING.md    SETUP.md           js                 setup
+CUSTOMIZATION.md   _config.yml        novice             template
+DESIGN.md          _includes          prerequisites.html tools
+FAQ.md             _layouts           prerequisites.md   welcome
+LICENSE.md         css                reference.html
+~~~
+
 `ls` prints the names of the files and directories in the current directory in alphabetical order,
 arranged neatly into columns (where there is space to do so).
 We can make its output more comprehensible by using the **flag** `-F`,
@@ -202,21 +227,19 @@ which tells `ls` to add a trailing `/` to the names of directories:
 $ ls -F
 ~~~
 ~~~ {.output}
-CONDUCT.md              _config.yml             prerequisites.html
-CONTRIBUTING.md         _includes/              prerequisites.md
-CUSTOMIZATION.md        _layouts/               reference.html
-DESIGN.md               css/                    schedule.html
-FAQ.md                  deck.js/                setup/
-LICENSE.md              index.html              template/
-Makefile                js/                     tools/
-README.md               novice/                 welcome/
-SETUP.md                prerequisites-ref.html
+404.html            Makefile            deck.js/            requirements.txt
+CONDUCT.md          README.md           index.html          schedule.html
+CONTRIBUTING.md     SETUP.md            js/                 setup/
+CUSTOMIZATION.md    _config.yml         novice/             template/
+DESIGN.md           _includes/          prerequisites.html  tools/
+FAQ.md              _layouts/           prerequisites.md    welcome/
+LICENSE.md          css/                reference.html
 ~~~
 
 Here,
 we can see that this directory contains a number of **sub-directories**.
 The names that don't have trailing slashes,
-like `reference.html`, `prerequisites.md`, and `preqrequisites.pdf`,
+like `reference.html`, `prerequisites.md`, and `requirements.txt`,
 are plain old files.
 And note that there is a space between `ls` and `-F`:
 without it,
@@ -274,11 +297,7 @@ $ ls -F
 
 Note that under Git Bash in Windows, the `/` is appended automatically.
 
-Now let's take a look at what's in the directory `test_directory`, by running `ls -F test_directory`.
-
-i.e.,
-the command `ls` with the **arguments** `-F` and `test_directory`.
-The second argument --- the one *without* a leading dash --- tells `ls` that
+Now let's take a look at what's in the directory `test_directory`, by running `ls -F test_directory`. So here, we're giving the shell the command `ls` with the **arguments** `-F` and `test_directory`. The first argument is the `-F` flag we've seen before. The second argument --- the one *without* a leading dash --- tells `ls` that
 we want a listing of something other than our current working directory:
 
 ~~~ {.bash}
@@ -295,11 +314,10 @@ it's a bit like using a filing cabinet to store things. It's possible to put hun
 just as it's possible to pile hundreds of printed papers on our desk,
 but it's a self-defeating strategy.
 
-Notice, by the way, that we spelled the directory name `test_directory`.
-It doesn't have a trailing slash:
-that's added to directory names by `ls` when we use the `-F` flag to help us tell things apart.
-And it doesn't begin with a slash because it's a **relative path**,
-i.e., it tells `ls` how to find something from where we are,
+Notice, by the way, that we spelled the directory name `test_directory`, and it doesn't have a trailing slash.
+That's added to directory names by `ls` when we use the `-F` flag to help us tell things apart.
+And it doesn't begin with a slash because it's a **relative path** -
+it tells `ls` how to find something from where we are,
 rather than from the root of the file system.
 
 > ## Parameters vs. Arguments {.callout}
@@ -327,7 +345,7 @@ so it always refers to exactly one directory,
 no matter where we are when we run the command.
 In this case, there is no `data` directory in the root of the file system.
 
-Typing `ls -F test_directory` is a bit painful, so a handy shortcut is to type in the first few letters and press the *TAB* key, e.g.
+Typing `ls -F test_directory` is a bit painful, so a handy shortcut is to type in the first few letters and press the *TAB* key, for example:
 
 ~~~ {.bash}
 $ ls -F tes
@@ -415,36 +433,29 @@ but we'll see some uses for it soon.
 > Orthogonal systems tend to be easier for people to learn
 > because there are fewer special cases and exceptions to keep track of.
 
-> ## Another Useful Abbreviation {.callout}
->
-> The shell interprets the character `~` (tilde) at the start of a path to
-> mean "the current user's home directory". For example, if Nelle's home
-> directory is `/Users/nelle`, then `~/data` is equivalent to
-> `/Users/nelle/data`. This only works if it is the first character in the
-> path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
-
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
 ~~~ {.bash}
 $ ls ~/2020-10-29-socobio-crs
 ~~~
 ~~~ {.output}
-CONDUCT.md              _config.yml             prerequisites.html
-CONTRIBUTING.md         _includes/              prerequisites.md
-CUSTOMIZATION.md        _layouts/               reference.html
-DESIGN.md               css/                    schedule.html
-FAQ.md                  deck.js/                setup/
-LICENSE.md              index.html              template/
-Makefile                js/                     tools/
-README.md               novice/                 welcome/
-SETUP.md                prerequisites-ref.html
+404.html           Makefile           deck.js            requirements.txt
+CONDUCT.md         README.md          index.html         schedule.html
+CONTRIBUTING.md    SETUP.md           js                 setup
+CUSTOMIZATION.md   _config.yml        novice             template
+DESIGN.md          _includes          prerequisites.html tools
+FAQ.md             _layouts           prerequisites.md   welcome
+LICENSE.md         css                reference.html
 ~~~
 
 Which again shows us our repository directory.
 
-![File System for Challenge Questions](fig/filesystem-challenge.svg)
+Note that `~` only works if it is the first character in the
+path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 
-## Challenges
+## Exercises
+
+![3. File System for Challenge Questions](fig/filesystem-challenge.svg)
 
 > ## Relative path resolution {.challenge}
 >
