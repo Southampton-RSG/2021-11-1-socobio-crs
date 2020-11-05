@@ -36,8 +36,10 @@
 <ul>
 <li>Explain the steps in the shell’s read-run-print cycle.</li>
 <li>Explain the similarities and differences between a file and a directory.</li>
+<li>Re-run recently executed commands without retyping them.</li>
 <li>Translate an absolute path into a relative path and vice versa.</li>
 <li>Construct absolute and relative paths that identify specific files and directories.</li>
+<li>List the contents of directories.</li>
 <li>Identify the actual command, flags, and filenames in a command-line call.</li>
 <li>Demonstrate the use of tab completion and other key shortcuts and explain their advantages.</li>
 </ul>
@@ -48,7 +50,7 @@
 <p>To start exploring them, let’s open a shell window:</p>
 <pre class="bash"><code>$</code></pre>
 <p>The dollar sign is a <strong>prompt</strong>, which represents our input interface to the shell. It shows us that the shell is waiting for input; your shell may show something more elaborate.</p>
-<h2 id="working-out-who-we-are-and-where-we-are">Working out who we are and where we are</h2>
+<h3 id="working-out-who-we-are-and-where-we-are">Working out who we are and where we are</h3>
 <p>Type the command <code>whoami</code>, then press the <code>Enter</code> key (sometimes called <code>Return</code>) to send the command to the shell. The command’s output is the identity of the current user, i.e., it shows us who the shell thinks we are (yours will be something different!):</p>
 <pre class="bash"><code>$ whoami</code></pre>
 <pre class="output"><code>nelle</code></pre>
@@ -87,7 +89,7 @@
 <p>We can also move to the beginning of a line in the shell by typing <code>^A</code> (which means Control-A) and to the end using <code>^E</code>. Much quicker on long lines than just using the left/right arrow keys.</p>
 </div>
 </aside>
-<h2 id="how-file-systems-are-organised">How file systems are organised</h2>
+<h3 id="how-file-systems-are-organised">How file systems are organised</h3>
 <p>To understand what a “home directory” is, let’s have a look at how the file system as a whole is organized. At the top is the <strong>root directory</strong> that holds everything else. We refer to it using a slash character <code>/</code> on its own; this is the leading slash in <code>/Users/nelle</code>.</p>
 <p>Let’s continue looking at Nelle’s hypothetical file system as an example. Inside the <code>/</code> directory are several other directories, for example:</p>
 <figure>
@@ -113,7 +115,7 @@
 <p>Notice that there are two meanings for the <code>/</code> character. When it appears at the front of a file or directory name, it refers to the root directory. When it appears <em>inside</em> a name, it’s just a separator.</p>
 </div>
 </aside>
-<h2 id="listing-the-contents-ot-directories-and-moving-around">Listing the contents ot directories and moving around</h2>
+<h3 id="listing-the-contents-of-directories-and-moving-around">Listing the contents of directories and moving around</h3>
 <p>But how can we tell what’s in directories, and how can we move around the file system?</p>
 <p>We’re currently in our home directory, and can see what’s in it by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
 <pre class="bash"><code>$ ls</code></pre>

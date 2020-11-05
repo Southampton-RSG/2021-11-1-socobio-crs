@@ -124,7 +124,7 @@ $ ls
 draft.txt
 ~~~
 
-We can use the shell on its own to take a look at its contents using the `cat` command (which we can use to print files):
+We can use the shell on its own to take a look at its contents using the `cat` command (which we can use to print the contents of files):
 
 ~~~ {.bash}
 $ cat draft.txt

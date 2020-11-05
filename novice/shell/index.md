@@ -45,8 +45,8 @@ These lessons will start you on a path towards using these resources effectively
 2.  [Files and Directories](01-filedir.html)
 3.  [Creating Things](02-create.html)
 4.  [Pipes and Filters](03-pipefilter.html)
-5.  [Loops](04-loop.html)
-6.  [Shell Scripts](05-script.html)
+5.  [Shell Scripts](04-script.html)
+6.  [Loops](05-loop.html)
 7.  [Finding Things](06-find.html)
 
 ## Other Resources

@@ -8,8 +8,10 @@ minutes: 15
 >
 > *   Explain the steps in the shell's read-run-print cycle.
 > *   Explain the similarities and differences between a file and a directory.
+> *   Re-run recently executed commands without retyping them.
 > *   Translate an absolute path into a relative path and vice versa.
 > *   Construct absolute and relative paths that identify specific files and directories.
+> *   List the contents of directories.
 > *   Identify the actual command, flags, and filenames in a command-line call.
 > *   Demonstrate the use of tab completion and other key shortcuts and explain their advantages.
 
@@ -33,7 +35,7 @@ which represents our input interface to the shell.
 It shows us that the shell is waiting for input;
 your shell may show something more elaborate.
 
-## Working out who we are and where we are
+### Working out who we are and where we are
 
 Type the command `whoami`,
 then press the `Enter` key (sometimes called `Return`) to send the command to the shell.
@@ -103,7 +105,7 @@ $ pwd
 > (which means Control-A) and to the end using `^E`. Much quicker on long
 > lines than just using the left/right arrow keys.
 
-## How file systems are organised
+### How file systems are organised
 
 To understand what a "home directory" is,
 let's have a look at how the file system as a whole is organized.
@@ -145,7 +147,7 @@ which is why `nelle` is the last part of the directory's name.
 > it refers to the root directory. When it appears *inside* a name,
 > it's just a separator.
 
-## Listing the contents ot directories and moving around
+### Listing the contents of directories and moving around
 
 But how can we tell what's in directories, and how can we move around the file system?
 

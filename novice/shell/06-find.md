@@ -429,7 +429,7 @@ North Whitehead wrote in 1911, "Civilization advances by extending the
 number of important operations which we can perform without thinking
 about them."
 
-## Challenges
+## Exercises
 
 > ## Using grep {.challenge}
 >

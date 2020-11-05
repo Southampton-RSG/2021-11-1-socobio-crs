@@ -19,14 +19,25 @@ a bunch of commands saved in a file is usually called a **shell script**,
 but make no mistake:
 these are actually small programs.
 
-Let's start by going back to `novice/shell/data` and putting the following line into a new file called `middle.sh` using an editor:
+### Our first shell script
+
+Let's start by going back to `novice/shell/data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
+
+~~~ {.bash}
+$ cd ~/2020-10-29-socobio-crs/novice/shell/data
+$ nano middle.sh
+~~~
+
+So why the .sh extension to the filename? Adding `.sh` is the convention to show that this is a Bash shell script.
+
+Enter the following line into our new file, then save it and exit `nano` (using `Control-O` to save it and then `Control-X` to exit `nano`):
 
 ~~~ {.bash}
 head -15 sc_climate_data_1000.csv | tail -5
 ~~~
 
-This is a variation on the pipe we constructed earlier:
-it selects lines 11-15 of the file `sc_climate_data_1000.csv`.
+This pipe selects lines 11-15 of the file `sc_climate_data_1000.csv`. It selects the first 15
+lines of that file using `head`, then passes that to `tail` to show us only the last 5 lines - hence lines 11-15.
 Remember, we are *not* running it as a command just yet:
 we are putting the commands in a file.
 
@@ -61,6 +72,8 @@ our script's output is exactly what we would get if we ran that pipeline directl
 > keyboard. When editing programs, therefore, you must either use a plain
 > text editor, or be careful to save files as plain text.
 
+### Enabling our script to run on any file
+
 What if we want to select lines from an arbitrary file?
 We could edit `middle.sh` each time to change the filename,
 but that would probably take longer than just retyping the command.
@@ -68,7 +81,7 @@ Instead,
 let's edit `middle.sh` and replace `sc_climate_data_1000.csv` with a special variable called `$1`:
 
 ~~~ {.bash}
-$ cat middle.sh
+$ nano middle.sh
 ~~~
 
 ~~~ {.output}
@@ -76,7 +89,7 @@ head -15 "$1" | tail -5
 ~~~
 
 Inside a shell script,
-`$1` means "the first filename (or other parameter) on the command line".
+`$1` means the first filename (or other argument) passed to the script on the command line.
 We can now run our script like this:
 
 ~~~ {.bash}
@@ -98,13 +111,14 @@ $ bash middle.sh sc_climate_data.csv
 ~~~
 
 ~~~ {.output}
-359196.8188,1017890.052,49.39,58.95,0.70
-338196.8188,1011890.052,49.28,58.73,0.74
-321196.8188,981890.0521,48.20,61.41,0.72
-296196.8188,974890.0521,48.07,61.27,0.78
 299196.8188,972890.0521,48.07,61.41,0.78
+324196.8188,972890.0521,48.20,-9999.00,0.72
+274196.8188,968890.0521,47.86,60.94,0.83
+275196.8188,968890.0521,47.86,61.27,0.83
+248196.8188,961890.0521,46.22,58.98,1.43
 ~~~
 
+Note the output is the same, since our full data set contains the same first 1000 lines as `sc_climate_data_1000.csv`.
 
 > ## Double-Quotes Around Arguments {.callout}
 >
@@ -120,18 +134,21 @@ $ bash middle.sh sc_climate_data.csv
 > This would call `head` on two separate files, `climate` and `data.csv`,
 > which is probably not what we intended.
 
+### Adding more arguments to our script
 
-We still need to edit `middle.sh` each time we want to adjust the range of lines,
-though.
-Let's fix that by using the special variables `$2` and `$3`:
+However, if we want to adjust the range of lines to extract, we still need to edit `middle.sh` each time.
+Less than ideal!
+Let's fix that by using the special variables `$2` and `$3`. These represent the second and third arguments passed on the command line:
 
 ~~~ {.bash}
-$ cat middle.sh
+$ nano middle.sh
 ~~~
 
 ~~~ {.output}
 head "$2" "$1" | tail "$3"
 ~~~
+
+So now we can pass the `head` and `tail` line range arguments to our script:
 
 ~~~ {.bash}
 $ bash middle.sh sc_climate_data_1000.csv -20 -5
@@ -159,9 +176,18 @@ $ cat middle.sh
 head "$2" "$1" | tail "$3"
 ~~~
 
-A comment starts with a `#` character and runs to the end of the line.
+In Bash, a comment starts with a `#` character and runs to the end of the line.
 The computer ignores comments,
 but they're invaluable for helping people understand and use scripts.
+
+A line or two of documentation like this make it much easier for other people
+(including your future self) to re-use your work.
+The only caveat is that each time you modify the script,
+you should check that its comments are still accurate:
+an explanation that sends the reader in the wrong direction is worse than none at all.
+
+
+### Processing multiple files
 
 What if we want to process many files in a single pipeline?
 For example, if we want to sort our `.csv` files by length, we would type:
@@ -188,7 +214,7 @@ to handle the case of parameters containing spaces
 Here's an example:
 
 ~~~ {.bash}
-$ cat sorted.sh
+$ nano sorted.sh
 ~~~
 
 ~~~ {.output}
@@ -225,67 +251,53 @@ $ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 > process standard input, so it just sits there and waits for us to give
 > it some data interactively. From the outside, though, all we see is it
 > sitting there: the script doesn't appear to do anything.
+>
+> If you find yourself in this situation pressing `Control-C` will stop the
+> command from taking input and return you to the command line prompt.
 
-## Explain what your code does - by adding comments!
-
-If you look at a script like:
-
-~~~
-wc -l "$@" | sort -n
-~~~
-
-you can probably puzzle out what it does.
-On the other hand,
-if you look at this script:
-
-~~~
-# List files sorted by number of lines.
-wc -l "$@" | sort -n
-~~~
-
-you don't have to puzzle it out --- the comment at the top tells you what it does.
-A line or two of documentation like this make it much easier for other people
-(including your future self) to re-use your work.
-The only caveat is that each time you modify the script,
-you should check that its comments are still accurate:
-an explanation that sends the reader in the wrong direction is worse than none at all.
-
-## What did I type to get that to work?
-
-Here's something that can be useful as an aid to memory.
-Suppose we have just run a series of commands that did something useful --- for example,
-that created a graph we'd like to use in a paper.
-We'd like to be able to re-create the graph later if we need to,
-so we want to save the commands in a file.
-Instead of typing them in again
-(and potentially getting them wrong)
-we can do this:
+Again, we should explain what we are trying to do here using a comment, for example:
 
 ~~~ {.bash}
-$ history | tail -4 > redo-figure-3.sh
+# List given files sorted by number of lines
+wc -l "$@" | sort -n
 ~~~
 
-The file `redo-figure-3.sh` now contains:
+> ## What did I type to get that to work? {.callout}
+> 
+> Here's something that can be useful as an aid to memory.
+> Suppose we have just run a series of commands that did something useful. For example,
+> that created a graph we'd like to use in a paper.
+> We'd like to be able to re-create the graph later if we need to,
+> so we want to save the commands in a file.
+> Instead of typing them in again
+> (and potentially getting them wrong)
+> we can do this:
+> 
+> ~~~ {.bash}
+> $ history | tail -4 > redo-figure-3.sh
+> ~~~
+> 
+> The file `redo-figure-3.sh` now contains:
+> 
+> ~~~
+> 297 bash goostats -r NENE01729B.txt stats-NENE01729B.txt
+> 298 bash goodiff stats-NENE01729B.txt /data/validated/01729.txt > 01729-differences.txt
+> 299 cut -d ',' -f 2-3 01729-differences.txt > 01729-time-series.txt
+> 300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
+> ~~~
+> 
+> After a moment's work in an editor to remove the historical reference number for each command (e.g. 297, 298),
+> we have a completely accurate record of how we created that figure.
+> 
+> In practice, most people develop shell scripts by running commands at the shell prompt a few times
+> to make sure they're doing the right thing,
+> then saving them in a file for re-use.
+> This style of work allows people to recycle
+> what they discover about their data and their workflow with one call to `history`
+> and a bit of editing to clean up the output
+> and save it as a shell script.
 
-~~~
-297 bash goostats -r NENE01729B.txt stats-NENE01729B.txt
-298 bash goodiff stats-NENE01729B.txt /data/validated/01729.txt > 01729-differences.txt
-299 cut -d ',' -f 2-3 01729-differences.txt > 01729-time-series.txt
-300 ygraph --format scatter --color bw --borders none 01729-time-series.txt figure-3.png
-~~~
-
-After a moment's work in an editor to remove the serial numbers on the commands,
-we have a completely accurate record of how we created that figure.
-
-In practice, most people develop shell scripts by running commands at the shell prompt a few times
-to make sure they're doing the right thing,
-then saving them in a file for re-use.
-This style of work allows people to recycle
-what they discover about their data and their workflow with one call to `history`
-and a bit of editing to clean up the output
-and save it as a shell script.
-
-## Challenges
+## Exercises
 
 > ## Variables in shell scripts {.challenge}
 >
