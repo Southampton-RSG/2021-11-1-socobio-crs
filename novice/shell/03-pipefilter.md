@@ -72,10 +72,10 @@ $ wc *.csv
 ~~~
 
 ~~~ {.output}
- 1048580 1048583 21005146 sc_climate_data.csv
+ 1048576 1048577 21005037 sc_climate_data.csv
       11      12     487 sc_climate_data_10.csv
     1001    1002   42301 sc_climate_data_1000.csv
- 1049592 1049597 21047934 total
+ 1049588 1049591 21047825 total
 ~~~
 
 > ## Wildcards and why they're useful {.callout}
@@ -84,20 +84,20 @@ $ wc *.csv
 > or find or use filenames that match a given pattern,
 > and this is where **wildcards** can be really useful.
 >
-> `*` is a wildcard. It matches zero or more
+> `*` is a wildcard that matches zero or more
 > characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
-> On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the 'sc_climate_data_100' at the front only matches those two files.
+> On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the `sc_climate_data_` at the front only matches those two files.
 > 
 > `?` is also a wildcard, but it only matches a single character. This
 > means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example.
-> We can use any number of wildcards at a time: for example, `s*.c?*`
-> matches anything that starts with a 'p' and ends with '.', 'p', and at
-> least one more character (since the '?' has to match one character, and
-> the final '\*' can match any number of characters). Thus, `p*.p?*` would
-> match `preferred.practice`, and even `p.pi` (since the first '\*' can
+> We can use any number of wildcards at a time: for example, `p*.p?*`
+> matches anything that starts with a `p` and ends with `.p`, and is followed by at
+> least one more character (since the `?` has to match one character, and
+> the final `*` can match any number of characters). Thus, `p*.p?*` would
+> match `preferred.practice`, and even `p.pi` (since the first `*` can
 > match no characters at all), but not `quality.practice` (doesn't start
-> with 'p') or `preferred.p` (there isn't at least one character after the
-> '.p').
+> with `p`) or `preferred.p` (there isn't at least one character after the
+> `.p`).
 >
 > When the shell sees a wildcard, it expands the wildcard to create a
 > list of matching filenames *before* running the command that was
@@ -119,10 +119,10 @@ $ wc -l *.csv
 ~~~
 
 ~~~ {.output}
- 1048580 sc_climate_data.csv
+ 1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
- 1049592 total
+ 1049588 total
 ~~~
 
 We can also use `-w` to get only the number of words,
@@ -141,8 +141,9 @@ The greater than symbol, `>`, tells the shell to **redirect** the command's outp
 to a file instead of printing it to the screen.
 The shell will create the file if it doesn't exist,
 or overwrite the contents of that file if it does.
-(This is why there is no screen output:
-everything that `wc` would have printed has gone into the file `lengths.txt` instead.)
+This is why there is no screen output:
+everything that `wc` would have printed has gone into the file `lengths.txt` instead.
+
 `ls lengths.txt` confirms that the file exists:
 
 ~~~ {.bash}
@@ -154,8 +155,7 @@ lengths.txt
 ~~~
 
 We can now send the content of `lengths.txt` to the screen using `cat lengths.txt`.
-`cat` stands for "concatenate":
-it prints the contents of files one after another.
+`cat` is able to print the contents of files one after another.
 There's only one file in this case,
 so `cat` just shows us what it contains:
 
@@ -164,10 +164,10 @@ $ cat lengths.txt
 ~~~
 
 ~~~ {.output}
- 1048580 sc_climate_data.csv
+ 1048576 sc_climate_data.csv
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
- 1049592 total
+ 1049588 total
 ~~~
 
 Now let's use the `sort` command to sort its contents.
@@ -183,8 +183,8 @@ $ sort -n lengths.txt
 ~~~ {.output}
       11 sc_climate_data_10.csv
     1001 sc_climate_data_1000.csv
- 1048580 sc_climate_data.csv
- 1049592 total
+ 1048576 sc_climate_data.csv
+ 1049588 total
 ~~~
 
 We can put the sorted list of lines in another temporary file called `sorted-lengths.txt`
@@ -237,7 +237,7 @@ or copy data from one program to the other in memory,
 or something else entirely;
 we don't have to know or care.
 
-We can use another pipe to send the output of `wc` directly to `sort`,
+We can even use another pipe to send the output of `wc` directly to `sort`,
 which then sends its output to `head`:
 
 ~~~ {.bash}
@@ -292,7 +292,7 @@ the calculation is "head of sort of line count of `*.csv`".
 > through `wc` to `sort`,
 > and from `sort` through `head` to the screen.
 > 
-> ![Redirects and Pipes](fig/redirects-and-pipes.png)
+> ![1. Redirects and Pipes](fig/redirects-and-pipes.png)
 
 This simple idea is why Unix has been so successful.
 Instead of creating enormous programs that try to do many different things,
@@ -325,7 +325,7 @@ so that you and other people can put those programs into pipes to multiply their
 > have told the shell to send the contents of `sc_climate_data_10.csv` to `wc`'s
 > standard input.
 
-## Challenges
+## Exercises
 
 > ## What does `sort -n` do? {.challenge}
 >
