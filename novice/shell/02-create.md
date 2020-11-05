@@ -7,14 +7,14 @@ minutes: 15
 > ## Learning Objectives {.objectives}
 >
 > *   Create new directories, also known as folders.
-> *   List the contents of directories.
 > *   Create files within directories using an editor or by copying and renaming existing files.
 > *   Display the contents of a file using the command line.
 > *   Delete specified files and/or directories.
 
 We now know how to explore files and directories,
 but how do we create them in the first place?
-Let's use `ls -F` to see what our test directory contains:
+
+First, let's check where we are:
 
 ~~~ {.bash}
 $ pwd
@@ -22,13 +22,23 @@ $ pwd
 ~~~ {.output}
 /Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
+
+If you're not in this directory, use the `cd` command to navigate to it as covered in the last lesson, for example:
+
+~~~ {.bash}
+$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory
+~~~
+
+### Creating a new directory
+
+Now let's use `ls -F` to see what our test directory contains:
+
 ~~~ {.bash}
 $ ls -F
 ~~~
 ~~~ {.output}
-creatures/  molecules/           pizza.cfg
-data/       north-pacific-gyre/  solar.pdf
-Desktop/    notes.txt            writing/
+creatures/          molecules/          notes.txt           solar.pdf
+data/               north-pacific-gyre/ pizza.cfg           writing/
 ~~~
 
 Let's create a new directory called `thesis` using the command `mkdir thesis`
@@ -54,14 +64,15 @@ Desktop/    pizza.cfg
 molecules/  solar.pdf
 ~~~
 
-However, there's nothing in it yet:
+However, there's nothing in it yet - this will show no output:
 
 ~~~ {.bash}
 $ ls -F thesis
 ~~~
 
-Let's change our working directory to `thesis` using `cd`,
-then use **VSCode** to create a text file called `draft.txt`, and save it in the directory:
+### Creating a new text file
+
+Now we'll create a new file using a text editor in this new directory.
 
 > ## Which Editor? {.callout}
 >
@@ -81,26 +92,26 @@ then use **VSCode** to create a text file called `draft.txt`, and save it in the
 >
 > Your choice of editor will depend on the size of project you're working on,
 > and how comfortable you are with the terminal.
->
-> No matter what editor you use, you will need to know where it searches
-> for and saves files. If you start it from the shell, it will (probably)
-> use your current working directory as its default location. If you use
-> your computer's start menu, it may want to save files in your desktop or
-> documents directory instead.
->
-> For the purposes of this training, you can change its starting directory by navigating to
-> another directory the first time you "Save As...", and point it to the
-> 2020-10-29-socobio-crs/novice/shell/test_directory/thesis folder in your
-> user's home directory.
 
-Let's type in a few lines of text,
-then use `Control-O` (pressing `Control` and `O` at the same time) to write our data to disk:
+Let's first change our working directory to `thesis` using `cd`,
+and then we'll use the `Nano` editor to create a text file called `draft.txt`, and then save it in that directory.
+
+~~~ {.bash}
+$ cd thesis
+$ nano draft.txt
+~~~
+
+We add a filename after the `nano` command to tell it that we want to edit (or in this case create) a file.
+
+Now, let's type in a few lines of text, for example:
 
 ![Nano in action](fig/nano-screenshot.png)
 
+Once we have a few words, we then use `Control-O` (pressing `Control` and `O` at the same time)
+to save this data in a new `draft.txt` file.
+
 Once our file is saved,
 we can use `Control-X` to quit the editor and return to the shell.
-(Unix documentation often uses the shorthand `^A` to mean `Control-A`.)
 `nano` doesn't leave any output on the screen after it exits,
 but `ls` now shows that we have created a file called `draft.txt`:
 
@@ -113,23 +124,25 @@ $ ls
 draft.txt
 ~~~
 
-We can use the shell on its own to take a look at its contents using the `cat` command (which stands for "concatenate"):
+We can use the shell on its own to take a look at its contents using the `cat` command (which we can use to print files):
 
 ~~~ {.bash}
 $ cat draft.txt
 ~~~
 ~~~ {.output}
-This is a regular text editor
-with some extra features.
+It's not "publish or perish" any more,
+it's "share and thrive".
 ~~~
 
-Let's tidy up by running `rm draft.txt`:
+### Deleting files and directories
+
+Now, let's assume we didn't actually need to create this file. We can delete it by running `rm draft.txt`:
 
 ~~~ {.bash}
 $ rm draft.txt
 ~~~
 
-This command removes files ("rm" is short for "remove").
+This command removes files (`rm` is short for "remove").
 If we run `ls` again,
 its output is empty once more,
 which tells us that our file is gone:
@@ -148,7 +161,7 @@ $ ls
 > work in any particular situation, since the computer may recycle the
 > file's disk space right away.
 
-Let's re-create that file
+But what if we want to delete a directory, perhaps one that already contains a file? Let's re-create that file
 and then move up one directory using `cd ..`:
 
 ~~~ {.bash}
@@ -166,6 +179,10 @@ draft.txt
 ~~~
 ~~~ {.bash}
 $ cd ..
+$ pwd
+~~~
+~~~ {.output}
+/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
 
 If we try to remove the entire `thesis` directory using `rm thesis`,
@@ -178,11 +195,13 @@ $ rm thesis
 rm: cannot remove `thesis': Is a directory
 ~~~
 
+On a Mac, it may look a bit different (`rm: thesis: is a directory`), but means the same thing.
+
 This happens because `rm` only works on files, not directories.
 The right command is `rmdir`,
 which is short for "remove directory".
 It doesn't work yet either, though,
-because the directory we're trying to remove isn't empty:
+because the directory we're trying to remove isn't empty (again, it may look a bit different on a Mac):
 
 ~~~ {.bash}
 $ rmdir thesis
@@ -220,17 +239,22 @@ $ rmdir thesis
 > them, and so on. It's very handy, but can do a lot of damage if used
 > without care.
 
+### Renaming and moving files and directories
+
 Let's create that directory and file one more time.
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle
+/Users/user/2020-10-29-socobio-crs/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ mkdir thesis
 ~~~
+
+Again, put anything you like in this file (note we're giving the `thesis` path to `nano` as well as the `draft.txt` filename, so we create it in that directory):
+
 ~~~ {.bash}
 $ nano thesis/draft.txt
 $ ls thesis
@@ -250,7 +274,7 @@ $ mv thesis/draft.txt thesis/quotes.txt
 The first parameter tells `mv` what we're "moving",
 while the second is where it's to go.
 In this case,
-we're moving `thesis/draft.txt` to `thesis/quotes.txt`,
+we're moving `thesis/draft.txt` (the file `draft.txt` in the `thesis` directory) to `thesis/quotes.txt` (the `quotes.txt` again in the `thesis` directory),
 which has the same effect as renaming the file.
 Sure enough,
 `ls` shows us that `thesis` now contains one file called `quotes.txt`:
@@ -263,7 +287,7 @@ quotes.txt
 ~~~
 
 Just for the sake of inconsistency,
-`mv` also works on directories --- there is no separate `mvdir` command.
+`mv` also works on directories --- there is no separate `mvdir` command. Another example of the Unix shell's pariochial nature!
 
 Let's move `quotes.txt` into the current working directory.
 We use `mv` once again,
@@ -296,6 +320,8 @@ $ ls quotes.txt
 quotes.txt
 ~~~
 
+### Copying files
+
 The `cp` command works very much like `mv`,
 except it copies a file instead of moving it.
 We can check that it did the right thing using `ls`
@@ -325,7 +351,7 @@ thesis/quotations.txt
 This time it tells us that it can't find `quotes.txt` in the current directory,
 but it does find the copy in `thesis` that we didn't delete.
 
-## Challenges
+## Exercises
 
 > ## Renaming files {.challenge}
 >
