@@ -49,6 +49,8 @@ These lessons will start you on a path towards using these resources effectively
 6.  [Loops](05-loop.html)
 7.  [Finding Things](06-find.html)
 
+The answers to the exercises can be found [here](answers.html).
+
 ## Other Resources
 
 *   [Reference](reference.html)
