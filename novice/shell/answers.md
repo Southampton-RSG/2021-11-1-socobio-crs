@@ -5,7 +5,7 @@ subtitle: Exercise Answers
 minutes: 0
 ---
 
-## Files and Directories
+### Files and Directories
 
 Relative path resolution
 
@@ -21,7 +21,7 @@ ls reading comprehension
 3. Partially correct, but 2 is also correct.
 4. Correct.
 
-## Creating Things
+### Creating Things
 
 Renaming files
 
@@ -46,7 +46,7 @@ Copy with Multiple Filenames
  - With several filenames and a directory, `cp` will copy the given files into the given directory.
  - When given three or more filenames, `cp` will return an error since with more than two arguments `cp` assumes the last argument is a directory.
 
-## Pipes and Filters
+### Pipes and Filters
 
 What does sort -n do?
 
@@ -78,7 +78,7 @@ Pipe reading comprehension
  - `sort -r` accepts the 3 lines from `tail` and output those lines in reverse sort order.
  - `> final.txt` will take the output from `sort` and redirect it into a file called `final.txt`.
 
-## Shell Scripts
+### Shell Scripts
 
 Variables in shell scripts
 
@@ -93,7 +93,7 @@ Script reading comprehension
  - Script 2 will take in three arguments on the command line, and for each of them, print out their contents.
  - Script 3 will print out all arguments as passed to the script on a single line and append `.dat` to that output.
 
-## Loops
+### Loops
 
 Variables in Loops
 
@@ -117,7 +117,7 @@ Doing a dry run
 
 - Version 2 is the one that successfully acts as a dry run. In version 1, since the `>` file redirect is not within quotes, the script will create three files `analyzed-basilisk.dat`, `analyzed-minotaur.dat`, and `analyzed-unicorn.dat` which is not what we want.
 
-## Finding Things
+### Finding Things
 
 Using grep
 

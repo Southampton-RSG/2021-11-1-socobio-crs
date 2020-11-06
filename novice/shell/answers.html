@@ -28,7 +28,7 @@
         <div class="col-md-10 col-md-offset-1">
                     <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
           <h2 class="subtitle">Exercise Answers</h2>
-          <h2 id="files-and-directories">Files and Directories</h2>
+          <h3 id="files-and-directories">Files and Directories</h3>
 <p>Relative path resolution</p>
 <ol type="1">
 <li>Incorrect, since <code>backup</code> exists in the <code>Users</code> parent directory, where the preceding <code>..</code> is referencing.</li>
@@ -43,7 +43,7 @@
 <li>Partially correct, but 2 is also correct.</li>
 <li>Correct.</li>
 </ol>
-<h2 id="creating-things">Creating Things</h2>
+<h3 id="creating-things">Creating Things</h3>
 <p>Renaming files</p>
 <ol type="1">
 <li>Incorrect, since this would copy the mistakenly named file to another file with the desired name, but the original mistakenly named file will still exist.</li>
@@ -67,7 +67,7 @@
 <li>With several filenames and a directory, <code>cp</code> will copy the given files into the given directory.</li>
 <li>When given three or more filenames, <code>cp</code> will return an error since with more than two arguments <code>cp</code> assumes the last argument is a directory.</li>
 </ul>
-<h2 id="pipes-and-filters">Pipes and Filters</h2>
+<h3 id="pipes-and-filters">Pipes and Filters</h3>
 <p>What does sort -n do?</p>
 <ul>
 <li><code>sort -n</code> will perform a sort interpreting numerical digits as proper numbers - a numerical sort. <code>sort</code> on its own will perform a sort assuming any numerical digits are just sequences of characters, e.g. <code>10</code> will come before <code>2</code> since <code>1</code> comes before <code>2</code>.</li>
@@ -97,7 +97,7 @@
 <li><code>sort -r</code> accepts the 3 lines from <code>tail</code> and output those lines in reverse sort order.</li>
 <li><code>&gt; final.txt</code> will take the output from <code>sort</code> and redirect it into a file called <code>final.txt</code>.</li>
 </ul>
-<h2 id="shell-scripts">Shell Scripts</h2>
+<h3 id="shell-scripts">Shell Scripts</h3>
 <p>Variables in shell scripts</p>
 <ol type="1">
 <li>Incorrect, since <code>-1</code> is passed to <code>head</code> in the script it will output the first line of each <code>.pdb</code> file, whilst the <code>-1</code> passed to <code>tail</code> will output the last line of each <code>.pdb</code> file.</li>
@@ -111,7 +111,7 @@
 <li>Script 2 will take in three arguments on the command line, and for each of them, print out their contents.</li>
 <li>Script 3 will print out all arguments as passed to the script on a single line and append <code>.dat</code> to that output.</li>
 </ul>
-<h2 id="loops">Loops</h2>
+<h3 id="loops">Loops</h3>
 <p>Variables in Loops</p>
 <ul>
 <li>The first loop will present “fructose.dat glucose.dat sucrose.dat” three times, since we are running <code>ls *.dat</code> three separate times - we’re not making use of the loop variable <code>$datafile</code>. The second loop will produce “fructose.dat”, “glucose.dat”, and “sucrose.dat” (each on a separate line) since we’re passing <code>$datafile</code> to <code>ls</code>.</li>
@@ -134,7 +134,7 @@
 <ul>
 <li>Version 2 is the one that successfully acts as a dry run. In version 1, since the <code>&gt;</code> file redirect is not within quotes, the script will create three files <code>analyzed-basilisk.dat</code>, <code>analyzed-minotaur.dat</code>, and <code>analyzed-unicorn.dat</code> which is not what we want.</li>
 </ul>
-<h2 id="finding-things">Finding Things</h2>
+<h3 id="finding-things">Finding Things</h3>
 <p>Using grep</p>
 <ol type="1">
 <li>Incorrect, since it will find lines that contain <code>of</code> including those that are not a complete word, including “Software is like that.”</li>
