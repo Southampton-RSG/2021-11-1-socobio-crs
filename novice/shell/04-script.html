@@ -116,10 +116,14 @@ head &quot;$2&quot; &quot;$1&quot; | tail &quot;$3&quot;</code></pre>
 <h3 id="processing-multiple-files">Processing multiple files</h3>
 <p>What if we want to process many files in a single pipeline? For example, if we want to sort our <code>.csv</code> files by length, we would type:</p>
 <pre class="bash"><code>$ wc -l *.csv | sort -n</code></pre>
-<p>This is because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code>-l</code> flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>&quot;$@&quot;</code> is equivalent to <code>&quot;$1&quot;</code> <code>&quot;$2&quot;</code> …) Here’s an example:</p>
+<p>This is because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code>-l</code> flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>&quot;$@&quot;</code> is equivalent to <code>&quot;$1&quot;</code> <code>&quot;$2&quot;</code> …)</p>
+<p>Here’s an example. Edit a new file called <code>sort.sh</code>:</p>
 <pre class="bash"><code>$ nano sorted.sh</code></pre>
+<p>And in that file enter:</p>
 <pre class="output"><code>wc -l &quot;$@&quot; | sort -n</code></pre>
+<p>When we run it with some wildcarded file arguments:</p>
 <pre class="bash"><code>$ bash sorted.sh *.csv ../test_directory/creatures/*.dat</code></pre>
+<p>We have the following output:</p>
 <pre class="output"><code>      11 sc_climate_data_10.csv
      155 ../test_directory/creatures/minotaur.dat
      163 ../test_directory/creatures/basilisk.dat
@@ -165,7 +169,7 @@ wc -l &quot;$@&quot; | sort -n</code></pre>
 <h2 id="variables-in-shell-scripts"><span class="glyphicon glyphicon-pencil"></span>Variables in shell scripts</h2>
 </div>
 <div class="panel-body">
-<p>In the test_directory/molecules directory, you have a shell script called <code>script.sh</code> containing the following commands:</p>
+<p>In the <code>test_directory/molecules</code> directory, you have a shell script called <code>script.sh</code> containing the following commands:</p>
 <pre><code>head $2 $1
 tail $3 $1</code></pre>
 <p>While you are in the molecules directory, you type the following command:</p>
@@ -177,33 +181,6 @@ tail $3 $1</code></pre>
 <li>The first and the last line of each file in the molecules directory</li>
 <li>An error because of the quotes around <code>*.pdb</code></li>
 </ol>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="list-unique-species"><span class="glyphicon glyphicon-pencil"></span>List unique species</h2>
-</div>
-<div class="panel-body">
-<p>Leah has several hundred data files, each of which is formatted like this:</p>
-<pre><code>2013-11-05,deer,5
-2013-11-05,rabbit,22
-2013-11-05,raccoon,7
-2013-11-06,rabbit,19
-2013-11-06,deer,2
-2013-11-06,fox,1
-2013-11-07,rabbit,18
-2013-11-07,bear,1</code></pre>
-<p>Write a shell script called <code>species.sh</code> that takes any number of filenames as command-line parameters, and uses <code>cut</code>, <code>sort</code>, and <code>uniq</code> to print a list of the unique species appearing in each of those files separately.</p>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="why-record-commands-in-the-history-before-running-them"><span class="glyphicon glyphicon-pencil"></span>Why record commands in the history before running them?</h2>
-</div>
-<div class="panel-body">
-<p>If you run the command:</p>
-<pre><code>history | tail -5 &gt; recent.sh</code></pre>
-<p>the last command in the file is the <code>history</code> command itself, i.e., the shell has added <code>history</code> to the command log before actually running it. In fact, the shell <em>always</em> adds commands to the log before running them. Why do you think it does this?</p>
 </div>
 </section>
 <section class="challenge panel panel-success">

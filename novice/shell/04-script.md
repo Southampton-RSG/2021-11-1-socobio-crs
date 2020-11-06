@@ -211,19 +211,25 @@ which means,
 We also should put `$@` inside double-quotes
 to handle the case of parameters containing spaces
 (`"$@"` is equivalent to `"$1"` `"$2"` ...)
-Here's an example:
+
+Here's an example. Edit a new file called `sort.sh`:
 
 ~~~ {.bash}
 $ nano sorted.sh
 ~~~
 
+And in that file enter:
+
 ~~~ {.output}
 wc -l "$@" | sort -n
 ~~~
+When we run it with some wildcarded file arguments:
 
 ~~~ {.bash}
 $ bash sorted.sh *.csv ../test_directory/creatures/*.dat
 ~~~
+
+We have the following output:
 
 ~~~ {.output}
       11 sc_climate_data_10.csv
@@ -301,7 +307,7 @@ wc -l "$@" | sort -n
 
 > ## Variables in shell scripts {.challenge}
 >
-> In the test_directory/molecules directory, you have a shell script called `script.sh` containing the 
+> In the `test_directory/molecules` directory, you have a shell script called `script.sh` containing the 
 > following commands:
 >
 > ~~~
@@ -322,39 +328,6 @@ wc -l "$@" | sort -n
 > 2. The first and the last line of each file ending in `*.pdb` in the molecules directory
 > 3. The first and the last line of each file in the molecules directory
 > 4. An error because of the quotes around `*.pdb`
-
-> ## List unique species {.challenge}
-> 
-> Leah has several hundred data files, each of which is formatted like this:
-> 
-> ~~~
-> 2013-11-05,deer,5
-> 2013-11-05,rabbit,22
-> 2013-11-05,raccoon,7
-> 2013-11-06,rabbit,19
-> 2013-11-06,deer,2
-> 2013-11-06,fox,1
-> 2013-11-07,rabbit,18
-> 2013-11-07,bear,1
-> ~~~
-> 
-> Write a shell script called `species.sh` that takes any number of
-> filenames as command-line parameters, and uses `cut`, `sort`, and
-> `uniq` to print a list of the unique species appearing in each of
-> those files separately.
-
-> ## Why record commands in the history before running them? {.challenge}
-> 
-> If you run the command:
-> 
-> ~~~
-> history | tail -5 > recent.sh
-> ~~~
-> 
-> the last command in the file is the `history` command itself, i.e.,
-> the shell has added `history` to the command log before actually
-> running it. In fact, the shell *always* adds commands to the log
-> before running them. Why do you think it does this?
 
 > ## Script reading comprehension {.challenge}
 > 

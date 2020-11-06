@@ -11,6 +11,8 @@ minutes: 15
 > *   Use the output of one command as the command-line parameters to another command.
 > *   Explain what is meant by "text" and "binary" files, and why many common tools don't handle the latter well.
 
+### Finding files that contain text
+
 You can guess someone's age by how they talk about search:
 young people use "Google" as a verb,
 while crusty old Unix programmers use "grep".
@@ -22,11 +24,20 @@ It is also the name of a very useful command-line program.
 For our examples,
 we will use a file that contains three haikus taken from a
 1998 competition in *Salon* magazine. For this set of examples
-we're going to be working in the writing subdirectory:
+we're going to be working in the `writing` subdirectory:
+
 
 ~~~ {.bash}
-$ cd
-$ cd writing
+$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory/writing
+$ ls
+~~~
+~~~ {.output}
+data      haiku.txt old       thesis    tools
+~~~
+
+Let's have a look at the `haiku.txt` file:
+
+~~~ {.bash}
 $ cat haiku.txt
 ~~~
 ~~~ {.output}
@@ -137,7 +148,7 @@ $ grep -n -w -i "the" haiku.txt
 ~~~
 
 Now, we want to use the option `-v` to invert our search, i.e., we want to output
-the lines that do not contain the word "the".
+the lines that *do not* contain the word "the".
 
 ~~~ {.bash}
 $ grep -n -w -v "the" haiku.txt
@@ -154,60 +165,39 @@ $ grep -n -w -v "the" haiku.txt
 11:Software is like that.
 ~~~
 
-`grep` has lots of other options.
-To find out what they are, we can type `man grep`.
-`man` is the Unix "manual" command:
-it prints a description of a command and its options,
-and (if you're lucky) provides a few examples of how to use it.
-
-To navigate through the `man` pages,
-you may use the up and down arrow keys to move line-by-line,
-or try the "b" and spacebar keys to skip up and down by full page.
-Quit the `man` pages by typing "q".
+Another powerful feature is that `grep` can search multiple files. For example we can find files that
+contain the complete word "saw" in all files within the `data` directory:
 
 ~~~ {.bash}
-$ man grep
+$ grep -w saw data/*
 ~~~
 ~~~ {.output}
-GREP(1)                                                                                              GREP(1)
-
-NAME
-grep, egrep, fgrep - print lines matching a pattern
-
-SYNOPSIS
-grep [OPTIONS] PATTERN [FILE...]
-grep [OPTIONS] [-e PATTERN | -f FILE] [FILE...]
-
-DESCRIPTION
-grep  searches the named input FILEs (or standard input if no files are named, or if a single hyphen-
-minus (-) is given as file name) for lines containing a match to the given PATTERN.  By default, grep
-prints the matching lines.
-...        ...        ...
-
-OPTIONS
-Generic Program Information
---help Print  a  usage  message  briefly summarizing these command-line options and the bug-reporting
-address, then exit.
-
--V, --version
-Print the version number of grep to the standard output stream.  This version number should be
-included in all bug reports (see below).
-
-Matcher Selection
--E, --extended-regexp
-Interpret  PATTERN  as  an  extended regular expression (ERE, see below).  (-E is specified by
-POSIX.)
-
--F, --fixed-strings
-Interpret PATTERN as a list of fixed strings, separated by newlines, any of  which  is  to  be
-matched.  (-F is specified by POSIX.)
-...        ...        ...
+data/two.txt:handsome! And his sisters are charming women. I never in my life saw
+data/two.txt:heard much; but he saw only the father. The ladies were somewhat more
+data/two.txt:heard much; but he saw only the father. The ladies were somewhat more
 ~~~
+
+Note that since `grep` is reporting on searches from multiple files, it prefixes each found line
+with the file in which the match was found.
+
+Or, we can find where "format" occurs in all files including those in every subdirectory. We use the `-R`
+argument to specify that we want to search recursively into every subdirectory:
+
+~~~ {.bash}
+$ grep -R format *
+~~~
+~~~ {.output}
+data/two.txt:little information, and uncertain temper. When she was discontented,
+tools/format:This is the format of the file
+~~~
+
+This is where `grep` becomes really useful. If we had thousands of research data files we needed
+to quickly search for a particular word or data point, `grep` is invaluable.
 
 > ## Wildcards {.callout}
 >
 > `grep`'s real power doesn't come from its options, though; it comes from
-> the fact that patterns can include wildcards. (The technical name for
+> the fact that search patterns can also include wildcards. (The technical name for
 > these is **regular expressions**, which
 > is what the "re" in "grep" stands for.) Regular expressions are both complex
 > and powerful; if you want to do complex searches, please look at the lesson
@@ -226,13 +216,15 @@ matched.  (-F is specified by POSIX.)
 > matches a single character (just like '?' in the shell), while the 'o'
 > matches an actual 'o'.
 
+### Finding files themselves
+
 While `grep` finds lines in files,
 the `find` command finds files themselves.
 Again,
 it has a lot of options;
 to show how the simplest ones work, we'll use the directory tree shown below.
 
-![File Tree for Find Example](fig/find-file-tree.svg)
+![1. File Tree for Find Example](fig/find-file-tree.svg)
 
 Nelle's `writing` directory contains one file called `haiku.txt` and four subdirectories:
 `thesis` (which is sadly empty),
@@ -260,6 +252,9 @@ $ find . -type d
 ./tools
 ./tools/old
 ~~~
+
+When using `find`, note that he order the results are shown in may differ depending on whether you're using
+Windows or a Mac.
 
 If we change `-type d` to `-type f`,
 we get a listing of all the files instead:
@@ -300,7 +295,10 @@ $ find . -mindepth 2 -type f
 ~~~ {.output}
 ./data/one.txt
 ./data/two.txt
+./old/.gitkeep
+./thesis/empty-draft.md
 ./tools/format
+./tools/old/oldtool
 ./tools/stats
 ~~~
 
@@ -347,6 +345,8 @@ $ find . -name '*.txt'
 > `ls` lists everything it can,
 > while `find` searches for things with certain properties and shows them.
 
+### Another way to combine command-line tools
+
 As we said earlier,
 the command line's power lies in combining tools.
 We've seen how to do that with pipes;
@@ -361,10 +361,10 @@ The simplest way is to put the `find` command inside `$()`:
 $ wc -l $(find . -name '*.txt')
 ~~~
 ~~~ {.output}
-11 ./haiku.txt
-300 ./data/two.txt
-70 ./data/one.txt
-381 total
+    70 ./data/one.txt
+   300 ./data/two.txt
+    11 ./haiku.txt
+  381 total
 ~~~
 
 When the shell executes this command,
@@ -420,11 +420,11 @@ $ grep "FE" $(find .. -name '*.pdb')
 
 The Unix shell is older than most of the people who use it. It has
 survived so long because it is one of the most productive programming
-environments ever created --- maybe even *the* most productive. Its syntax
+environments ever created. Its syntax
 may be cryptic, but people who have mastered it can experiment with
 different commands interactively, then use what they have learned to
-automate their work. Graphical user interfaces may be better at the
-first, but the shell is still unbeaten at the second. And as Alfred
+automate their work. Graphical user interfaces may be better at experimentation,
+but the shell is usually much better at automation. And as Alfred
 North Whitehead wrote in 1911, "Civilization advances by extending the
 number of important operations which we can perform without thinking
 about them."
@@ -482,15 +482,3 @@ about them."
 > 3. `grep -v "temp" $(find /data -name '*ose.dat')`
 >
 > 4. None of the above.
-
-> ## Little Women {.challenge}
->
-> You and your friend, having just finished reading *Little Women* by
-> Louisa May Alcott, are in an argument.  Of the four sisters in the
-> book, Jo, Meg, Beth, and Amy, your friend thinks that Jo was the
-> most mentioned.  You, however, are certain it was Amy.  Luckily, you
-> have a file `LittleWomen.txt` containing the full text of the novel.
-> Using a`for` loop, how would you tabulate the number of times each
-> of the four sisters is mentioned?  Hint: one solution might employ
-> the commands `grep` and `wc` and a `|`, while another might utilize
-> `grep` options.

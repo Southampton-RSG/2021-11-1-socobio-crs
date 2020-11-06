@@ -497,27 +497,3 @@ files before you operate on them!
 >   echo "analyze $file > analyzed-$file"
 > done
 > ~~~
-
-> ## Nested Loops and Command-Line Expressions {.challenge}
->
-> The `expr` does simple arithmetic using command-line parameters:
-> 
-> ~~~
-> $ expr 3 + 5
-> 8
-> $ expr 30 / 5 - 2
-> 4
-> ~~~
-> 
-> Given this, what is the output of:
-> 
-> ~~~
-> for left in 2 3
-> do
->     for right in $left
->     do
->         expr $left + $right
->     done
-> done
-> ~~~
-
