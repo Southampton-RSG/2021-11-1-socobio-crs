@@ -361,20 +361,6 @@ so that you and other people can put those programs into pipes to multiply their
 > 
 > Explain why `-n` has this effect.
 
-> ## What does `<` mean? {.challenge}
->
-> What is the difference between:
-> 
-> ~~~
-> wc -l < mydata.dat
-> ~~~
-> 
-> and:
-> 
-> ~~~
-> wc -l mydata.dat
-> ~~~
-
 > ## What does `>>` mean? {.challenge}
 >
 > What is the difference between:
@@ -448,28 +434,3 @@ so that you and other people can put those programs into pipes to multiply their
 > ~~~
 > cat animals.txt | head -5 | tail -3 | sort -r > final.txt
 > ~~~
-
-> ## Pipe construction {.challenge}
->
-> The command:
-> 
-> ~~~
-> $ cut -d , -f 2 animals.txt
-> ~~~
-> 
-> produces the following output:
-> 
-> ~~~
-> deer
-> rabbit
-> raccoon
-> rabbit
-> deer
-> fox
-> rabbit
-> bear
-> ~~~
-> 
-> What other command(s) could be added to this in a pipeline to find
-> out what animals the file contains (without any duplicates in their
-> names)?

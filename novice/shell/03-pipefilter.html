@@ -180,18 +180,7 @@ $ head -1 sorted-lengths.txt</code></pre>
 </section>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
-<h2 id="what-does-mean"><span class="glyphicon glyphicon-pencil"></span>What does <code>&lt;</code> mean?</h2>
-</div>
-<div class="panel-body">
-<p>What is the difference between:</p>
-<pre><code>wc -l &lt; mydata.dat</code></pre>
-<p>and:</p>
-<pre><code>wc -l mydata.dat</code></pre>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="what-does-mean-1"><span class="glyphicon glyphicon-pencil"></span>What does <code>&gt;&gt;</code> mean?</h2>
+<h2 id="what-does-mean"><span class="glyphicon glyphicon-pencil"></span>What does <code>&gt;&gt;</code> mean?</h2>
 </div>
 <div class="panel-body">
 <p>What is the difference between:</p>
@@ -251,25 +240,6 @@ steelhead</code></pre>
 2012-11-07,bear</code></pre>
 <p>What text passes through each of the pipes and the final redirect in the pipeline below?</p>
 <pre><code>cat animals.txt | head -5 | tail -3 | sort -r &gt; final.txt</code></pre>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="pipe-construction"><span class="glyphicon glyphicon-pencil"></span>Pipe construction</h2>
-</div>
-<div class="panel-body">
-<p>The command:</p>
-<pre><code>$ cut -d , -f 2 animals.txt</code></pre>
-<p>produces the following output:</p>
-<pre><code>deer
-rabbit
-raccoon
-rabbit
-deer
-fox
-rabbit
-bear</code></pre>
-<p>What other command(s) could be added to this in a pipeline to find out what animals the file contains (without any duplicates in their names)?</p>
 </div>
 </section>
         </div>

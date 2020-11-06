@@ -1,19 +1,82 @@
 ---
 layout: page
-title: Exercise Answers
+title: The Unix Shell
 subtitle: Exercise Answers
 minutes: 0
 ---
 
 ## Files and Directories
 
+Relative path resolution
 
+1. Incorrect, since `backup` exists in the `Users` parent directory, where the preceding `..` is referencing.
+2. Incorrect, since `..` is used before `backup` to reference the `Users` parent directory first, so `ls` will run on `/Users/backup`.
+3. Incorrect as per 2, but also to have the directories have a following `/` we'd also need to use the `-F` flag.
+4. Correct.
+
+ls reading comprehension
+
+1. This will attempt to list the contents of a file or directory called `pwd` which does not exist.
+2. Partially correct, but 3 is also correct.
+3. Partially correct, but 2 is also correct.
+4. Correct.
 
 ## Creating Things
 
+Renaming files
+
+1. Incorrect, since this would copy the mistakenly named file to another file with the desired name, but the original mistakenly named file will still exist.
+2. Correct.
+3. Incorrect, since this would not rename the file.
+4. Incorrect, since `mv` is used to rename a file and `cp` is used to copy a file.
+
+Moving and Copying
+
+1. Incorrect, since `proteins-saved.dat` was created in the directory above, since `..` was used before its filename when copying `recombine/proteins.dat`
+2. Correct.
+3. Incorrect, since `proteins.dat` was moved into the `recombine` directory.
+4. Incorrect, since the `recombine` directory was created in this current directory.
+
+Organizing Directories and Files
+
+ - `mv fructose.dat sucrose.dat analyzed` will copy the files ending `.dat` into the `analyzed` directory.
+
+Copy with Multiple Filenames
+
+ - With several filenames and a directory, `cp` will copy the given files into the given directory.
+ - When given three or more filenames, `cp` will return an error since with more than two arguments `cp` assumes the last argument is a directory.
+
 ## Pipes and Filters
 
+What does sort -n do?
 
+ - `sort -n` will perform a sort interpreting numerical digits as proper numbers - a numerical sort. `sort` on its own will 
+perform a sort assuming any numerical digits are just sequences of characters, e.g. `10` will come before `2` since `1` comes before `2`.
+
+What does >> mean?
+
+ - `>` will redirect the output `hello` to the file `testfile01.txt`, replacing the contents of that file if it already exists.
+ - `<<` will redirect the output `hello` to the file `testfile01.txt`, appending any existing content if that file already exists.
+
+Piping commands together
+
+1. Incorrect, since we cannot redirect to a command, we should use a `|` (pipe) instead.
+2. Incorrect, since `1-3` when passed to `head` is interpreted as a file, not a range of line numbers.
+3. Incorrect, since we need to sort the line counts before extracting the top three (otherwise we get them in whatever order `wc` gives them to `head`)
+4. Correct.
+
+Why does uniq only remove adjacent duplicates?
+
+ - For efficiency. If it were to work across non-adjacent lines it would need to keep the whole file in memory in some way to know whether it had already encountered a line. This would need considerable memory with very large files, and searching for duplicate lines would take much longer to run.
+ - You could use `sort` first in a pipe to sort the file contents to ensure duplicate lines are adjacent, e.g. `sort salmon.txt | uniq`
+
+Pipe reading comprehension
+
+ - `cat animals.txt` will output the contents of `animals.txt`.
+ - `head -5` accepts the output from `cat` and output the first 5 lines of that.
+ - `tail -3` accepts the 5 lines from `head` and output the last 3 lines of that.
+ - `sort -r` accepts the 3 lines from `tail` and output those lines in reverse sort order.
+ - `> final.txt` will take the output from `sort` and redirect it into a file called `final.txt`.
 
 ## Shell Scripts
 

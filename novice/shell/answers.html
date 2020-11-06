@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: Exercise Answers</title>
+    <title>Software Carpentry: The Unix Shell</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,11 +26,77 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">Exercise Answers</h1></a>
+                    <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
           <h2 class="subtitle">Exercise Answers</h2>
           <h2 id="files-and-directories">Files and Directories</h2>
+<p>Relative path resolution</p>
+<ol type="1">
+<li>Incorrect, since <code>backup</code> exists in the <code>Users</code> parent directory, where the preceding <code>..</code> is referencing.</li>
+<li>Incorrect, since <code>..</code> is used before <code>backup</code> to reference the <code>Users</code> parent directory first, so <code>ls</code> will run on <code>/Users/backup</code>.</li>
+<li>Incorrect as per 2, but also to have the directories have a following <code>/</code> we’d also need to use the <code>-F</code> flag.</li>
+<li>Correct.</li>
+</ol>
+<p>ls reading comprehension</p>
+<ol type="1">
+<li>This will attempt to list the contents of a file or directory called <code>pwd</code> which does not exist.</li>
+<li>Partially correct, but 3 is also correct.</li>
+<li>Partially correct, but 2 is also correct.</li>
+<li>Correct.</li>
+</ol>
 <h2 id="creating-things">Creating Things</h2>
+<p>Renaming files</p>
+<ol type="1">
+<li>Incorrect, since this would copy the mistakenly named file to another file with the desired name, but the original mistakenly named file will still exist.</li>
+<li>Correct.</li>
+<li>Incorrect, since this would not rename the file.</li>
+<li>Incorrect, since <code>mv</code> is used to rename a file and <code>cp</code> is used to copy a file.</li>
+</ol>
+<p>Moving and Copying</p>
+<ol type="1">
+<li>Incorrect, since <code>proteins-saved.dat</code> was created in the directory above, since <code>..</code> was used before its filename when copying <code>recombine/proteins.dat</code></li>
+<li>Correct.</li>
+<li>Incorrect, since <code>proteins.dat</code> was moved into the <code>recombine</code> directory.</li>
+<li>Incorrect, since the <code>recombine</code> directory was created in this current directory.</li>
+</ol>
+<p>Organizing Directories and Files</p>
+<ul>
+<li><code>mv fructose.dat sucrose.dat analyzed</code> will copy the files ending <code>.dat</code> into the <code>analyzed</code> directory.</li>
+</ul>
+<p>Copy with Multiple Filenames</p>
+<ul>
+<li>With several filenames and a directory, <code>cp</code> will copy the given files into the given directory.</li>
+<li>When given three or more filenames, <code>cp</code> will return an error since with more than two arguments <code>cp</code> assumes the last argument is a directory.</li>
+</ul>
 <h2 id="pipes-and-filters">Pipes and Filters</h2>
+<p>What does sort -n do?</p>
+<ul>
+<li><code>sort -n</code> will perform a sort interpreting numerical digits as proper numbers - a numerical sort. <code>sort</code> on its own will perform a sort assuming any numerical digits are just sequences of characters, e.g. <code>10</code> will come before <code>2</code> since <code>1</code> comes before <code>2</code>.</li>
+</ul>
+<p>What does &gt;&gt; mean?</p>
+<ul>
+<li><code>&gt;</code> will redirect the output <code>hello</code> to the file <code>testfile01.txt</code>, replacing the contents of that file if it already exists.</li>
+<li><code>&lt;&lt;</code> will redirect the output <code>hello</code> to the file <code>testfile01.txt</code>, appending any existing content if that file already exists.</li>
+</ul>
+<p>Piping commands together</p>
+<ol type="1">
+<li>Incorrect, since we cannot redirect to a command, we should use a <code>|</code> (pipe) instead.</li>
+<li>Incorrect, since <code>1-3</code> when passed to <code>head</code> is interpreted as a file, not a range of line numbers.</li>
+<li>Incorrect, since we need to sort the line counts before extracting the top three (otherwise we get them in whatever order <code>wc</code> gives them to <code>head</code>)</li>
+<li>Correct.</li>
+</ol>
+<p>Why does uniq only remove adjacent duplicates?</p>
+<ul>
+<li>For efficiency. If it were to work across non-adjacent lines it would need to keep the whole file in memory in some way to know whether it had already encountered a line. This would need considerable memory with very large files, and searching for duplicate lines would take much longer to run.</li>
+<li>You could use <code>sort</code> first in a pipe to sort the file contents to ensure duplicate lines are adjacent, e.g. <code>sort salmon.txt | uniq</code></li>
+</ul>
+<p>Pipe reading comprehension</p>
+<ul>
+<li><code>cat animals.txt</code> will output the contents of <code>animals.txt</code>.</li>
+<li><code>head -5</code> accepts the output from <code>cat</code> and output the first 5 lines of that.</li>
+<li><code>tail -3</code> accepts the 5 lines from <code>head</code> and output the last 3 lines of that.</li>
+<li><code>sort -r</code> accepts the 3 lines from <code>tail</code> and output those lines in reverse sort order.</li>
+<li><code>&gt; final.txt</code> will take the output from <code>sort</code> and redirect it into a file called <code>final.txt</code>.</li>
+</ul>
 <h2 id="shell-scripts">Shell Scripts</h2>
 <p>Variables in shell scripts</p>
 <ol type="1">
