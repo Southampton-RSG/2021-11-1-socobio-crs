@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Exercise Answers</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="https://rsgsoton.net/" title="Research Software Group">
+          <img alt="RSG banner" width="20%" src="img/RSG_logo_orange.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Exercise Answers</h1></a>
+          <h2 class="subtitle">Exercise Answers</h2>
+          <h2 id="files-and-directories">Files and Directories</h2>
+<h2 id="creating-things">Creating Things</h2>
+<h2 id="pipes-and-filters">Pipes and Filters</h2>
+<h2 id="shell-scripts">Shell Scripts</h2>
+<p>Variables in shell scripts</p>
+<ol type="1">
+<li>Incorrect, since <code>-1</code> is passed to <code>head</code> in the script it will output the first line of each <code>.pdb</code> file, whilst the <code>-1</code> passed to <code>tail</code> will output the last line of each <code>.pdb</code> file.</li>
+<li>Correct.</li>
+<li>Incorrect, since <code>*.pdb</code> is passed into the script and used by <code>head</code> and <code>tail</code>, so only <code>.pdb</code> files will be used.</li>
+<li>Incorrect, since the quotes only mean that <code>*.pdb</code> will be passed into the script without expansion.</li>
+</ol>
+<p>Script reading comprehension</p>
+<ul>
+<li>Script 1 will output a list of files that match the <code>*.*</code> pattern, i.e. <code>fructose.dat</code>, <code>glucose.dat</code>, and <code>sucrose.dat</code>.</li>
+<li>Script 2 will take in three arguments on the command line, and for each of them, print out their contents.</li>
+<li>Script 3 will print out all arguments as passed to the script on a single line and append <code>.dat</code> to that output.</li>
+</ul>
+<h2 id="loops">Loops</h2>
+<p>Variables in Loops</p>
+<ul>
+<li>The first loop will present “fructose.dat glucose.dat sucrose.dat” three times, since we are running <code>ls *.dat</code> three separate times - we’re not making use of the loop variable <code>$datafile</code>. The second loop will produce “fructose.dat”, “glucose.dat”, and “sucrose.dat” (each on a separate line) since we’re passing <code>$datafile</code> to <code>ls</code>.</li>
+</ul>
+<p>Saving to a File in a Loop - Part One</p>
+<ol type="1">
+<li>Correct.</li>
+<li>Incorrect, since we’re using the <code>&gt;</code> redirect operator, which will overwrite any previous contents of <code>xylose.dat</code>.</li>
+<li>Incorrect, since the file <code>xylose.dat</code> would not have existed when <code>*.dat</code> would have been expanded.</li>
+<li>Incorrect.</li>
+</ol>
+<p>Saving to a File in a Loop - Part Two</p>
+<ol type="1">
+<li>Correct.</li>
+<li>Incorrect, since we’re looping through each of the other <code>.dat</code> files (<code>fructose.dat</code> and <code>glucose.dat</code>) whose contents would also be included.</li>
+<li>Incorrect, since <code>maltose.txt</code> has a <code>.txt</code> extension and not a <code>.dat</code> extension, so won’t match on <code>*.dat</code> and won’t be included in the loop.</li>
+<li>Incorrect, since the <code>&gt;&gt;</code> operator redirects all output to the <code>sugar.dat</code> file, so we won’t see any screen output.</li>
+</ol>
+<p>Doing a dry run</p>
+<ul>
+<li>Version 2 is the one that successfully acts as a dry run. In version 1, since the <code>&gt;</code> file redirect is not within quotes, the script will create three files <code>analyzed-basilisk.dat</code>, <code>analyzed-minotaur.dat</code>, and <code>analyzed-unicorn.dat</code> which is not what we want.</li>
+</ul>
+<h2 id="finding-things">Finding Things</h2>
+<p>Using grep</p>
+<ol type="1">
+<li>Incorrect, since it will find lines that contain <code>of</code> including those that are not a complete word, including “Software is like that.”</li>
+<li>Incorrect, <code>-E</code> (which enables extended regular expressions in <code>grep</code>), won’t change the behaviour since the given pattern is not a regular expression. So the results will be the same as 1.</li>
+<li>Correct, since we have supplied <code>-w</code> to indicate that we are looking for a complete word, hence only “and the presence of absence:” is found.</li>
+<li>Incorrect. <code>-i</code> indicates we wish to do a case insensitive search which isn’t required. The results are the same as 1.</li>
+</ol>
+<p>find pipeline reading comprehension</p>
+<ul>
+<li>Find all files (in this directory and all subdirectories) that have a filename that ends in <code>.dat</code>, count the number of files found, and sort the result. Note that the <code>sort</code> here is unnecessary, since it is only sorting one number.</li>
+</ul>
+<p>Matching ose.dat but not temp {}:</p>
+<ol type="1">
+<li>Incorrect, since the first <code>grep</code> will find all filenames that contain <code>ose</code> wherever it may occur, and also because the use of <code>grep</code> as a following pipe command will only match on filenames output from <code>find</code> and not their contents.</li>
+<li>Incorrect, since it will only find those files than match <code>ose.dat</code> exactly, and also because the use of <code>grep</code> as a following pipe command will only match on filenames output from <code>find</code> and not their contents.</li>
+<li>Correct answer. It first executes the <code>find</code> command to find those files matching the ’*ose.dat’ pattern, which will match on exactly those that end in <code>ose.dat</code>, and then <code>grep</code> will search those files for “temp” and only report those that don’t contain it, since it’s using the <code>-v</code> flag to invert the results.</li>
+<li>Incorrect.</li>
+</ol>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/shell-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
