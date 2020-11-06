@@ -56,7 +56,16 @@ subtitle: Reference
 *   `first | second` is a pipeline: the output of the first command is used as the input to the second.
 *   The best way to use the shell is to use pipes to combine simple single-purpose programs (filters).
 
-## [Loops](04-loop.html)
+## [Shell Scripts](04-script.html)
+
+*   Save commands in files (usually called shell scripts) for re-use.
+*   `bash filename` runs the commands saved in a file.
+*   `$*` refers to all of a shell script's command-line parameters.
+*   `$1`, `$2`, etc., refer to specified command-line parameters.
+*   Place variables in quotes if the values might have spaces in them.
+*   Letting users decide what files to process is more flexible and more consistent with built-in Unix commands.
+
+## [Loops](05-loop.html)
 
 *   A `for` loop repeats commands once for every thing in a list.
 *   Every `for` loop needs a variable to refer to the current "thing".
@@ -66,15 +75,6 @@ subtitle: Reference
 *   Use the up-arrow key to scroll up through previous commands to edit and repeat them.
 *   Use "control-r" to search through the previously entered commands.
 *   Use `history` to display recent commands, and `!number` to repeat a command by number.
-
-## [Shell Scripts](05-script.html)
-
-*   Save commands in files (usually called shell scripts) for re-use.
-*   `bash filename` runs the commands saved in a file.
-*   `$*` refers to all of a shell script's command-line parameters.
-*   `$1`, `$2`, etc., refer to specified command-line parameters.
-*   Place variables in quotes if the values might have spaces in them.
-*   Letting users decide what files to process is more flexible and more consistent with built-in Unix commands.
 
 ## [Finding Things](06-find.html)
 
