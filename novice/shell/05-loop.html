@@ -51,9 +51,12 @@ $ ls</code></pre>
 <pre class="bash"><code>$ mv *.dat original-*.dat</code></pre>
 <p>Because as we learnt previously, with wildcards that would expand to:</p>
 <pre class="bash"><code>$ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat</code></pre>
-<p>This wouldn’t back up our files, instead we would get an error:</p>
+<p>This wouldn’t back up our files, instead we would get an error. If on a Mac it would look like:</p>
 <pre class="error"><code>mv: target `original-*.dat&#39; is not a directory</code></pre>
-<p>This a problem arises when <code>mv</code> receives more than two inputs. When this happens, it expects the last input to be a directory where it can move all the files it was passed. Since there is no directory named <code>original-*.dat</code> in the <code>creatures</code> directory we get an error.</p>
+<p>Or if on Windows using Git Bash, we would see:</p>
+<pre class="error"><code>usage: mv [-f | -i | -n] [-v] source target
+       mv [-f | -i | -n] [-v] source ... directory</code></pre>
+<p>Even though the error is different, the cause is the same. It arises when <code>mv</code> receives more than two inputs. When this happens, it expects the last input to be a directory where it can move all the files it was passed. Since there is no directory named <code>original-*.dat</code> in the <code>creatures</code> directory we get an error.</p>
 <h3 id="using-a-loop-to-do-something-multiple-times">Using a loop to do something multiple times</h3>
 <p>Instead, we can use a <strong>loop</strong> to do some operation once for each thing in a list. Here’s a simple example that displays the first three lines of each file in turn.</p>
 <p>Let’s create a new shell script using <code>nano</code> called <code>top.sh</code> that uses a loop.</p>

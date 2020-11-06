@@ -12,8 +12,8 @@ minutes: 15
 > *   Demonstrate how to see what commands have recently been executed.
 
 Wildcards and tab completion are two ways to reduce typing as well as typing mistakes.
-Another is to tell the shell to do something over and over again. If we could do this,
-it could also save us considerable time, depending on how many times we need the shell to do this thing.
+Another is to tell the shell to do something over and over again, which could save us considerable time,
+depending on how many times we need the shell to do this thing.
 
 ### Couldn't we just...
 
@@ -46,13 +46,21 @@ Because as we learnt previously, with wildcards that would expand to:
 $ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat
 ~~~
 
-This wouldn't back up our files, instead we would get an error:
+This wouldn't back up our files, instead we would get an error. If on a Mac it would look like:
 
 ~~~ {.error}
 mv: target `original-*.dat' is not a directory
 ~~~
 
-This a problem arises when `mv` receives more than two inputs. When this happens, it
+Or if on Windows using Git Bash, we would see:
+
+~~~ {.error}
+usage: mv [-f | -i | -n] [-v] source target
+       mv [-f | -i | -n] [-v] source ... directory
+~~~
+
+Even though the error is different, the cause is the same.
+It arises when `mv` receives more than two inputs. When this happens, it
 expects the last input to be a directory where it can move all the files it was passed.
 Since there is no directory named `original-*.dat` in the `creatures` directory we get an
 error.
@@ -135,6 +143,16 @@ Finally,
 the command that's actually being run is our old friend `head`,
 so this loop prints out the first three lines of each data file in turn.
 
+> ## Why the extra spaces?
+> 
+> Note the use of spaces for indentation before the `head` command.
+> This line is part of the body of the loop (the part that gets executed many times)
+> and whilst extra spaces don't affect how the
+> script runs, it is considered best practice to use indentation to highlight the loop body.
+> In general programming, indentation is very important. Without indentation in code blocks
+> such as these,, code becomes much harder to read.
+
+
 ### Dos and don'ts of variable naming
 
 We have called the variable in this loop `filename`
@@ -181,7 +199,8 @@ done
 
 Save this file and exit `nano`.
 
-The shell starts by expanding `*.dat` to create the list of files it will process.
+The shell starts by expanding `*.dat` to create the list of files it will process,
+since with the `*` wildcard, this pattern will match anything that ends with `.dat`.
 The **loop body**
 then executes two commands for each of those files.
 The first, `echo`, just prints its command-line parameters to standard output.
