@@ -192,7 +192,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>Notice, by the way, that we spelled the directory name <code>test_directory</code>, and it doesn’t have a trailing slash. That’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong> - it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="parameters-vs.arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
+<h2 id="parameters-vs.-arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
 </div>
 <div class="panel-body">
 <p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>, the terms argument and <strong>parameter</strong> mean slightly different things. In practice, however, most people use them interchangeably or inconsistently, so we will too.</p>
@@ -209,7 +209,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>This is known as <em>tab completion</em> on any matches with those first few letters. If there are more than one files or directories that match those letters, the shell will show you both — you can then enter more characters (then using <em>TAB</em> again) until it is able to identify the precise file you want and finish the tab completion.</p>
 <p>Let’s change our directory to <code>test_directory</code>:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
-<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
+<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
 <p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
@@ -227,10 +227,11 @@ creatures/          north-pacific-gyre/ solar.pdf</code></pre>
 <p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code> (which, if we’re in <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code>, refers to the <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell</code> directory). As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="orthogonality"><span class="glyphicon glyphicon-pushpin"></span>Orthogonality</h2>
+<h2 id="special-names"><span class="glyphicon glyphicon-pushpin"></span>Special Names</h2>
 </div>
 <div class="panel-body">
-<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-10-29-socobio-crs</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>. When the meanings of the parts are the same no matter how they’re combined, programmers say they are <strong>orthogonal</strong>: Orthogonal systems tend to be easier for people to learn because there are fewer special cases and exceptions to keep track of.</p>
+<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-10-29-socobio-crs</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>, and the command <code>cd ..</code> will take us back to <code>/Users/nelle</code> as well.</p>
+<p>How <code>.</code>, <code>..</code> and <code>~</code> behave is a feature of how Bash represents your computer’s file system, not any particular program you can run in it.</p>
 </div>
 </aside>
 <p>Another handy feature is that we can reference our home directory with <code>~</code>, e.g.:</p>

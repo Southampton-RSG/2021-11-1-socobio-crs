@@ -423,17 +423,17 @@ which means "the current working directory".
 It may seem redundant to have a name for it,
 but we'll see some uses for it soon.
 
-> ## Orthogonality {.callout}
+> ## Special Names {.callout}
 >
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
 > if we are in `/Users/nelle/2020-10-29-socobio-crs`,
-> the command `ls ..` will give us a listing of `/Users/nelle`.
-> When the meanings of the parts are the same no matter how they're combined,
-> programmers say they are **orthogonal**:
-> Orthogonal systems tend to be easier for people to learn
-> because there are fewer special cases and exceptions to keep track of.
+> the command `ls ..` will give us a listing of `/Users/nelle`,
+> and the command `cd ..` will take us back to `/Users/nelle` as well.
+>
+> How `.`, `..` and `~` behave is a feature of how Bash represents
+> your computer's file system, not any particular program you can run in it.
 
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
