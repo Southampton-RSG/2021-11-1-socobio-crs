@@ -357,3 +357,5 @@ wc -l "$@" | sort -n
 > # Script 3
 > echo $@.dat
 > ~~~
+
+### [Next: Loops](05-loop.html)
