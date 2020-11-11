@@ -5,10 +5,12 @@ title: The Unix Shell
 The Unix shell has been around longer than most of its users have been alive.
 It has survived so long because it's a power tool
 that allows people to do complex things with just a few keystrokes.
+
 More importantly,
 it helps them combine existing programs in new ways
 and automate repetitive tasks
 so that they don't have to type the same things over and over again.
+
 Use of the shell is fundamental to using a wide range of other powerful tools 
 and computing resources (including "high-performance computing" supercomputers, like IRIDIS at the University of Southampton).
 These lessons will start you on a path towards using these resources effectively.
@@ -30,6 +32,7 @@ These lessons will start you on a path towards using these resources effectively
 > 
 > - On Windows: run "Git Bash", which you installed as part of the software prerequisites
 > - On Mac OS X: accessed by opening the “Terminal” application, which can be found in the “Utilities” folder which is in your “Applications” folder
+> - On Linux: this will depend on the Linux distribution you are running, but you should be able to find a "Terminal" application in your desktop's application menu
 > 
 > Once you've done this, a window should appear. Type the following into the 
 > prompt that appears (pressing enter/return after each line):
@@ -53,6 +56,4 @@ The answers to the exercises can be found [here](answers.html).
 
 ## Other Resources
 
-*   [Reference](reference.html)
-*   [Discussion](discussion.html)
-*   [Instructor's Guide](instructors.html)
+*   [Bash command reference](reference.html)

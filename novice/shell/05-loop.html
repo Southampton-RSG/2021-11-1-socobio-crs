@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: The Unix Shell</title>
+    <title>Software Carpentry: The Bash Shell</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,7 +26,7 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
+                    <a href="index.html"><h1 class="title">The Bash Shell</h1></a>
           <h2 class="subtitle">Loops</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
@@ -51,7 +51,7 @@ $ ls</code></pre>
 <pre class="bash"><code>$ mv *.dat original-*.dat</code></pre>
 <p>Because as we learnt previously, with wildcards that would expand to:</p>
 <pre class="bash"><code>$ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat</code></pre>
-<p>This wouldn’t back up our files, instead we would get an error. If on a Mac it would look like:</p>
+<p>This wouldn’t back up our files, instead we would get an error. If on a Mac or Linux it would look like:</p>
 <pre class="error"><code>mv: target `original-*.dat&#39; is not a directory</code></pre>
 <p>Or if on Windows using Git Bash, we would see:</p>
 <pre class="error"><code>usage: mv [-f | -i | -n] [-v] source target

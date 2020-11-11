@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Files and Directories
 minutes: 15
 ---
@@ -96,7 +96,9 @@ $ pwd
 > its jargon. The result is as inconsistent as the roolz uv Inglish
 > speling, but we're stuck with it now.
 
-> ## Save yourself some unnecessary keypresses {.callout}
+> ## Real typing timesavers {.callout}
+>
+> Save yourself some unnecessary keypresses!
 >
 > Using the up and down arrow keys allow you to cycle through your previous
 > commands - plus, useful if you forget exactly what you typed earlier!

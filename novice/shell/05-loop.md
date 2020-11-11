@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Loops
 minutes: 15
 ---
@@ -46,7 +46,7 @@ Because as we learnt previously, with wildcards that would expand to:
 $ mv basilisk.dat minotaur.dat unicorn.dat original-*.dat
 ~~~
 
-This wouldn't back up our files, instead we would get an error. If on a Mac it would look like:
+This wouldn't back up our files, instead we would get an error. If on a Mac or Linux it would look like:
 
 ~~~ {.error}
 mv: target `original-*.dat' is not a directory

@@ -1,84 +1,46 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Introducing the Shell
 minutes: 5
 ---
 > ## Learning Objectives {.objectives}
 >
-> *   Explain how the shell relates to the keyboard, the screen, the operating system, and users' programs.
-> *   Explain when and why command-line interfaces should be used instead of graphical interfaces.
+> *   Explain what the shell is and how it relates to graphical interfaces.
+> *   Explain the benefits of using the shell.
 
-## Interacting with a computer
+## What is the shell?
 
-At a high level, computers do four things:
+The Bash shell a text-based program that interactively allows you to run other programs.
 
--   Run programs
--   Store data
--   Communicate with each other
--   Interact with us
+You'll be familiar with the graphical way of dealing with computers, like the interfaces that Windows and Macs give you.
+You run an application, it gives you windows and buttons and menus to interact with to access its functions and achieve a result.
+The Bash shell also gives you a means to access the functionality provided by your computer and other programs, but it does so in a different way.
+It allows you to type commands into your computer to get results instead.
+So when the command has finished running, it prints out the results.
+And then the shell allows you to type in another command…
+And so on.
 
-They can do the last of these in many different ways,
-with more modern methods including virtual headsets and speech interfaces.
-Since these are still in their relative infancy,
-most of us use windows, icons, mice, and pointers.
-These technologies didn't become widespread until the 1980s,
-but their roots go back to Doug Engelbart's work in the 1960s,
-which you can see in what has been called
-"[The Mother of All Demos](https://www.youtube.com/watch?v=B6rKUf9DWRI)".
+The shell is called *the shell* because it encloses the machine's **operating system** - which could be Windows, Mac OS X, or Linux - giving you a wrapper-like interface to interact with it. Another, more general way, of referring to the shell is the **command line**, since it provides an interface into which you type commands line-by-line.
 
-## The command line versus the graphical user interface
+## Why use it?
 
-Going back even further,
-the only way to interact with early computers was to rewire them.
-But in between,
-from the 1950s to the 1980s,
-most people used line printers.
-These devices only allowed input and output of the letters, numbers, and punctuation found on a standard keyboard,
-so programming languages and interfaces had to be designed around that constraint.
+So why use the Bash shell?
 
-This kind of interface is called a
-**command-line interface**, or CLI,
-to distinguish it from a
-**graphical user interface**, or GUI,
-which most people now use.
-The heart of a CLI is a **read-evaluate-print loop**, or REPL:
-when the user types a command and then presses the enter (or return) key,
-the computer reads it,
-executes it,
-and prints its output.
-The user then types another command,
-and so on until the user closes the CLI.
+- *Capturing a process:* Being able to capture how programs are run and in what order in a Bash script - and essentially automating how we run that process - is invaluable.
+It's really helpful with making your pipelines reproducible: once you've defined this process in a script, you can re-run it whenever you want.
+This is both helpful for others to achieve the same results, but also for yourself 
+perhaps six months from now, when it would be otherwise difficult to remember exactly what you did.
+What you are effectively doing is building a narrative - telling a story in recorded, programmatic form - of how you generated your research results.
 
-This description makes it sound as though the user sends commands directly to the computer,
-and the computer sends output directly to the user.
-In fact,
-there is usually a program in between called a
-**command shell**.
-What the user types goes into the shell,
-which then figures out what commands to run and orders the computer to execute them. Note, the shell is called *the shell* because it encloses the operating system in order to hide some of its complexity and make it simpler to interact with.
+- *Repetition:* Bash is great at repeating the same commands many times.
+This could be renaming a hundred files in a certain way, or something more complex, such as running a data analysis program over many input data files, 
+or running a program to generate a chart for every one of those output data files produced by that program
 
-## The Bash shell
+- *Availability:* Bash is available on different types of machines
+You can already use the Bash shell on computers like Macs and those that run Linux, where it's already installed, but you can also install and use it on Windows
 
-A shell is a program like any other.
-What's special about it is that its job is to run other programs
-rather than to do calculations itself.
-The most popular Unix shell is Bash,
-the Bourne Again SHell
-(so-called because it's derived from a shell written by Stephen Bourne --- this
-is what passes for wit among programmers).
-Bash is the default shell on most modern implementations of Unix
-and in most packages that provide Unix-like tools for Windows.
+- *Using other computational resources:* if you need to use another computational resource, such as a supercomputer to run your programs even faster, they almost exclusively use the shell
 
-Using Bash or any other shell
-sometimes feels more like programming than like using a mouse.
-Commands are terse (often only a couple of characters long),
-their names are frequently cryptic,
-and their output is lines of text rather than something visual like a graph.
+Now on the flip side, it does have a steeper learning curve generally than using graphical programs. Applications and programs also need to work on the command line to be able to take advantage of it. But knowing just a little can be very useful, and in your careers you will very likely come across quite a few programs that have command line interfaces so it's helpful to have some experience with it.
 
-On the other hand,
-the shell allows us to combine existing tools in powerful ways with only a few keystrokes
-and to set up pipelines to handle large volumes of data automatically.
-In addition, the command line is often the easiest way to interact with remote machines and supercomputers.
-Familiarity with the shell is near essential to run a variety of specialised tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching,
-being able to interact with them is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges.

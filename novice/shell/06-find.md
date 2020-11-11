@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Finding Things
 minutes: 15
 ---

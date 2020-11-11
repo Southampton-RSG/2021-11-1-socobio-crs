@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Pipes and Filters
 minutes: 15
 ---
@@ -78,40 +78,38 @@ $ wc *.csv
  1049588 1049591 21047825 total
 ~~~
 
-> ## Wildcards and why they're useful {.callout}
-> 
-> Sometimes we need to pass multiple filenames to a single command,
-> or find or use filenames that match a given pattern,
-> and this is where **wildcards** can be really useful.
->
-> `*` is a wildcard that matches zero or more
-> characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
-> On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the `sc_climate_data_` at the front only matches those two files.
-> 
-> `?` is also a wildcard, but it only matches a single character. This
-> means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example.
-> We can use any number of wildcards at a time: for example, `p*.p?*`
-> matches anything that starts with a `p` and ends with `.p`, and is followed by at
-> least one more character (since the `?` has to match one character, and
-> the final `*` can match any number of characters). Thus, `p*.p?*` would
-> match `preferred.practice`, and even `p.pi` (since the first `*` can
-> match no characters at all), but not `quality.practice` (doesn't start
-> with `p`) or `preferred.p` (there isn't at least one character after the
-> `.p`).
->
-> When the shell sees a wildcard, it expands the wildcard to create a
-> list of matching filenames *before* running the command that was
-> asked for. As an exception, if a wildcard expression does not match
-> any file, Bash will pass the expression as a parameter to the command
-> as it is. For example typing `ls *.pdf` in the data directory
-> (which contains only files with names ending with `.csv`) results in
-> an error message that there is no file called `*.pdf`.
-> However, generally commands like `wc` and `ls` see the lists of
-> file names matching these expressions, but not the wildcards
-> themselves. It is the shell, not the other programs, that deals with
-> expanding wildcards, and this another example of orthogonal design.
+Sometimes we need to pass multiple filenames to a single command,
+or find or use filenames that match a given pattern,
+and this is where **wildcards** can be really useful.
 
-If we run `wc -l` instead of just `wc`,
+`*` is a wildcard that matches zero or more
+characters, so `*.csv` matches `sc_climate_data.csv`, `sc_climate_data_10.csv`, and so on.
+On the other hand, `sc_climate_data_*.csv` only matches `sc_climate_data_10.csv` and `sc_climate_data_1000.csv`, because the `sc_climate_data_` at the front only matches those two files.
+
+`?` is also a wildcard, but it only matches a single character. This
+means that `s?.csv` matches `si.csv` or `s5.csv`, but not `sc_climate_data.csv`, for example.
+We can use any number of wildcards at a time: for example, `p*.p?*`
+matches anything that starts with a `p` and ends with `.p`, and is followed by at
+least one more character (since the `?` has to match one character, and
+the final `*` can match any number of characters). Thus, `p*.p?*` would
+match `preferred.practice`, and even `p.pi` (since the first `*` can
+match no characters at all), but not `quality.practice` (doesn't start
+with `p`) or `preferred.p` (there isn't at least one character after the
+`.p`).
+
+When the shell sees a wildcard, it expands the wildcard to create a
+list of matching filenames *before* running the command that was
+asked for. As an exception, if a wildcard expression does not match
+any file, Bash will pass the expression as a parameter to the command
+as it is. For example typing `ls *.pdf` in the data directory
+(which contains only files with names ending with `.csv`) results in
+an error message that there is no file called `*.pdf`.
+However, generally commands like `wc` and `ls` see the lists of
+file names matching these expressions, but not the wildcards
+themselves. It is the shell, not the other programs, that deals with
+expanding wildcards, and this another example of orthogonal design.
+
+Going back to `wc`, if we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
 
 ~~~ {.bash}

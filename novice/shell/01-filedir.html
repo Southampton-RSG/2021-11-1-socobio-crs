@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: The Unix Shell</title>
+    <title>Software Carpentry: The Bash Shell</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,7 +26,7 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
+                    <a href="index.html"><h1 class="title">The Bash Shell</h1></a>
           <h2 class="subtitle">Files and Directories</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
@@ -82,9 +82,10 @@
 </aside>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="save-yourself-some-unnecessary-keypresses"><span class="glyphicon glyphicon-pushpin"></span>Save yourself some unnecessary keypresses</h2>
+<h2 id="real-typing-timesavers"><span class="glyphicon glyphicon-pushpin"></span>Real typing timesavers</h2>
 </div>
 <div class="panel-body">
+<p>Save yourself some unnecessary keypresses!</p>
 <p>Using the up and down arrow keys allow you to cycle through your previous commands - plus, useful if you forget exactly what you typed earlier!</p>
 <p>We can also move to the beginning of a line in the shell by typing <code>^A</code> (which means Control-A) and to the end using <code>^E</code>. Much quicker on long lines than just using the left/right arrow keys.</p>
 </div>
@@ -192,7 +193,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>Notice, by the way, that we spelled the directory name <code>test_directory</code>, and it doesn’t have a trailing slash. That’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong> - it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="parameters-vs.-arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
+<h2 id="parameters-vs.arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
 </div>
 <div class="panel-body">
 <p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>, the terms argument and <strong>parameter</strong> mean slightly different things. In practice, however, most people use them interchangeably or inconsistently, so we will too.</p>
@@ -209,7 +210,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>This is known as <em>tab completion</em> on any matches with those first few letters. If there are more than one files or directories that match those letters, the shell will show you both — you can then enter more characters (then using <em>TAB</em> again) until it is able to identify the precise file you want and finish the tab completion.</p>
 <p>Let’s change our directory to <code>test_directory</code>:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
-<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
+<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
 <p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>

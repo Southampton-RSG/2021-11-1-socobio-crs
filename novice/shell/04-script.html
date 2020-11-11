@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="generator" content="pandoc">
-    <title>Software Carpentry: The Unix Shell</title>
+    <title>Software Carpentry: The Bash Shell</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
@@ -26,7 +26,7 @@
       <article>
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-                    <a href="index.html"><h1 class="title">The Unix Shell</h1></a>
+                    <a href="index.html"><h1 class="title">The Bash Shell</h1></a>
           <h2 class="subtitle">Shell Scripts</h2>
           <section class="objectives panel panel-warning">
 <div class="panel-heading">
@@ -171,7 +171,8 @@ wc -l &quot;$@&quot; | sort -n</code></pre>
 <div class="panel-body">
 <p>In the <code>test_directory/molecules</code> directory, you have a shell script called <code>script.sh</code> containing the following commands:</p>
 <pre><code>head $2 $1
-tail $3 $1</code></pre>
+tail -n $3 $1</code></pre>
+<p>Note that here, we use the explicit <code>-n</code> flag to pass the number of lines to <code>tail</code> that we want to extract, since we’re passing in multiple <code>.pdb</code> files. Otherwise, <code>tail</code> can give us an error about incorrect options on certain machines if we don’t.</p>
 <p>While you are in the molecules directory, you type the following command:</p>
 <pre><code>bash script.sh &#39;*.pdb&#39; -1 -1</code></pre>
 <p>Which of the following outputs would you expect to see?</p>

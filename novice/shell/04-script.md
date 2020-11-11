@@ -1,6 +1,6 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 subtitle: Shell Scripts
 minutes: 15
 ---
@@ -312,8 +312,12 @@ wc -l "$@" | sort -n
 >
 > ~~~
 > head $2 $1
-> tail $3 $1
+> tail -n $3 $1
 > ~~~
+> 
+> Note that here, we use the explicit `-n` flag to pass the number of lines to `tail` that we want to extract,
+> since we're passing in multiple `.pdb` files. Otherwise, `tail` can give us an error about incorrect options on
+> certain machines if we don't.
 > 
 > While you are in the molecules directory, you type the following command:
 >
