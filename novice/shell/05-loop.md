@@ -497,3 +497,5 @@ files before you operate on them!
 >   echo "analyze $file > analyzed-$file"
 > done
 > ~~~
+
+### [Next: Finding Things](06-find.html)

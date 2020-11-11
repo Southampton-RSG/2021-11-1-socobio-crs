@@ -484,3 +484,5 @@ path: `here/there/~/elsewhere` is *not* `/Users/nelle/elsewhere`.
 > 2.  `ls -r -F`
 > 3.  `ls -r -F /Users/backup`
 > 4.  Either \#2 or \#3 above, but not \#1.
+
+### [Next: Creating Things](02-create.html)

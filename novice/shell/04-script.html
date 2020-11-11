@@ -60,7 +60,7 @@ $ nano middle.sh</code></pre>
 <p>Sure enough, our script’s output is exactly what we would get if we ran that pipeline directly.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="text-vs.whatever"><span class="glyphicon glyphicon-pushpin"></span>Text vs. Whatever</h2>
+<h2 id="text-vs.-whatever"><span class="glyphicon glyphicon-pushpin"></span>Text vs. Whatever</h2>
 </div>
 <div class="panel-body">
 <p>We usually call programs like Microsoft Word or LibreOffice Writer “text editors”, but we need to be a bit more careful when it comes to programming. By default, Microsoft Word uses <code>.docx</code> files to store not only text, but also formatting information about fonts, headings, and so on. This extra information isn’t stored as characters, and doesn’t mean anything to tools like <code>head</code>: they expect input files to contain nothing but the letters, digits, and punctuation on a standard computer keyboard. When editing programs, therefore, you must either use a plain text editor, or be careful to save files as plain text.</p>
@@ -116,7 +116,7 @@ head &quot;$2&quot; &quot;$1&quot; | tail &quot;$3&quot;</code></pre>
 <h3 id="processing-multiple-files">Processing multiple files</h3>
 <p>What if we want to process many files in a single pipeline? For example, if we want to sort our <code>.csv</code> files by length, we would type:</p>
 <pre class="bash"><code>$ wc -l *.csv | sort -n</code></pre>
-<p>This is because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code>-l</code> flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>&quot;$@&quot;</code> is equivalent to <code>&quot;$1&quot;</code> <code>&quot;$2&quot;</code> …)</p>
+<p>This is because <code>wc -l</code> lists the number of lines in the files (recall that wc stands for ‘word count’, adding the <code>-l</code> flag means ‘count lines’ instead) and <code>sort -n</code> sorts things numerically. We could put this in a file, but then it would only ever sort a list of <code>.csv</code> files in the current directory. If we want to be able to get a sorted list of other kinds of files, we need a way to get all those names into the script. We can’t use <code>$1</code>, <code>$2</code>, and so on because we don’t know how many files there are. Instead, we use the special variable <code>$@</code>, which means, “All of the command-line parameters to the shell script.” We also should put <code>$@</code> inside double-quotes to handle the case of parameters containing spaces (<code>"$@"</code> is equivalent to <code>"$1"</code> <code>"$2"</code> …)</p>
 <p>Here’s an example. Edit a new file called <code>sort.sh</code>:</p>
 <pre class="bash"><code>$ nano sorted.sh</code></pre>
 <p>And in that file enter:</p>
@@ -201,6 +201,7 @@ done</code></pre>
 echo $@.dat</code></pre>
 </div>
 </section>
+<h3 id="next-loops"><a href="05-loop.html">Next: Loops</a></h3>
         </div>
       </div>
       </article>

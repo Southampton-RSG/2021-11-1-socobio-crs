@@ -43,3 +43,4 @@ You can already use the Bash shell on computers like Macs and those that run Lin
 
 Now on the flip side, it does have a steeper learning curve generally than using graphical programs. Applications and programs also need to work on the command line to be able to take advantage of it. But knowing just a little can be very useful, and in your careers you will very likely come across quite a few programs that have command line interfaces so it's helpful to have some experience with it.
 
+### [Next: Files and Directories](01-filedir.html)

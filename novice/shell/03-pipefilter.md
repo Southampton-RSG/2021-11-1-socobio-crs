@@ -106,8 +106,7 @@ as it is. For example typing `ls *.pdf` in the data directory
 an error message that there is no file called `*.pdf`.
 However, generally commands like `wc` and `ls` see the lists of
 file names matching these expressions, but not the wildcards
-themselves. It is the shell, not the other programs, that deals with
-expanding wildcards, and this another example of orthogonal design.
+themselves. It's the shell, not the other programs, that expands the wildcards. 
 
 Going back to `wc`, if we run `wc -l` instead of just `wc`,
 the output shows only the number of lines per file:
@@ -436,3 +435,5 @@ For those interested in the technical details of how pipes work:
 > and from `sort` through `head` to the screen.
 > 
 > ![1. Redirects and Pipes](fig/redirects-and-pipes.png)
+
+### [Next: Shell Scripts](04-script.html)
