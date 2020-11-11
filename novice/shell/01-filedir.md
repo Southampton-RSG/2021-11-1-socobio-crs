@@ -87,7 +87,7 @@ $ pwd
 >
 > If the command to find out who we are is `whoami`, the command to find
 > out where we are ought to be called `whereami`, so why is it `pwd`
-> instead? The usual answer is that in the early 1970s, when Unix was
+> instead? The usual answer is that in the early 1970s, when Unix - where the Bash shell originates - was
 > first being developed, every keystroke counted: the devices of the day
 > were slow, and backspacing on a teletype was so painful that cutting the
 > number of keystrokes in order to cut the number of typing mistakes was
