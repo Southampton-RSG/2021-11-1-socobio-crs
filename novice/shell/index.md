@@ -2,7 +2,7 @@
 layout: page
 title: The Bash Shell
 ---
-The Bash shell has been around longer than most of its users have been alive.
+The Bash shell has been around longer than many of its users have been alive.
 It has survived so long because it's a power tool
 that allows people to do complex things with just a few keystrokes.
 
