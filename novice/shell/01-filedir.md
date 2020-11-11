@@ -171,6 +171,10 @@ Downloads              Pizza.cfg              mbox
 
 Of course, this listing will depend on what you have in your own home directory.
 
+If you're using Git Bash on Windows, you'll find that it looks a little different, with characters such as `/` added to some names.
+This is because Git Bash automatically tries to highlight the type of thing it is. For example, `/` indicates that entry is a directory.
+There's a way to also highlight this on Mac and Linux machines which we'll see shortly!
+
 We need to get into the repository directory `2020-10-29-socobio-crs`, so what if we want to change our current working directory?
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.

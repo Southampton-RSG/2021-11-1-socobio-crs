@@ -107,8 +107,8 @@ Now, let's type in a few lines of text, for example:
 
 ![Nano in action](fig/nano-screenshot.png)
 
-Once we have a few words, we then use `Control-O` (pressing `Control` and the letter `O` at the same time)
-to save this data in a new `draft.txt` file.
+Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press 
+`Enter` to confirm the filename.
 
 Once our file is saved,
 we can use `Control-X` to quit the editor and return to the shell.
