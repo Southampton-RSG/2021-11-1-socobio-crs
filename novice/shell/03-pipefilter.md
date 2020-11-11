@@ -250,7 +250,7 @@ and saying "the log of three times *x*".
 In our case,
 the calculation is "head of sort of line count of `*.csv`".
 
-This simple idea is why Unix has been so successful.
+This simple idea is why systems like Unix - and its successors like Linux - have been so successful.
 Instead of creating enormous programs that try to do many different things,
 Unix programmers focus on creating lots of simple tools that each do one job well,
 and that work well with each other.
