@@ -15,7 +15,7 @@ minutes: 15
 
 You can guess someone's age by how they talk about search:
 young people use "Google" as a verb,
-while crusty old Unix programmers use "grep".
+while crusty old Bash programmers use "grep".
 The word is a contraction of "global/regular expression/print",
 a common sequence of operations in early Unix text editors.
 It is also the name of a very useful command-line program.
@@ -124,7 +124,7 @@ $ grep -n "it" haiku.txt
 
 Here, we can see that lines 5, 9, and 10 contain the letters "it".
 
-We can combine options (i.e. flags) as we do with other Unix commands.
+We can combine options (i.e. flags) as we do with other Bash commands.
 For example, let's find the lines that contain the word "the". We can combine
 the option `-w` to find the lines that contain the word "the" and `-n` to number the lines that match:
 
@@ -418,7 +418,7 @@ $ grep "FE" $(find .. -name '*.pdb')
 > modern programming languages, Python included, have borrowed a lot of
 > ideas from it, and imitation is also the sincerest form of praise.
 
-The Unix shell is older than most of the people who use it. It has
+The Bash shell is older than most of the people who use it. It has
 survived so long because it is one of the most productive programming
 environments ever created. Its syntax
 may be cryptic, but people who have mastered it can experiment with

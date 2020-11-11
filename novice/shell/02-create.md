@@ -153,8 +153,8 @@ $ ls
 
 > ## Deleting Is Forever {.callout}
 >
-> The Unix shell doesn't have a trash bin that we can recover deleted
-> files from (though most graphical interfaces to Unix do).  Instead,
+> The Bash shell doesn't have a trash bin that we can recover deleted
+> files from.  Instead,
 > when we delete files, they are unhooked from the file system so that
 > their storage space on disk can be recycled. Tools for finding and
 > recovering deleted files do exist, but there's no guarantee they'll
