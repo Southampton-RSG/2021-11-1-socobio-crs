@@ -423,3 +423,5 @@ but it does find the copy in `thesis` that we didn't delete.
 > intro.txt    methods.txt    survey.txt
 > $ cp intro.txt methods.txt survey.txt
 > ~~~
+
+### [Next: Pipes and Filters](03-pipefilter.html)
