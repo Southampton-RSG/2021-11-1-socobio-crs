@@ -54,7 +54,7 @@ These lessons will start you on a path towards using these resources effectively
 
 The answers to the exercises can be found [here](answers.html).
 
-## Other Resources and Further Learniing
+## Other Resources and Further Learning
 
 *   [Bash command reference](reference.html)
 *   [Writing readable source code - a guide](https://software.ac.uk/resources/guides/writing-readable-source-code)
