@@ -54,6 +54,10 @@ These lessons will start you on a path towards using these resources effectively
 
 The answers to the exercises can be found [here](answers.html).
 
-## Other Resources
+## Other Resources and Further Learniing
 
 *   [Bash command reference](reference.html)
+*   [Writing readable source code - a guide](https://software.ac.uk/resources/guides/writing-readable-source-code)
+*   [Bash tutorial with online exercises](https://learnshell.org/)
+*   [Intermediate guide to Bash](https://www.linode.com/docs/guides/an-intermediate-guide-to-bash-scripting/)
+*   [Bash command cheat sheet](https://hackr.io/blog/linux-cheat-sheet)
