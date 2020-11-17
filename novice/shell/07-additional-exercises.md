@@ -48,6 +48,8 @@ $ echo “1,2,3,4” | cut -d”,” -f 3
 
 Will output `3`.
 
+The `-d` argument specifies, within quotes, the delimiter that separates the columns on each line, whilst the `-f` argument indicates the column (or columns) you wish to extract.
+
 > ## Filtering our output {.challenge}
 > 
 > Let’s extend our pipeline to extract a specific column of data from each of our newly copied files.

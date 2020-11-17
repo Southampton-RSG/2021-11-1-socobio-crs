@@ -64,6 +64,7 @@
 <p>A really handy command to know when working with comma-separated value (CSV) data is the <code>cut</code> command. You can use the <code>cut</code> command to extract a specific column from CSV data, e.g.:</p>
 <pre class="bash"><code>$ echo “1,2,3,4” | cut -d”,” -f 3</code></pre>
 <p>Will output <code>3</code>.</p>
+<p>The <code>-d</code> argument specifies, within quotes, the delimiter that separates the columns on each line, whilst the <code>-f</code> argument indicates the column (or columns) you wish to extract.</p>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="filtering-our-output"><span class="glyphicon glyphicon-pencil"></span>Filtering our output</h2>
