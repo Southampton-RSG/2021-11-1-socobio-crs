@@ -51,6 +51,7 @@ These lessons will start you on a path towards using these resources effectively
 5.  [Shell Scripts](04-script.html)
 6.  [Loops](05-loop.html)
 7.  [Finding Things](06-find.html)
+8.  [Additional Exercises](07-additional-exercises.html)
 
 The answers to the exercises can be found [here](answers.html).
 
