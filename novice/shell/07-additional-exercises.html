@@ -46,7 +46,7 @@
 <p>Using the <code>date</code> command we’re able to retrieve today’s date and time in any format we want. For example:</p>
 <pre class="bash"><code>$ date +“%d-%m-%y”</code></pre>
 <p>The argument after the command indicates the format we’d like - <code>%d</code> will be replaced with the day of the month, <code>%m</code> the month, and <code>%y</code> the year. So this will output today’s date in the form day, month and year, separated by hyphens, e.g. <code>16-11-20</code>. We can capture this date output in a Bash variable using <code>$()</code>, for example in the shell:</p>
-<pre class="bash"><code>$ TODAY=$(date +“%d-%m-%y”)</code></pre>
+<pre class="bash"><code>$ today_date=$(date +“%d-%m-%y”)</code></pre>
 <section class="challenge panel panel-success">
 <div class="panel-heading">
 <h2 id="copying-files-with-new-filenames"><span class="glyphicon glyphicon-pencil"></span>Copying files with new filenames</h2>

@@ -24,7 +24,7 @@ $ date +“%d-%m-%y”
 The argument after the command indicates the format we’d like - `%d` will be replaced with the day of the month, `%m` the month, and `%y` the year. So this will output today’s date in the form day, month and year, separated by hyphens, e.g. `16-11-20`. We can capture this date output in a Bash variable using `$()`, for example in the shell:
 
 ~~~ {.bash}
-$ TODAY=$(date +“%d-%m-%y”)
+$ today_date=$(date +“%d-%m-%y”)
 ~~~
 
 > ## Copying files with new filenames {.challenge}
