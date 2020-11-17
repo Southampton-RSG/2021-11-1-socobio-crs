@@ -137,3 +137,31 @@ Matching ose.dat but not temp {}:
 3. Correct answer. It first executes the `find` command to find those files matching the '*ose.dat' pattern, which will match on exactly those that end in `ose.dat`, and then `grep` will search those files for "temp" and only report those that don't contain it, since it's using the `-v` flag to invert the results.
 4. Incorrect.
 
+### Additional Exercises
+
+Copying files with new filenames
+
+- Assuming the output directory is named `copied`:
+
+~~~ {.bash}
+today_date=$(date +"%d-%m-%y")
+
+for file in data/*.csv
+do
+    base_file=$(basename $file)
+    cp $file copied/$today_date-$base_file
+done
+~~~
+
+Filtering our output
+
+- The `Max_temp_jul_F` column is the fourth column in each data file
+- Assuming the input directory is named `copied` and the output directory is named `filtered`:
+
+~~~ {.bash}
+for file in copied/*.csv
+do
+    base_file=$(basename $file)
+    cat $file | cut -d"," -f 4 > filtered/$base_file
+done
+~~~
