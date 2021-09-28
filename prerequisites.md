@@ -3,7 +3,7 @@ layout: page-md
 title: Software Prerequisites
 ---
 
-[[Home]](https://southampton-rsg.github.io/2020-10-29-socobio-crs/)
+[[Home]](https://southampton-rsg.github.io/2020-11-1-socobio-crs/)
 
 **By 5.00pm on 26th October, you must install the required software on your laptop. Instructions are provided below.**
 

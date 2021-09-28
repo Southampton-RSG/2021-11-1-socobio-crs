@@ -160,7 +160,7 @@ which stands for "listing" (the `...` refers to other files and directories that
 $ ls
 ~~~
 ~~~ {.output}
-2020-10-29-socobio-crs Misc                   Solar.pdf
+2020-11-1-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -175,7 +175,7 @@ If you're using Git Bash on Windows, you'll find that it looks a little differen
 This is because Git Bash automatically tries to highlight the type of thing it is. For example, `/` indicates that entry is a directory.
 There's a way to also highlight this on Mac and Linux machines which we'll see shortly!
 
-We need to get into the repository directory `2020-10-29-socobio-crs`, so what if we want to change our current working directory?
+We need to get into the repository directory `2020-11-1-socobio-crs`, so what if we want to change our current working directory?
 Before we do this,
 `pwd` shows us that we're in `/Users/nelle`.
 
@@ -193,23 +193,23 @@ the command doesn't change the directory,
 it changes the shell's idea of what directory we are in.
 
 ~~~ {.bash}
-$ cd 2020-10-29-socobio-crs
+$ cd 2020-11-1-socobio-crs
 ~~~
 
 `cd` doesn't print anything,
-but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-10-29-socobio-crs`:
+but if we run `pwd` after it, we can see that we are now in `/Users/nelle/2020-11-1-socobio-crs`:
 
 ~~~ {.bash}
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs
+/Users/nelle/2020-11-1-socobio-crs
 ~~~
 
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
 
 If we run `ls` without arguments now,
-it lists the contents of `/Users/nelle/2020-10-29-socobio-crs`,
+it lists the contents of `/Users/nelle/2020-11-1-socobio-crs`,
 because that's where we now are:
 
 ~~~ {.bash}
@@ -376,7 +376,7 @@ $ cd test_directory
 
 We know how to go down the directory tree:
 but how do we go up?
-We could use an absolute path, e.g. `cd /Users/nelle/2020-10-29-socobio-crs/novice/shell`.
+We could use an absolute path, e.g. `cd /Users/nelle/2020-11-1-socobio-crs/novice/shell`.
 
 but it's almost always simpler to use `cd ..` to go up one level:
 
@@ -384,7 +384,7 @@ but it's almost always simpler to use `cd ..` to go up one level:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ cd ..
@@ -399,7 +399,7 @@ the **parent** of the current directory.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/
+/Users/nelle/2020-11-1-socobio-crs/novice/shell/
 ~~~
 
 Let's go back into our test directory:
@@ -422,7 +422,7 @@ creatures/          north-pacific-gyre/ solar.pdf
 
 `-a` stands for "show all";
 it forces `ls` to show us file and directory names that begin with `.`,
-such as `..` (which, if we're in `/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory`, refers to the `/Users/nelle/2020-10-29-socobio-crs/novice/shell` directory).
+such as `..` (which, if we're in `/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory`, refers to the `/Users/nelle/2020-11-1-socobio-crs/novice/shell` directory).
 As you can see,
 it also displays another special directory that's just called `.`,
 which means "the current working directory".
@@ -434,7 +434,7 @@ but we'll see some uses for it soon.
 > The special names `.` and `..` don't belong to `ls`;
 > they are interpreted the same way by every program.
 > For example,
-> if we are in `/Users/nelle/2020-10-29-socobio-crs`,
+> if we are in `/Users/nelle/2020-11-1-socobio-crs`,
 > the command `ls ..` will give us a listing of `/Users/nelle`,
 > and the command `cd ..` will take us back to `/Users/nelle` as well.
 >
@@ -444,7 +444,7 @@ but we'll see some uses for it soon.
 Another handy feature is that we can reference our home directory with `~`, e.g.:
 
 ~~~ {.bash}
-$ ls ~/2020-10-29-socobio-crs
+$ ls ~/2020-11-1-socobio-crs
 ~~~
 ~~~ {.output}
 404.html           Makefile           deck.js            requirements.txt

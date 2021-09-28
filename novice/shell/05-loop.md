@@ -25,7 +25,7 @@ Let's first go to the `creatures` directory (using tab completion to enter the f
 typing here!):
 
 ~~~ {.bash}
-$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory/creatures
+$ cd ~/2020-11-1-socobio-crs/novice/shell/test_directory/creatures
 $ ls
 ~~~
 ~~~ {.output}

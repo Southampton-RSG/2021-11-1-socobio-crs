@@ -39,7 +39,7 @@ These lessons will start you on a path towards using these resources effectively
 > 
 > ~~~ {.input}
 > $ cd
-> $ git clone https://github.com/Southampton-RSG/2020-10-29-socobio-crs
+> $ git clone https://github.com/Southampton-RSG/2020-11-1-socobio-crs
 > ~~~
 
 ## Topics

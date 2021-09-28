@@ -44,9 +44,9 @@
 <p>We now know how to explore files and directories, but how do we create them in the first place?</p>
 <p>First, let’s check where we are:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory</code></pre>
 <p>If you’re not in this directory, use the <code>cd</code> command to navigate to it as covered in the last lesson, for example:</p>
-<pre class="bash"><code>$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
+<pre class="bash"><code>$ cd ~/2020-11-1-socobio-crs/novice/shell/test_directory</code></pre>
 <h3 id="creating-a-new-directory">Creating a new directory</h3>
 <p>Now let’s use <code>ls -F</code> to see what our test directory contains:</p>
 <pre class="bash"><code>$ ls -F</code></pre>
@@ -106,13 +106,13 @@ it&#39;s &quot;share and thrive&quot;.</code></pre>
 </aside>
 <p>But what if we want to delete a directory, perhaps one that already contains a file? Let’s re-create that file and then move up one directory using <code>cd ..</code>:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory/thesis</code></pre>
 <pre class="bash"><code>$ nano draft.txt
 $ ls</code></pre>
 <pre class="output"><code>draft.txt</code></pre>
 <pre class="bash"><code>$ cd ..
 $ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory</code></pre>
 <p>If we try to remove the entire <code>thesis</code> directory using <code>rm thesis</code>, we get an error message:</p>
 <pre class="bash"><code>$ rm thesis</code></pre>
 <pre class="error"><code>rm: cannot remove `thesis&#39;: Is a directory</code></pre>
@@ -137,7 +137,7 @@ $ pwd</code></pre>
 <h3 id="renaming-and-moving-files-and-directories">Renaming and moving files and directories</h3>
 <p>Let’s create that directory and file one more time.</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/user/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
+<pre class="output"><code>/Users/user/2020-11-1-socobio-crs/novice/shell/test_directory</code></pre>
 <pre class="bash"><code>$ mkdir thesis</code></pre>
 <p>Again, put anything you like in this file (note we’re giving the <code>thesis</code> path to <code>nano</code> as well as the <code>draft.txt</code> filename, so we create it in that directory):</p>
 <pre class="bash"><code>$ nano thesis/draft.txt
