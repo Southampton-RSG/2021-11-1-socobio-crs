@@ -24,7 +24,7 @@ these are actually small programs.
 Let's start by going back to `novice/shell/data` and putting some commands into a new file called `middle.sh` using an editor like `nano`:
 
 ~~~ {.bash}
-$ cd ~/2020-10-29-socobio-crs/novice/shell/data
+$ cd ~/2020-11-1-socobio-crs/novice/shell/data
 $ nano middle.sh
 ~~~
 

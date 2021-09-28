@@ -120,7 +120,7 @@
 <p>But how can we tell what’s in directories, and how can we move around the file system?</p>
 <p>We’re currently in our home directory, and can see what’s in it by running <code>ls</code>, which stands for “listing” (the <code>...</code> refers to other files and directories that have been left out for clarity):</p>
 <pre class="bash"><code>$ ls</code></pre>
-<pre class="output"><code>2020-10-29-socobio-crs Misc                   Solar.pdf
+<pre class="output"><code>2020-11-1-socobio-crs Misc                   Solar.pdf
 Applications           Movies                 Teaching
 Desktop                Music                  ThunderbirdTemp
 Development            Notes.txt              VirtualBox VMs
@@ -129,16 +129,16 @@ Downloads              Pizza.cfg              mbox
 ...</code></pre>
 <p>Of course, this listing will depend on what you have in your own home directory.</p>
 <p>If you’re using Git Bash on Windows, you’ll find that it looks a little different, with characters such as <code>/</code> added to some names. This is because Git Bash automatically tries to highlight the type of thing it is. For example, <code>/</code> indicates that entry is a directory. There’s a way to also highlight this on Mac and Linux machines which we’ll see shortly!</p>
-<p>We need to get into the repository directory <code>2020-10-29-socobio-crs</code>, so what if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/Users/nelle</code>.</p>
+<p>We need to get into the repository directory <code>2020-11-1-socobio-crs</code>, so what if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/Users/nelle</code>.</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
 <p>We can use <code>cd</code> followed by a directory name to change our working directory. <code>cd</code> stands for “change directory”, which is a bit misleading: the command doesn’t change the directory, it changes the shell’s idea of what directory we are in.</p>
-<pre class="bash"><code>$ cd 2020-10-29-socobio-crs</code></pre>
-<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2020-10-29-socobio-crs</code>:</p>
+<pre class="bash"><code>$ cd 2020-11-1-socobio-crs</code></pre>
+<p><code>cd</code> doesn’t print anything, but if we run <code>pwd</code> after it, we can see that we are now in <code>/Users/nelle/2020-11-1-socobio-crs</code>:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs</code></pre>
 <!-- ![Nelle's Home Directory](fig/homedir.svg) - remove Desktop-->
-<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2020-10-29-socobio-crs</code>, because that’s where we now are:</p>
+<p>If we run <code>ls</code> without arguments now, it lists the contents of <code>/Users/nelle/2020-11-1-socobio-crs</code>, because that’s where we now are:</p>
 <pre class="bash"><code>$ ls</code></pre>
 <pre class="output"><code>404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
@@ -211,14 +211,14 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>This is known as <em>tab completion</em> on any matches with those first few letters. If there are more than one files or directories that match those letters, the shell will show you both — you can then enter more characters (then using <em>TAB</em> again) until it is able to identify the precise file you want and finish the tab completion.</p>
 <p>Let’s change our directory to <code>test_directory</code>:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
-<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
+<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-11-1-socobio-crs/novice/shell</code>.</p>
 <p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory</code></pre>
 <pre class="bash"><code>$ cd ..</code></pre>
 <p><code>..</code> is a special directory name meaning “the directory containing this one”, or more succinctly, the <strong>parent</strong> of the current directory.</p>
 <pre class="bash"><code>$ pwd</code></pre>
-<pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/</code></pre>
+<pre class="output"><code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/</code></pre>
 <p>Let’s go back into our test directory:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
 <p>The special directory <code>..</code> doesn’t usually show up when we run <code>ls</code>. If we want to display it, we can give <code>ls</code> the <code>-a</code> flag:</p>
@@ -226,18 +226,18 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <pre class="output"><code>./                  data/               notes.txt           writing/
 ../                 molecules/          pizza.cfg
 creatures/          north-pacific-gyre/ solar.pdf</code></pre>
-<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code> (which, if we’re in <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code>, refers to the <code>/Users/nelle/2020-10-29-socobio-crs/novice/shell</code> directory). As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
+<p><code>-a</code> stands for “show all”; it forces <code>ls</code> to show us file and directory names that begin with <code>.</code>, such as <code>..</code> (which, if we’re in <code>/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory</code>, refers to the <code>/Users/nelle/2020-11-1-socobio-crs/novice/shell</code> directory). As you can see, it also displays another special directory that’s just called <code>.</code>, which means “the current working directory”. It may seem redundant to have a name for it, but we’ll see some uses for it soon.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2 id="special-names"><span class="glyphicon glyphicon-pushpin"></span>Special Names</h2>
 </div>
 <div class="panel-body">
-<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-10-29-socobio-crs</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>, and the command <code>cd ..</code> will take us back to <code>/Users/nelle</code> as well.</p>
+<p>The special names <code>.</code> and <code>..</code> don’t belong to <code>ls</code>; they are interpreted the same way by every program. For example, if we are in <code>/Users/nelle/2020-11-1-socobio-crs</code>, the command <code>ls ..</code> will give us a listing of <code>/Users/nelle</code>, and the command <code>cd ..</code> will take us back to <code>/Users/nelle</code> as well.</p>
 <p>How <code>.</code>, <code>..</code> and <code>~</code> behave is a feature of how Bash represents your computer’s file system, not any particular program you can run in it.</p>
 </div>
 </aside>
 <p>Another handy feature is that we can reference our home directory with <code>~</code>, e.g.:</p>
-<pre class="bash"><code>$ ls ~/2020-10-29-socobio-crs</code></pre>
+<pre class="bash"><code>$ ls ~/2020-11-1-socobio-crs</code></pre>
 <pre class="output"><code>404.html           Makefile           deck.js            requirements.txt
 CONDUCT.md         README.md          index.html         schedule.html
 CONTRIBUTING.md    SETUP.md           js                 setup

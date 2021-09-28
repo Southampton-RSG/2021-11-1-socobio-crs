@@ -20,13 +20,13 @@ First, let's check where we are:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory
 ~~~
 
 If you're not in this directory, use the `cd` command to navigate to it as covered in the last lesson, for example:
 
 ~~~ {.bash}
-$ cd ~/2020-10-29-socobio-crs/novice/shell/test_directory
+$ cd ~/2020-11-1-socobio-crs/novice/shell/test_directory
 ~~~
 
 ### Creating a new directory
@@ -168,7 +168,7 @@ and then move up one directory using `cd ..`:
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory/thesis
+/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory/thesis
 ~~~
 ~~~ {.bash}
 $ nano draft.txt
@@ -182,7 +182,7 @@ $ cd ..
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/nelle/2020-11-1-socobio-crs/novice/shell/test_directory
 ~~~
 
 If we try to remove the entire `thesis` directory using `rm thesis`,
@@ -247,7 +247,7 @@ Let's create that directory and file one more time.
 $ pwd
 ~~~
 ~~~ {.output}
-/Users/user/2020-10-29-socobio-crs/novice/shell/test_directory
+/Users/user/2020-11-1-socobio-crs/novice/shell/test_directory
 ~~~
 ~~~ {.bash}
 $ mkdir thesis
