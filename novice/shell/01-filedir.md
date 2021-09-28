@@ -87,7 +87,7 @@ $ pwd
 >
 > If the command to find out who we are is `whoami`, the command to find
 > out where we are ought to be called `whereami`, so why is it `pwd`
-> instead? The usual answer is that in the early 1970s, when Unix was
+> instead? The usual answer is that in the early 1970s, when Unix - where the Bash shell originates - was
 > first being developed, every keystroke counted: the devices of the day
 > were slow, and backspacing on a teletype was so painful that cutting the
 > number of keystrokes in order to cut the number of typing mistakes was
@@ -170,6 +170,10 @@ Downloads              Pizza.cfg              mbox
 ~~~
 
 Of course, this listing will depend on what you have in your own home directory.
+
+If you're using Git Bash on Windows, you'll find that it looks a little different, with characters such as `/` added to some names.
+This is because Git Bash automatically tries to highlight the type of thing it is. For example, `/` indicates that entry is a directory.
+There's a way to also highlight this on Mac and Linux machines which we'll see shortly!
 
 We need to get into the repository directory `2020-10-29-socobio-crs`, so what if we want to change our current working directory?
 Before we do this,

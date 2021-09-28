@@ -77,7 +77,7 @@
 <h2 id="alphabet-soup"><span class="glyphicon glyphicon-pushpin"></span>Alphabet Soup</h2>
 </div>
 <div class="panel-body">
-<p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix was first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
+<p>If the command to find out who we are is <code>whoami</code>, the command to find out where we are ought to be called <code>whereami</code>, so why is it <code>pwd</code> instead? The usual answer is that in the early 1970s, when Unix - where the Bash shell originates - was first being developed, every keystroke counted: the devices of the day were slow, and backspacing on a teletype was so painful that cutting the number of keystrokes in order to cut the number of typing mistakes was actually a win for usability. The reality is that commands were added to Unix one by one, without any master plan, by people who were immersed in its jargon. The result is as inconsistent as the roolz uv Inglish speling, but we’re stuck with it now.</p>
 </div>
 </aside>
 <aside class="callout panel panel-info">
@@ -128,6 +128,7 @@ Documents              Pictures               bin
 Downloads              Pizza.cfg              mbox
 ...</code></pre>
 <p>Of course, this listing will depend on what you have in your own home directory.</p>
+<p>If you’re using Git Bash on Windows, you’ll find that it looks a little different, with characters such as <code>/</code> added to some names. This is because Git Bash automatically tries to highlight the type of thing it is. For example, <code>/</code> indicates that entry is a directory. There’s a way to also highlight this on Mac and Linux machines which we’ll see shortly!</p>
 <p>We need to get into the repository directory <code>2020-10-29-socobio-crs</code>, so what if we want to change our current working directory? Before we do this, <code>pwd</code> shows us that we’re in <code>/Users/nelle</code>.</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle</code></pre>
@@ -193,7 +194,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>Notice, by the way, that we spelled the directory name <code>test_directory</code>, and it doesn’t have a trailing slash. That’s added to directory names by <code>ls</code> when we use the <code>-F</code> flag to help us tell things apart. And it doesn’t begin with a slash because it’s a <strong>relative path</strong> - it tells <code>ls</code> how to find something from where we are, rather than from the root of the file system.</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
-<h2 id="parameters-vs.-arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
+<h2 id="parameters-vs.arguments"><span class="glyphicon glyphicon-pushpin"></span>Parameters vs. Arguments</h2>
 </div>
 <div class="panel-body">
 <p>According to <a href="https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Parameters_and_arguments">Wikipedia</a>, the terms argument and <strong>parameter</strong> mean slightly different things. In practice, however, most people use them interchangeably or inconsistently, so we will too.</p>
@@ -210,7 +211,7 @@ data/               north-pacific-gyre/ pizza.cfg           writing/</code></pre
 <p>This is known as <em>tab completion</em> on any matches with those first few letters. If there are more than one files or directories that match those letters, the shell will show you both — you can then enter more characters (then using <em>TAB</em> again) until it is able to identify the precise file you want and finish the tab completion.</p>
 <p>Let’s change our directory to <code>test_directory</code>:</p>
 <pre class="bash"><code>$ cd test_directory</code></pre>
-<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
+<p>We know how to go down the directory tree: but how do we go up? We could use an absolute path, e.g. <code>cd /Users/nelle/2020-10-29-socobio-crs/novice/shell</code>.</p>
 <p>but it’s almost always simpler to use <code>cd ..</code> to go up one level:</p>
 <pre class="bash"><code>$ pwd</code></pre>
 <pre class="output"><code>/Users/nelle/2020-10-29-socobio-crs/novice/shell/test_directory</code></pre>

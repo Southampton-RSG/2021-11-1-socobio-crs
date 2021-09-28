@@ -82,7 +82,7 @@ $ nano draft.txt</code></pre>
 <figure>
 <img src="fig/nano-screenshot.png" alt="Nano in action" /><figcaption>Nano in action</figcaption>
 </figure>
-<p>Once we have a few words, we then use <code>Control-O</code> (pressing <code>Control</code> and the letter <code>O</code> at the same time) to save this data in a new <code>draft.txt</code> file.</p>
+<p>Once we have a few words, to save this data in a new <code>draft.txt</code> file we then use <code>Control-O</code> (pressing <code>Control</code> and the letter <code>O</code> at the same time), and then press <code>Enter</code> to confirm the filename.</p>
 <p>Once our file is saved, we can use <code>Control-X</code> to quit the editor and return to the shell. <code>nano</code> doesn’t leave any output on the screen after it exits, but <code>ls</code> now shows that we have created a file called <code>draft.txt</code>:</p>
 <p>Now we’ve saved the file, we can use <code>ls</code> to see that there is a new file in the directory called <code>draft.txt</code>:</p>
 <pre class="bash"><code>$ ls</code></pre>
@@ -101,7 +101,7 @@ it&#39;s &quot;share and thrive&quot;.</code></pre>
 <h2 id="deleting-is-forever"><span class="glyphicon glyphicon-pushpin"></span>Deleting Is Forever</h2>
 </div>
 <div class="panel-body">
-<p>The Unix shell doesn’t have a trash bin that we can recover deleted files from (though most graphical interfaces to Unix do). Instead, when we delete files, they are unhooked from the file system so that their storage space on disk can be recycled. Tools for finding and recovering deleted files do exist, but there’s no guarantee they’ll work in any particular situation, since the computer may recycle the file’s disk space right away.</p>
+<p>The Bash shell doesn’t have a trash bin that we can recover deleted files from. Instead, when we delete files, they are unhooked from the file system so that their storage space on disk can be recycled. Tools for finding and recovering deleted files do exist, but there’s no guarantee they’ll work in any particular situation, since the computer may recycle the file’s disk space right away.</p>
 </div>
 </aside>
 <p>But what if we want to delete a directory, perhaps one that already contains a file? Let’s re-create that file and then move up one directory using <code>cd ..</code>:</p>
@@ -148,7 +148,7 @@ $ ls thesis</code></pre>
 <p>The first parameter tells <code>mv</code> what we’re “moving”, while the second is where it’s to go. In this case, we’re moving <code>thesis/draft.txt</code> (the file <code>draft.txt</code> in the <code>thesis</code> directory) to <code>thesis/quotes.txt</code> (the <code>quotes.txt</code> again in the <code>thesis</code> directory), which has the same effect as renaming the file. Sure enough, <code>ls</code> shows us that <code>thesis</code> now contains one file called <code>quotes.txt</code>:</p>
 <pre class="bash"><code>$ ls thesis</code></pre>
 <pre class="output"><code>quotes.txt</code></pre>
-<p>Just for the sake of inconsistency, <code>mv</code> also works on directories — there is no separate <code>mvdir</code> command. Another example of the Unix shell’s pariochial nature!</p>
+<p>Just for the sake of inconsistency, <code>mv</code> also works on directories — there is no separate <code>mvdir</code> command. Another example of the Bash shell’s pariochial nature!</p>
 <p>Let’s move <code>quotes.txt</code> into the current working directory. We use <code>mv</code> once again, but this time we’ll just use the name of a directory as the second parameter to tell <code>mv</code> that we want to keep the filename, but put the file somewhere new. (This is why the command is called “move”.) In this case, the directory name we use is the special directory name <code>.</code> that we mentioned earlier.</p>
 <pre class="bash"><code>$ mv thesis/quotes.txt .</code></pre>
 <p>The effect is to move the file from the directory it was in to the current working directory. <code>ls</code> now shows us that <code>thesis</code> is empty:</p>

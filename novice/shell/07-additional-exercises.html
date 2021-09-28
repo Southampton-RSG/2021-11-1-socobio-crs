@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: The Bash Shell</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="https://rsgsoton.net/" title="Research Software Group">
+          <img alt="RSG banner" width="20%" src="img/RSG_logo_orange.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">The Bash Shell</h1></a>
+          <h2 class="subtitle">Additional Exercises</h2>
+          <section class="objectives panel panel-warning">
+<div class="panel-heading">
+<h2 id="learning-objectives"><span class="glyphicon glyphicon-certificate"></span>Learning Objectives</h2>
+</div>
+<div class="panel-body">
+<ul>
+<li>Construct a pipeline that takes input files and generates output.</li>
+<li>How to separate input and output data files.</li>
+<li>Use <code>date</code> to determine today’s date in a particular format.</li>
+<li>Use <code>cut</code> to extract particular fields from a comma-separate value (CSV) data file.</li>
+<li>Extend an existing pipeline with an additional data processing stage.</li>
+</ul>
+</div>
+</section>
+<h2 id="working-with-dates">Working with dates</h2>
+<p>Using the <code>date</code> command we’re able to retrieve today’s date and time in any format we want. For example:</p>
+<pre class="bash"><code>$ date +“%d-%m-%y”</code></pre>
+<p>The argument after the command indicates the format we’d like - <code>%d</code> will be replaced with the day of the month, <code>%m</code> the month, and <code>%y</code> the year. So this will output today’s date in the form day, month and year, separated by hyphens, e.g. <code>16-11-20</code>. We can capture this date output in a Bash variable using <code>$()</code>, for example in the shell:</p>
+<pre class="bash"><code>$ today_date=$(date +“%d-%m-%y”)</code></pre>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="copying-files-with-new-filenames"><span class="glyphicon glyphicon-pencil"></span>Copying files with new filenames</h2>
+</div>
+<div class="panel-body">
+<p>Write a script in the <code>novice/shell</code> directory that goes through each <code>.csv</code> file in the <code>data</code> directory (that resides in the <code>novice/shell</code> directory) and creates a copy of that file with today’s date at the start of the filename, e.g. <code>16-11-20-sc_climate_data.csv</code>.</p>
+<p>Hints:</p>
+<ul>
+<li>With the input data files we’re going to use held in the data directory, create a new directory which will be used to hold your output files. When writing scripts or programs that generate output from input, it is a good idea to separate where you keep your input and output files. This allows you to more easily distinguish between the two, makes it easier to understand, and retains your original input which is invaluable if your script has a fault and corrupts your input data. It also means that if you add an additional processing step that will work on the output data and generate new output, you can logically extend this by adding a new script and a new directory to hold <em>that</em> new output, and so on.</li>
+<li>You can use <code>basename</code> followed by a path to extract only the filename from a path, e.g. <code>basename test_directory/notes.txt</code> produces <code>notes.txt</code>.</li>
+</ul>
+</div>
+</section>
+<h2 id="extracting-columns-from-csv">Extracting columns from CSV</h2>
+<p>A really handy command to know when working with comma-separated value (CSV) data is the <code>cut</code> command. You can use the <code>cut</code> command to extract a specific column from CSV data, e.g.:</p>
+<pre class="bash"><code>$ echo “1,2,3,4” | cut -d”,” -f 3</code></pre>
+<p>Will output <code>3</code>.</p>
+<p>The <code>-d</code> argument specifies, within quotes, the delimiter that separates the columns on each line, whilst the <code>-f</code> argument indicates the column (or columns) you wish to extract.</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="filtering-our-output"><span class="glyphicon glyphicon-pencil"></span>Filtering our output</h2>
+</div>
+<div class="panel-body">
+<p>Let’s extend our pipeline to extract a specific column of data from each of our newly copied files.</p>
+<p>Create a new script that takes each new file we created in the earlier exercise and creates a new file (again, in another separate output directory), which contains only the data held in the <code>Max_temp_jul_F</code> column.</p>
+</div>
+</section>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/shell-novice">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

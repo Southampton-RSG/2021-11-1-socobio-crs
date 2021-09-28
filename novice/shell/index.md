@@ -1,8 +1,8 @@
 ---
 layout: page
-title: The Unix Shell
+title: The Bash Shell
 ---
-The Unix shell has been around longer than most of its users have been alive.
+The Bash shell has been around longer than many of its users have been alive.
 It has survived so long because it's a power tool
 that allows people to do complex things with just a few keystrokes.
 
@@ -51,9 +51,14 @@ These lessons will start you on a path towards using these resources effectively
 5.  [Shell Scripts](04-script.html)
 6.  [Loops](05-loop.html)
 7.  [Finding Things](06-find.html)
+8.  [Additional Exercises](07-additional-exercises.html)
 
 The answers to the exercises can be found [here](answers.html).
 
-## Other Resources
+## Other Resources and Further Learning
 
 *   [Bash command reference](reference.html)
+*   [Writing readable source code - a guide](https://software.ac.uk/resources/guides/writing-readable-source-code)
+*   [Bash tutorial with online exercises](https://learnshell.org/)
+*   [Intermediate guide to Bash](https://www.linode.com/docs/guides/an-intermediate-guide-to-bash-scripting/)
+*   [Bash command cheat sheet](https://hackr.io/blog/linux-cheat-sheet)

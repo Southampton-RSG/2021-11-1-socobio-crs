@@ -107,8 +107,8 @@ Now, let's type in a few lines of text, for example:
 
 ![Nano in action](fig/nano-screenshot.png)
 
-Once we have a few words, we then use `Control-O` (pressing `Control` and the letter `O` at the same time)
-to save this data in a new `draft.txt` file.
+Once we have a few words, to save this data in a new `draft.txt` file we then use `Control-O` (pressing `Control` and the letter `O` at the same time), and then press 
+`Enter` to confirm the filename.
 
 Once our file is saved,
 we can use `Control-X` to quit the editor and return to the shell.
@@ -153,8 +153,8 @@ $ ls
 
 > ## Deleting Is Forever {.callout}
 >
-> The Unix shell doesn't have a trash bin that we can recover deleted
-> files from (though most graphical interfaces to Unix do).  Instead,
+> The Bash shell doesn't have a trash bin that we can recover deleted
+> files from.  Instead,
 > when we delete files, they are unhooked from the file system so that
 > their storage space on disk can be recycled. Tools for finding and
 > recovering deleted files do exist, but there's no guarantee they'll
@@ -287,7 +287,7 @@ quotes.txt
 ~~~
 
 Just for the sake of inconsistency,
-`mv` also works on directories --- there is no separate `mvdir` command. Another example of the Unix shell's pariochial nature!
+`mv` also works on directories --- there is no separate `mvdir` command. Another example of the Bash shell's pariochial nature!
 
 Let's move `quotes.txt` into the current working directory.
 We use `mv` once again,
