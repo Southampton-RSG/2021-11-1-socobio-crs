@@ -9,10 +9,10 @@ title: Software Prerequisites
 
 There is no time during the workshop to deal with installation problems, so you must arrive with your software already installed.
 
-## Installation Day: 29th October 2020
+## Installation Day: 29th October 2021
 
 We've set aside 29th October to provide help with installing software. Our Research Software Engineers will be online
-from 9.00 am-5.00 pm to help with your installation.
+from 9.00 am - 5.00 pm to help with your installation.
 
 The installation is fairly straightforward, but if you have any problems, let us know via the [Teams group](https://teams.microsoft.com/l/channel/19%3a68e3a937446d4ac1a2e499f18ffddccd%40thread.tacv2/Data%2520Management%2520Module?groupId=e9cf73f0-713a-4d5e-b62b-4c141212a8b6&tenantId=4a5378f9-29f4-4d3e-be89-669d03ada9d8)
 or by [emailing us](mailto:rsg-info@soton.ac.uk). We'll arrange a Teams call with you to talk you through the process.
